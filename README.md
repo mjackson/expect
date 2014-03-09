@@ -1,6 +1,6 @@
 expect lets you write expect-style assertions for your node programs. This means you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
 
-### Examples
+A few examples:
 
 ```js
 var expect = require('expect');
