@@ -1,6 +1,6 @@
 {
   "name": "expect",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Expect-style assertions for node",
   "main": "expect.js",
   "directories": {
