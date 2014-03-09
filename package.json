@@ -1,0 +1,32 @@
+{
+  "name": "expect",
+  "version": "0.0.0",
+  "description": "Expect-style assertions for node",
+  "main": "expect.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.17.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "expect",
+    "assert",
+    "test",
+    "spec"
+  ],
+  "author": "Michael Jackson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mjijackson/expect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mjijackson/expect/issues"
+  },
+  "homepage": "https://github.com/mjijackson/expect"
+}
