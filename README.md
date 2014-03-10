@@ -1,4 +1,6 @@
-expect lets you write expect-style assertions for your node programs. This means you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
+[expect](https://github.com/mjijackson/expect) is a thin wrapper around node's [assert](http://nodejs.org/api/assert.html) module that lets you write better assertions.
+
+When you use expect, you write assertions similarly to how you would say them, e.g. "I expect this value to be equal to 3" or "I expect this array to contain 3". When you write assertions in this way, you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
 
 ### API
 
