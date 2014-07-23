@@ -90,4 +90,4 @@ expect([ 1, 2, 3 ]).toExclude(4);
 
 ### License
 
-MIT
+[MIT](http://opensource.org/licenses/MIT)
