@@ -20,10 +20,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mjijackson/expect.git"
+    "url": "git://github.com/mjackson/expect.git"
   },
   "bugs": {
-    "url": "https://github.com/mjijackson/expect/issues"
+    "url": "https://github.com/mjackson/expect/issues"
   },
-  "homepage": "https://github.com/mjijackson/expect"
+  "homepage": "https://github.com/mjackson/expect"
 }
