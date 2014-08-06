@@ -2,13 +2,13 @@
   "name": "expect",
   "version": "0.1.1",
   "description": "Write better assertions",
-  "main": "expect.js",
+  "main": "modules/expect.js",
   "dependencies": {},
   "devDependencies": {
     "mocha": "~1.17.1"
   },
   "scripts": {
-    "test": "mocha spec"
+    "test": "mocha specs"
   },
   "keywords": [
     "expect",
