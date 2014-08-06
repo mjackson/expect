@@ -4,7 +4,32 @@ var inspect = util.inspect;
 var isRegExp = util.isRegExp;
 var isArray = Array.isArray;
 
-module.exports = Expectation;
+function isFunction(object) {
+  return typeof object === 'function';
+}
+
+function wrapAssertion(assertion) {
+  return function () {
+    var args = Array.prototype.slice.call(arguments, 0);
+    return assertion.apply(assert, [ this.actual ].concat(args));
+  };
+}
+
+/**
+ * Returns true if the given array contains the value, false otherwise. The
+ * comparator function must return false or throw to indicate a non-match.
+ */
+function arrayContains(array, value, comparator) {
+  comparator = comparator || assert.deepEqual;
+
+  return array.some(function (item) {
+    try {
+      return comparator(item, value) !== false;
+    } catch (error) {
+      return false;
+    }
+  });
+}
 
 /**
  * An Expectation is a wrapper around an assertion that allows it to be written
@@ -16,13 +41,6 @@ function Expectation(actual) {
     return new Expectation(actual);
 
   this.actual = actual;
-}
-
-var _slice = Array.prototype.slice;
-function wrapAssertion(assertion) {
-  return function () {
-    return assertion.apply(assert, [ this.actual ].concat(_slice.call(arguments, 0)));
-  };
 }
 
 Expectation.prototype.toBe = wrapAssertion(assert.strictEqual);
@@ -89,22 +107,4 @@ function toExclude(value, comparator, message) {
   assert(!arrayContains(this.actual, value, comparator), message);
 }
 
-/**
- * Returns true if the given array contains the value, false otherwise. The
- * comparator function must return false or throw to indicate a non-match.
- */
-function arrayContains(array, value, comparator) {
-  comparator = comparator || assert.deepEqual;
-
-  return array.some(function (item) {
-    try {
-      return comparator(item, value) !== false;
-    } catch (error) {
-      return false;
-    }
-  });
-}
-
-function isFunction(object) {
-  return typeof object === 'function';
-}
+module.exports = Expectation;
