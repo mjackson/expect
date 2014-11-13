@@ -92,7 +92,7 @@ Using [npm](https://www.npmjs.org/):
 
 ### Issues
 
-Please file issues on the [issue tracker on GitHub](https://github.com/machjs/mach/issues).
+Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
 
 ### Tests
 
