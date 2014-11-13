@@ -4,11 +4,7 @@
 
 When you use expect, you write assertions similarly to how you would say them, e.g. "I expect this value to be equal to 3" or "I expect this array to contain 3". When you write assertions in this way, you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
 
-### Installation
-
-    $ npm install expect
-
-### API
+### Usage
 
 #### expect(object).toBe(value, [message])
 
@@ -87,6 +83,23 @@ Asserts the given `array` does not contain `value`. The `comparator` function, i
 ```js
 expect([ 1, 2, 3 ]).toExclude(4);
 ```
+
+### Installation
+
+Using [npm](https://www.npmjs.org/):
+
+    $ npm install expect
+
+### Issues
+
+Please file issues on the [issue tracker on GitHub](https://github.com/machjs/mach/issues).
+
+### Tests
+
+To run the tests in node:
+
+    $ npm install
+    $ npm test
 
 ### License
 
