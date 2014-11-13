@@ -1,7 +1,6 @@
 var assert = require('assert');
-var util = require('util');
-var inspect = util.inspect;
-var isRegExp = util.isRegExp;
+var inspect = require('util').inspect;
+var isRegExp = require('util').isRegExp;
 var isArray = Array.isArray;
 
 function isFunction(object) {
@@ -50,38 +49,29 @@ Expectation.prototype.toNotEqual = wrapAssertion(assert.notDeepEqual);
 Expectation.prototype.toThrow = wrapAssertion(assert.throws);
 Expectation.prototype.toNotThrow = wrapAssertion(assert.doesNotThrow);
 
-Expectation.prototype.toBeA = toBeA;
-Expectation.prototype.toBeAn = toBeA;
-function toBeA(constructor, message) {
+Expectation.prototype.toBeA = function (constructor, message) {
   assert(isFunction(constructor), 'The constructor used in toBeA/toBeAn must be a function');
   message = message || inspect(this.actual) + ' is not a ' + (constructor.name || constructor.toString());
   assert(this.actual instanceof constructor, message);
-}
+};
 
-Expectation.prototype.toMatch = toMatch;
-function toMatch(pattern, message) {
+Expectation.prototype.toMatch = function (pattern, message) {
   assert(isRegExp(pattern), 'The pattern used in toMatch must be a RegExp');
   message = message || inspect(this.actual) + ' does not match ' + inspect(pattern);
   assert(pattern.test(this.actual), message);
-}
+};
 
-Expectation.prototype.toBeLessThan = toBeLessThan;
-Expectation.prototype.toBeFewerThan = toBeLessThan;
-function toBeLessThan(value, message) {
+Expectation.prototype.toBeLessThan = function (value, message) {
   message = message || inspect(this.actual) + ' is not less than ' + inspect(value);
   assert(this.actual < value, message);
-}
+};
 
-Expectation.prototype.toBeGreaterThan = toBeGreaterThan;
-Expectation.prototype.toBeMoreThan = toBeGreaterThan;
-function toBeGreaterThan(value, message) {
+Expectation.prototype.toBeGreaterThan = function (value, message) {
   message = message || inspect(this.actual) + ' is not greater than ' + inspect(value);
   assert(this.actual > value, message);
-}
+};
 
-Expectation.prototype.toInclude = toInclude;
-Expectation.prototype.toContain = toInclude;
-function toInclude(value, comparator, message) {
+Expectation.prototype.toInclude = function (value, comparator, message) {
   assert(isArray(this.actual), 'The actual value used in toInclude/toContain must be an Array');
 
   if (typeof comparator === 'string') {
@@ -90,12 +80,14 @@ function toInclude(value, comparator, message) {
   }
 
   message = message || inspect(this.actual) + ' does not include ' + inspect(value);
-  assert(arrayContains(this.actual, value, comparator), message);
-}
 
-Expectation.prototype.toExclude = toExclude;
-Expectation.prototype.toNotContain = toExclude;
-function toExclude(value, comparator, message) {
+  assert(
+    arrayContains(this.actual, value, comparator),
+    message
+  );
+};
+
+Expectation.prototype.toExclude = function (value, comparator, message) {
   assert(isArray(this.actual), 'The actual value used in toExclude/toNotContain must be an Array');
 
   if (typeof comparator === 'string') {
@@ -104,7 +96,22 @@ function toExclude(value, comparator, message) {
   }
 
   message = message || inspect(this.actual) + ' includes ' + inspect(value);
-  assert(!arrayContains(this.actual, value, comparator), message);
-}
+  
+  assert(
+    !arrayContains(this.actual, value, comparator),
+    message
+  );
+};
+
+var aliases = {
+  toBeAn: 'toBeA',
+  toBeFewerThan: 'toBeLessThan',
+  toBeMoreThan: 'toBeGreaterThan',
+  toContain: 'toInclude',
+  toNotContain: 'toExclude'
+};
+
+for (var alias in aliases)
+  Expectation.prototype[alias] = Expectation.prototype[aliases[alias]];
 
 module.exports = Expectation;
