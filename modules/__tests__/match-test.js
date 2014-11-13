@@ -1,4 +1,4 @@
-require('./helper');
+var expect = require('../expect');
 
 describe('Expectation#toMatch', function () {
   it('requires the pattern to be a RegExp', function () {

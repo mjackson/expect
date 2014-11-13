@@ -1,4 +1,4 @@
-require('./helper');
+var expect = require('../expect');
 
 describe('Expectation#toInclude', function () {
   it('requires the actual value to be an Array', function () {

@@ -8,7 +8,7 @@
     "mocha": "~1.17.1"
   },
   "scripts": {
-    "test": "mocha specs"
+    "test": "mocha \"modules/**/__tests__/**/*-test.js\""
   },
   "keywords": [
     "expect",

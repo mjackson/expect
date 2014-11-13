@@ -1,4 +1,4 @@
-require('./helper');
+var expect = require('../expect');
 
 describe('Expectation#toBeLessThan', function () {
   it('does not throw when the actual value is less than the expected value', function () {

@@ -1,4 +1,4 @@
-require('./helper');
+var expect = require('../expect');
 
 describe('Expectation#toBeA', function () {
   it('requires the constructor to be a function', function () {
