@@ -1,6 +1,6 @@
 {
   "name": "expect",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Write better assertions",
   "main": "modules/expect.js",
   "dependencies": {},
