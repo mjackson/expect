@@ -50,6 +50,18 @@ Expectation.prototype.toNotEqual = wrapAssertion(assert.notDeepEqual);
 Expectation.prototype.toThrow = wrapAssertion(assert.throws);
 Expectation.prototype.toNotThrow = wrapAssertion(assert.doesNotThrow);
 
+Expectation.prototype.toExist = function (message) {
+  message = message || inspect(this.actual) + ' to exist';
+  assert(this.actual, message);
+  return this;
+};
+
+Expectation.prototype.toNotExist = function (message) {
+  message = message || inspect(this.actual) + ' to not exist';
+  assert(!this.actual, message);
+  return this;
+};
+
 Expectation.prototype.toBeA = function (constructor, message) {
   assert(isFunction(constructor), 'The constructor used in toBeA/toBeAn must be a function');
   message = message || inspect(this.actual) + ' is not a ' + (constructor.name || constructor.toString());
