@@ -51,13 +51,13 @@ Expectation.prototype.toThrow = wrapAssertion(assert.throws);
 Expectation.prototype.toNotThrow = wrapAssertion(assert.doesNotThrow);
 
 Expectation.prototype.toExist = function (message) {
-  message = message || inspect(this.actual) + ' to exist';
+  message = message || inspect(this.actual) + ' should exist';
   assert(this.actual, message);
   return this;
 };
 
 Expectation.prototype.toNotExist = function (message) {
-  message = message || inspect(this.actual) + ' to not exist';
+  message = message || inspect(this.actual) + ' should not exist';
   assert(!this.actual, message);
   return this;
 };
