@@ -1,3 +1,5 @@
+/* jshint -W058 */
+
 var expect = require('../expect');
 
 describe('Expectation#toBeA', function () {
