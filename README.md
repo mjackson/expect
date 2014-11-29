@@ -1,4 +1,6 @@
-[![build status](https://secure.travis-ci.org/mjackson/expect.png)](http://travis-ci.org/mjackson/expect)
+[![npm package](https://img.shields.io/npm/v/expect.svg?style=flat-square)](https://www.npmjs.org/package/expect)
+[![build status](https://img.shields.io/travis/mjackson/expect.svg?style=flat-square)](https://travis-ci.org/mjackson/expect)
+[![dependency status](https://img.shields.io/david/mjackson/expect.svg?style=flat-square)](https://david-dm.org/mjackson/expect)
 
 [expect](https://github.com/mjackson/expect) is a thin wrapper around node's [assert](http://nodejs.org/api/assert.html) module that lets you write better assertions.
 
