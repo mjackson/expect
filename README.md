@@ -39,6 +39,22 @@ expect(function () {
 
 Asserts that the given `block` does not throw using [assert.doesNotThrow](http://nodejs.org/api/assert.html#assert_assert_doesnotthrow_block_message).
 
+#### expect(object).toExist([message])
+
+Asserts the given `object` is truthy.
+
+```js
+expect('something truthy').toExist();
+```
+
+#### expect(object).toNotExist([message])
+
+Asserts the given `object` is falsy.
+
+```js
+expect(null).toNotExist();
+```
+
 #### expect(object).toBeA(constructor, [message])
 
 Asserts the given `object` is an `instanceof constructor`.
@@ -85,6 +101,17 @@ Asserts the given `array` does not contain `value`. The `comparator` function, i
 
 ```js
 expect([ 1, 2, 3 ]).toExclude(4);
+```
+
+### Chaining Assertions
+
+Every assertion returns an `Expectation` object, so you can chain assertions together.
+
+```js
+expect(3.14)
+  .toExist()
+  .toBeLessThan(4)
+  .toBeGreaterThan(3);
 ```
 
 ### Installation
