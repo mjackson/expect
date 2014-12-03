@@ -10,7 +10,8 @@ function isFunction(object) {
 function wrapAssertion(assertion) {
   return function () {
     var args = Array.prototype.slice.call(arguments, 0);
-    return assertion.apply(assert, [ this.actual ].concat(args));
+    assertion.apply(assert, [ this.actual ].concat(args));
+    return this;
   };
 }
 
@@ -49,26 +50,42 @@ Expectation.prototype.toNotEqual = wrapAssertion(assert.notDeepEqual);
 Expectation.prototype.toThrow = wrapAssertion(assert.throws);
 Expectation.prototype.toNotThrow = wrapAssertion(assert.doesNotThrow);
 
+Expectation.prototype.toExist = function (message) {
+  message = message || inspect(this.actual) + ' should exist';
+  assert(this.actual, message);
+  return this;
+};
+
+Expectation.prototype.toNotExist = function (message) {
+  message = message || inspect(this.actual) + ' should not exist';
+  assert(!this.actual, message);
+  return this;
+};
+
 Expectation.prototype.toBeA = function (constructor, message) {
   assert(isFunction(constructor), 'The constructor used in toBeA/toBeAn must be a function');
   message = message || inspect(this.actual) + ' is not a ' + (constructor.name || constructor.toString());
   assert(this.actual instanceof constructor, message);
+  return this;
 };
 
 Expectation.prototype.toMatch = function (pattern, message) {
   assert(isRegExp(pattern), 'The pattern used in toMatch must be a RegExp');
   message = message || inspect(this.actual) + ' does not match ' + inspect(pattern);
   assert(pattern.test(this.actual), message);
+  return this;
 };
 
 Expectation.prototype.toBeLessThan = function (value, message) {
   message = message || inspect(this.actual) + ' is not less than ' + inspect(value);
   assert(this.actual < value, message);
+  return this;
 };
 
 Expectation.prototype.toBeGreaterThan = function (value, message) {
   message = message || inspect(this.actual) + ' is not greater than ' + inspect(value);
   assert(this.actual > value, message);
+  return this;
 };
 
 Expectation.prototype.toInclude = function (value, comparator, message) {
@@ -85,6 +102,7 @@ Expectation.prototype.toInclude = function (value, comparator, message) {
     arrayContains(this.actual, value, comparator),
     message
   );
+  return this;
 };
 
 Expectation.prototype.toExclude = function (value, comparator, message) {
@@ -101,6 +119,7 @@ Expectation.prototype.toExclude = function (value, comparator, message) {
     !arrayContains(this.actual, value, comparator),
     message
   );
+  return this;
 };
 
 var aliases = {
