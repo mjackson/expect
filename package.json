@@ -5,10 +5,11 @@
   "main": "modules/expect.js",
   "dependencies": {},
   "devDependencies": {
+    "jshint": "^2.5.10",
     "mocha": "~1.17.1"
   },
   "scripts": {
-    "test": "mocha \"modules/**/__tests__/**/*-test.js\""
+    "test": "jshint . && mocha \"modules/**/__tests__/**/*-test.js\""
   },
   "keywords": [
     "expect",
