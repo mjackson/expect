@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "jshint": "^2.5.10",
-    "mocha": "~1.17.1"
+    "mocha": "^2.0.1"
   },
   "scripts": {
     "test": "jshint . && mocha \"modules/**/__tests__/**/*-test.js\""
