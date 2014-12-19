@@ -120,6 +120,12 @@ Using [npm](https://www.npmjs.org/):
 
     $ npm install expect
 
+Or, include `dist/expect.min.js` in your page using a `<script>` tag:
+
+```html
+<script src="expect.min.js"></script>
+```
+
 ### Issues
 
 Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).

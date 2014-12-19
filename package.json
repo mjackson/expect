@@ -16,6 +16,7 @@
     "webpack": "^1.4.13"
   },
   "scripts": {
+    "dist": "webpack modules/expect.js dist/expect.min.js",
     "test": "jshint . && mocha modules/**/__tests__/*-test.js",
     "test-browser": "karma start"
   },

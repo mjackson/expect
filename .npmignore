@@ -1,2 +1,5 @@
+.jshintignore
 .travis.yml
+dist
 modules/**/__tests__
+tests.webpack.js
