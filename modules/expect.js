@@ -32,6 +32,13 @@ function arrayContains(array, value, comparator) {
 }
 
 /**
+ * Returns true if the given string contains the value, false otherwise.
+ */
+function stringContains(string, value) {
+  return string.indexOf(value) !== -1;
+}
+
+/**
  * An Expectation is a wrapper around an assertion that allows it to be written
  * in a more natural style, without the need to remember the order of arguments.
  * This helps prevent you from making mistakes when writing tests.
@@ -63,16 +70,26 @@ Expectation.prototype.toNotExist = function (message) {
 };
 
 Expectation.prototype.toBeA = function (constructor, message) {
-  assert(isFunction(constructor), 'The constructor used in toBeA/toBeAn must be a function');
+  assert(
+    isFunction(constructor),
+    'The constructor used in toBeA/toBeAn must be a function'
+  );
+
   message = message || inspect(this.actual) + ' is not a ' + (constructor.name || constructor.toString());
   assert(this.actual instanceof constructor, message);
+
   return this;
 };
 
 Expectation.prototype.toMatch = function (pattern, message) {
-  assert(isRegExp(pattern), 'The pattern used in toMatch must be a RegExp');
+  assert(
+    isRegExp(pattern),
+    'The pattern used in toMatch must be a RegExp'
+  );
+
   message = message || inspect(this.actual) + ' does not match ' + inspect(pattern);
   assert(pattern.test(this.actual), message);
+
   return this;
 };
 
@@ -89,7 +106,10 @@ Expectation.prototype.toBeGreaterThan = function (value, message) {
 };
 
 Expectation.prototype.toInclude = function (value, comparator, message) {
-  assert(isArray(this.actual), 'The actual value used in toInclude/toContain must be an Array');
+  assert(
+    isArray(this.actual) || typeof this.actual === 'string',
+    'The actual value used in toInclude/toContain must be an Array or String'
+  );
 
   if (typeof comparator === 'string') {
     message = comparator;
@@ -98,15 +118,26 @@ Expectation.prototype.toInclude = function (value, comparator, message) {
 
   message = message || inspect(this.actual) + ' does not include ' + inspect(value);
 
-  assert(
-    arrayContains(this.actual, value, comparator),
-    message
-  );
+  if (isArray(this.actual)) {
+    assert(
+      arrayContains(this.actual, value, comparator),
+      message
+    );
+  } else {
+    assert(
+      stringContains(this.actual, value),
+      message
+    );
+  }
+
   return this;
 };
 
 Expectation.prototype.toExclude = function (value, comparator, message) {
-  assert(isArray(this.actual), 'The actual value used in toExclude/toNotContain must be an Array');
+  assert(
+    isArray(this.actual) || typeof this.actual === 'string',
+    'The actual value used in toExclude/toNotContain must be an Array or String'
+  );
 
   if (typeof comparator === 'string') {
     message = comparator;
@@ -114,11 +145,19 @@ Expectation.prototype.toExclude = function (value, comparator, message) {
   }
 
   message = message || inspect(this.actual) + ' includes ' + inspect(value);
-  
-  assert(
-    !arrayContains(this.actual, value, comparator),
-    message
-  );
+
+  if (isArray(this.actual)) {
+    assert(
+      !arrayContains(this.actual, value, comparator),
+      message
+    );
+  } else {
+    assert(
+      !stringContains(this.actual, value),
+      message
+    );
+  }
+
   return this;
 };
 
