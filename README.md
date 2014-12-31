@@ -56,11 +56,13 @@ expect(null).toNotExist();
 ```
 
 #### expect(object).toBeA(constructor, [message])
+#### expect(object).toBeAn(constructor, [message])
 
 Asserts the given `object` is an `instanceof constructor`.
 
 ```js
 expect(new User).toBeA(User);
+expect(new Asset).toBeAn(Asset);
 ```
 
 #### expect(string).toMatch(pattern, [message])
@@ -72,6 +74,7 @@ expect('a string').toMatch(/string/);
 ```
 
 #### expect(number).toBeLessThan(value, [message])
+#### expect(number).toBeFewerThan(value, [message])
 
 Asserts the given `number` is less than `value`.
 
@@ -80,6 +83,7 @@ expect(2).toBeLessThan(3);
 ```
 
 #### expect(number).toBeGreaterThan(value, [message])
+#### expect(number).toBeMoreThan(value, [message])
 
 Asserts the given `number` is greater than `value`.
 
@@ -88,6 +92,7 @@ expect(3).toBeGreaterThan(2);
 ```
 
 #### expect(array).toInclude(value, [comparator], [message])
+#### expect(array).toContain(value, [comparator], [message])
 
 Asserts the given `array` contains `value`. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
 
@@ -96,11 +101,32 @@ expect([ 1, 2, 3 ]).toInclude(3);
 ```
 
 #### expect(array).toExclude(value, [comparator], [message])
+#### expect(array).toNotContain(value, [comparator], [message])
 
 Asserts the given `array` does not contain `value`. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
 
 ```js
 expect([ 1, 2, 3 ]).toExclude(4);
+```
+
+#### expect(string).toInclude(value, [message])
+#### expect(string).toContain(value, [message])
+
+Asserts the given `string` contains `value`.
+
+```js
+expect('hello world').toInclude('world');
+expect('hello world').toContain('world');
+```
+
+#### expect(string).toExclude(value, [message])
+#### expect(string).toNotContain(value, [message])
+
+Asserts the given `string` does not contain `value`.
+
+```js
+expect('hello world').toExclude('goodbye');
+expect('hello world').toNotContain('goodbye');
 ```
 
 ### Chaining Assertions
