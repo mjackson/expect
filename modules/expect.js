@@ -69,14 +69,19 @@ Expectation.prototype.toNotExist = function (message) {
   return this;
 };
 
-Expectation.prototype.toBeA = function (constructor, message) {
+Expectation.prototype.toBeA = function (value, message) {
   assert(
-    isFunction(constructor),
-    'The constructor used in toBeA/toBeAn must be a function'
+    isFunction(value) || typeof value === 'string',
+    'The expected value used in toBeA/toBeAn must be a function or string'
   );
 
-  message = message || inspect(this.actual) + ' is not a ' + (constructor.name || constructor.toString());
-  assert(this.actual instanceof constructor, message);
+  if (isFunction(value)) {
+    message = message || inspect(this.actual) + ' is not a ' + (value.name || value.toString());
+    assert(this.actual instanceof value, message);
+  } else {
+    message = message || inspect(this.actual) + ' is not a(n) ' + value;
+    assert(typeof this.actual === value, message);
+  }
 
   return this;
 };
