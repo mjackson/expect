@@ -89,7 +89,7 @@ Expectation.prototype.toBeA = function (value, message) {
 Expectation.prototype.toMatch = function (pattern, message) {
   assert(
     isRegExp(pattern),
-    'The pattern used in toMatch must be a RegExp'
+    'The expected value used in toMatch must be a RegExp'
   );
 
   message = message || inspect(this.actual) + ' does not match ' + inspect(pattern);
