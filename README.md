@@ -65,6 +65,14 @@ expect(new User).toBeA(User);
 expect(new Asset).toBeAn(Asset);
 ```
 
+#### expect(object).toBeA(string, [message])
+
+Asserts the `typeof` the given `object` is `string`.
+
+```js
+expect(2).toBeA('number');
+```
+
 #### expect(string).toMatch(pattern, [message])
 
 Asserts the given `string` matches `pattern`, which must be a `RegExp`.
