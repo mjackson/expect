@@ -113,7 +113,7 @@ Expectation.prototype.toBeGreaterThan = function (value, message) {
 Expectation.prototype.toInclude = function (value, comparator, message) {
   assert(
     isArray(this.actual) || typeof this.actual === 'string',
-    'The actual value used in toInclude/toContain must be an Array or String'
+    'The actual value used in toInclude/toContain must be an array or string'
   );
 
   if (typeof comparator === 'string') {
@@ -141,7 +141,7 @@ Expectation.prototype.toInclude = function (value, comparator, message) {
 Expectation.prototype.toExclude = function (value, comparator, message) {
   assert(
     isArray(this.actual) || typeof this.actual === 'string',
-    'The actual value used in toExclude/toNotContain must be an Array or String'
+    'The actual value used in toExclude/toNotContain must be an array or string'
   );
 
   if (typeof comparator === 'string') {

@@ -1,10 +1,10 @@
 var expect = require('../expect');
 
 describe('Expectation#toExclude', function () {
-  it('requires the actual value to be an Array or String', function () {
+  it('requires the actual value to be an array or string', function () {
     expect(function () {
       expect(1).toExclude(2);
-    }).toThrow(/must be an Array or String/);
+    }).toThrow(/must be an array or string/);
   });
 
   it('does not throw when an array does not contain the expected value', function () {
