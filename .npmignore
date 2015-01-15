@@ -1,5 +1,7 @@
 .jshintignore
 .travis.yml
 dist
-modules/**/__tests__
+tests
+karma.conf.js
 tests.webpack.js
+webpack.config.js

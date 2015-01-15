@@ -1,4 +1,4 @@
-var expect = require('../expect');
+var expect = require('../index');
 
 describe('Expectation#toExist', function () {
   it('does not throw on truthy actual values', function () {

@@ -1,4 +1,4 @@
-var expect = require('../expect');
+var expect = require('../index');
 
 describe('Expectation#toMatch', function () {
   it('requires the pattern to be a RegExp', function () {

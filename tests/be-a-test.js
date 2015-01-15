@@ -1,6 +1,6 @@
 /* jshint -W058 */
 
-var expect = require('../expect');
+var expect = require('../index');
 
 describe('Expectation#toBeA', function () {
   it('requires the value to be a function or string', function () {

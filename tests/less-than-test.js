@@ -1,4 +1,4 @@
-var expect = require('../expect');
+var expect = require('../index');
 
 describe('Expectation#toBeLessThan', function () {
   it('does not throw when the actual value is less than the expected value', function () {

@@ -1,4 +1,4 @@
-var expect = require('../expect');
+var expect = require('../index');
 
 describe('Expectation#toExclude', function () {
   it('requires the actual value to be an array or string', function () {

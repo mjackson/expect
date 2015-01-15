@@ -1,4 +1,4 @@
-var expect = require('../expect');
+var expect = require('../index');
 
 describe('Expectation#Chainable', function () {
   it('should allow chaining for array-like applications', function () {
