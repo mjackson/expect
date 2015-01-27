@@ -75,7 +75,7 @@ Expectation.prototype.toNotExist = function (message) {
 Expectation.prototype.toBeA = function (value, message) {
   assert(
     isFunction(value) || typeof value === 'string',
-    'The expected value used in toBeA/toBeAn must be a function or string'
+    'The expected value used in toBeA(n) must be a function or string'
   );
 
   if (isFunction(value)) {
