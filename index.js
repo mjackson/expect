@@ -178,6 +178,8 @@ Expectation.prototype.toHaveBeenCalled = function (message) {
   );
 
   expect(spy.calls.length).toBeGreaterThan(0, message || 'spy was not called');
+
+  return this;
 };
 
 Expectation.prototype.toHaveBeenCalledWith = function () {
@@ -201,6 +203,8 @@ Expectation.prototype.toHaveBeenCalledWith = function () {
     }),
     formatString('spy was never called with %s', inspect(expectedArguments))
   );
+
+  return this;
 };
 
 Expectation.createSpy = createSpy;
