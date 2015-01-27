@@ -1,6 +1,7 @@
 var assert = require('assert');
 var inspect = require('util').inspect;
 var isRegExp = require('util').isRegExp;
+var formatString = require('util').format;
 var isArray = Array.isArray;
 
 function isFunction(object) {
@@ -30,6 +31,8 @@ function arrayContains(array, value, comparator) {
     }
   });
 }
+
+var expect = Expectation;
 
 /**
  * Returns true if the given string contains the value, false otherwise.
@@ -165,6 +168,106 @@ Expectation.prototype.toExclude = function (value, comparator, message) {
 
   return this;
 };
+
+Expectation.prototype.toHaveBeenCalled = function (message) {
+  var spy = this.actual;
+
+  assert(
+    spy.__isSpy,
+    'The actual value used in toHaveBeenCalled must be a spy'
+  );
+
+  expect(spy.calls.length).toBeGreaterThan(0, message || 'spy was not called');
+};
+
+Expectation.prototype.toHaveBeenCalledWith = function () {
+  var spy = this.actual;
+
+  assert(
+    spy.__isSpy,
+    'The actual value used in toHaveBeenCalledWith must be a spy'
+  );
+
+  var expectedArguments = Array.prototype.slice.call(arguments, 0);
+
+  assert(
+    spy.calls.some(function (call) {
+      try {
+        expect(call.arguments).toEqual(expectedArguments);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }),
+    formatString('spy was never called with %s', inspect(expectedArguments))
+  );
+};
+
+Expectation.createSpy = createSpy;
+
+function createSpy(fn) {
+  expect(fn).toBeA(Function);
+
+  var targetFn, thrownValue, returnValue;
+
+  var spy = function () {
+    spy.calls.push({
+      context: this,
+      arguments: Array.prototype.slice.call(arguments, 0)
+    });
+
+    if (targetFn)
+      return targetFn.apply(this, arguments);
+
+    if (thrownValue)
+      throw thrownValue;
+
+    return returnValue;
+  };
+
+  spy.calls = [];
+
+  spy.andCall = function (fn) {
+    targetFn = fn;
+    return spy;
+  };
+
+  spy.andCallThrough = function () {
+    return spy.andCall(fn);
+  };
+
+  spy.andThrow = function (object) {
+    thrownValue = object;
+    return spy;
+  };
+
+  spy.andReturn = function (value) {
+    returnValue = value;
+    return spy;
+  };
+
+  spy.getLastCall = function () {
+    return spy.calls[spy.calls.length - 1];
+  };
+
+  spy.__isSpy = true;
+
+  return spy;
+}
+
+Expectation.spyOn = spyOn;
+
+function spyOn(object, methodName) {
+  expect(object[methodName]).toBeA(
+    Function,
+    formatString('%s does not have a method named "%s"', inspect(object), methodName)
+  );
+
+  if (!object[methodName].__isSpy)
+    object[methodName] = createSpy(object[methodName]);
+
+  return object[methodName];
+}
 
 var aliases = {
   toBeAn: 'toBeA',
