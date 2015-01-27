@@ -17,6 +17,41 @@ describe('createSpy', function () {
   });
 });
 
+describe('A function that was spied on using spyOn', function () {
+  var video = {
+    play: function () {},
+    pause: function () {},
+    rewind: function () {}
+  };
+
+  var spy;
+
+  beforeEach(function () {
+    spy = expect.spyOn(video, 'play');
+    video.play('some', 'args');
+  });
+
+  it('tracks the number of calls', function () {
+    expect(spy.calls.length).toEqual(1);
+  });
+
+  it('tracks the context that was used', function () {
+    expect(spy.calls[0].context).toBe(video);
+  });
+
+  it('tracks the arguments that were used', function () {
+    expect(spy.calls[0].arguments).toEqual([ 'some', 'args' ]);
+  });
+
+  it('was called', function () {
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('was called with the correct args', function () {
+    expect(spy).toHaveBeenCalledWith('some', 'args');
+  });
+});
+
 describe('A spy', function () {
   var targetContext, targetArguments;
   var target = {
