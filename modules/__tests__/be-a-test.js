@@ -1,5 +1,4 @@
 /* jshint -W058 */
-
 var expect = require('../index');
 
 describe('Expectation#toBeA', function () {

@@ -2,7 +2,7 @@
   "name": "expect",
   "version": "1.5.0",
   "description": "Write better assertions",
-  "main": "expect.js",
+  "main": "modules/index.js",
   "dependencies": {},
   "devDependencies": {
     "jshint": "^2.5.10",
@@ -16,8 +16,8 @@
     "webpack": "^1.4.13"
   },
   "scripts": {
-    "dist": "webpack -p index.js dist/expect.min.js",
-    "test": "jshint . && mocha --reporter spec 'tests/*-test.js'",
+    "dist": "webpack -p modules/index.js dist/expect.min.js",
+    "test": "jshint . && mocha --reporter spec 'modules/**/__tests__/*-test.js'",
     "test-browser": "karma start"
   },
   "keywords": [
