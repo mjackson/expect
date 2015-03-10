@@ -19,11 +19,11 @@ Asserts that `object` is not strictly equal to `value` using [assert.notStrictEq
 
 ##### expect(object).toEqual(value, [message])
 
-Asserts that the given `object` equals `value` using [assert.equal](http://nodejs.org/api/assert.html#assert_assert_equal_actual_expected_message).
+Asserts that the given `object` equals `value` using [assert.deepEqual](http://nodejs.org/api/assert.html#assert_assert_deepequal_actual_expected_message).
 
 ##### expect(object).toNotEqual(value, [message])
 
-Asserts that the given `object` is not equal to `value` using [assert.notEqual](http://nodejs.org/api/assert.html#assert_assert_notequal_actual_expected_message).
+Asserts that the given `object` is not equal to `value` using [assert.notDeepEqual](http://nodejs.org/api/assert.html#assert_assert_notdeepequal_actual_expected_message).
 
 ##### expect(block).toThrow([error], [message])
 
