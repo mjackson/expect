@@ -262,13 +262,20 @@ function createSpy(fn) {
 Expectation.spyOn = spyOn;
 
 function spyOn(object, methodName) {
-  expect(object[methodName]).toBeA(
+  var original = object[methodName];
+
+  expect(original).toBeA(
     Function,
     formatString('%s does not have a method named "%s"', inspect(object), methodName)
   );
 
-  if (!object[methodName].__isSpy)
-    object[methodName] = createSpy(object[methodName]);
+  if (!original.__isSpy) {
+    var spy = createSpy(original);
+    spy.restore = function(){
+      object[methodName] = original;
+    };
+    object[methodName] = spy;
+  }
 
   return object[methodName];
 }
