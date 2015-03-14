@@ -50,6 +50,12 @@ describe('A function that was spied on using spyOn', function () {
   it('was called with the correct args', function () {
     expect(spy).toHaveBeenCalledWith('some', 'args');
   });
+
+  it('can be restored', function () {
+    expect(video.play).toEqual(spy);
+    spy.restore();
+    expect(video.play).toNotEqual(spy);
+  });
 });
 
 describe('A spy', function () {
