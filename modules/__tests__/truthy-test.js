@@ -1,50 +1,50 @@
 var expect = require('../index');
 
-describe('Expectation#toExist', function () {
+describe('Expectation#toBeTruthy', function () {
   it('does not throw on truthy actual values', function () {
     expect(function () {
-      expect(1).toExist();
-      expect({"hello": "world"}).toExist();
-      expect([1,2,3]).toExist();
+      expect(1).toBeTruthy();
+      expect({"hello": "world"}).toBeTruthy();
+      expect([1,2,3]).toBeTruthy();
     }).toNotThrow();
   });
 
   it('throws on falsy actual values', function () {
     expect(function () {
-      expect(0).toExist();
+      expect(0).toBeTruthy();
     }).toThrow();
 
     expect(function () {
-      expect(null).toExist();
+      expect(null).toBeTruthy();
     }).toThrow();
 
     expect(function () {
-      expect(undefined).toExist();
+      expect(undefined).toBeTruthy();
     }).toThrow();
   });
 
 });
 
-describe('Expectation#toNotExist', function () {
+describe('Expectation#toBeFalsy', function () {
   it('throws on truthy values', function () {
     expect(function () {
-      expect(42).toNotExist();
+      expect(42).toBeFalsy();
     }).toThrow();
 
     expect(function () {
-      expect({foo: "bar"}).toNotExist();
+      expect({foo: "bar"}).toBeFalsy();
     }).toThrow();
 
     expect(function () {
-      expect([]).toNotExist();
+      expect([]).toBeFalsy();
     }).toThrow();
   });
 
   it('does not throw with falsy actual values', function () {
     expect(function () {
-      expect(0).toNotExist();
-      expect(null).toNotExist();
-      expect(undefined).toNotExist();
+      expect(0).toBeFalsy();
+      expect(null).toBeFalsy();
+      expect(undefined).toBeFalsy();
     }).toNotThrow();
   });
 });

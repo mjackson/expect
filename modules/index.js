@@ -282,6 +282,8 @@ function spyOn(object, methodName) {
 
 var aliases = {
   toBeAn: 'toBeA',
+  toBeTruthy: 'toExist',
+  toBeFalsy: 'toNotExist',
   toBeFewerThan: 'toBeLessThan',
   toBeMoreThan: 'toBeGreaterThan',
   toContain: 'toInclude',
