@@ -11,7 +11,13 @@ function isFunction(object) {
 function wrapAssertion(assertion) {
   return function () {
     var args = Array.prototype.slice.call(arguments, 0);
-    assertion.apply(assert, [ this.actual ].concat(args));
+    var actual = this.actual;
+
+    if (this.context || this.args.length) {
+      actual = actual.bind.apply(actual, [ this.context ].concat(this.args));
+    }
+
+    assertion.apply(assert, [ actual ].concat(args));
     return this;
   };
 }
@@ -51,6 +57,7 @@ function Expectation(actual) {
     return new Expectation(actual);
 
   this.actual = actual;
+  this.args = [];
 }
 
 Expectation.prototype.toBe = wrapAssertion(assert.strictEqual);
@@ -203,6 +210,30 @@ Expectation.prototype.toHaveBeenCalledWith = function () {
     }),
     formatString('spy was never called with %s', inspect(expectedArguments))
   );
+
+  return this;
+};
+
+Expectation.prototype.withArgs = function() {
+  assert(
+    isFunction(this.actual),
+    'The actual value used in withArgs must be a function'
+  );
+
+  if (arguments.length) {
+    this.args = this.args.concat(Array.prototype.slice.call(arguments, 0));
+  }
+
+  return this;
+};
+
+Expectation.prototype.withContext = function(context) {
+  assert(
+    isFunction(this.actual),
+    'The actual value used in withContext must be a function'
+  );
+
+  this.context = context;
 
   return this;
 };
