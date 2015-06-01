@@ -35,6 +35,30 @@ expect(function () {
 }).toThrow(/boom/);
 ```
 
+##### expect(block).withArgs(arg1[,arg2...]).toThrow([error], [message])
+
+Asserts that the given `block` throws an error, when called `args`, using [assert.throws](http://nodejs.org/api/assert.html#assert_assert_throws_block_error_message). The `error` argument may be a constructor, `RegExp`, or validation function.
+
+```js
+expect(function (check) {
+  if (check === 'bad') {
+    throw new Error('boom!');
+  }
+}).withArgs('bad').toThrow(/boom/);
+```
+
+##### expect(block).withContext(context).toThrow([error], [message])
+
+Asserts that the given `block` throws an error, when called on `context`, using [assert.throws](http://nodejs.org/api/assert.html#assert_assert_throws_block_error_message). The `error` argument may be a constructor, `RegExp`, or validation function.
+
+```js
+expect(function () {
+  if (this.check === 'bad') {
+    throw new Error('boom!');
+  }
+}).withContext({ check: 'bad' }).toThrow(/boom/);
+```
+
 ##### expect(block).toNotThrow([message])
 
 Asserts that the given `block` does not throw using [assert.doesNotThrow](http://nodejs.org/api/assert.html#assert_assert_doesnotthrow_block_message).
