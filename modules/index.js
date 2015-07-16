@@ -21,7 +21,8 @@ function wrapAssertion(assertion) {
  * comparator function must return false or throw to indicate a non-match.
  */
 function arrayContains(array, value, comparator) {
-  comparator = comparator || assert.deepEqual;
+  if (comparator == null)
+    return array.indexOf(value) !== -1;
 
   return array.some(function (item) {
     try {
