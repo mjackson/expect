@@ -271,7 +271,7 @@ function spyOn(object, methodName) {
 
   if (!original.__isSpy) {
     var spy = createSpy(original);
-    spy.restore = function(){
+    spy.restore = function () {
       object[methodName] = original;
     };
     object[methodName] = spy;
