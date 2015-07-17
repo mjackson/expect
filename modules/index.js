@@ -210,7 +210,12 @@ Expectation.prototype.toHaveBeenCalledWith = function () {
 
 Expectation.createSpy = createSpy;
 
+function noop() {}
+
 function createSpy(fn) {
+  if (fn == null)
+    fn = noop;
+
   expect(fn).toBeA(Function);
 
   var targetFn, thrownValue, returnValue;
@@ -265,16 +270,12 @@ Expectation.spyOn = spyOn;
 function spyOn(object, methodName) {
   var original = object[methodName];
 
-  expect(original).toBeA(
-    Function,
-    formatString('%s does not have a method named "%s"', inspect(object), methodName)
-  );
-
-  if (!original.__isSpy) {
+  if (original == null || !original.__isSpy) {
     var spy = createSpy(original);
     spy.restore = function () {
       object[methodName] = original;
     };
+
     object[methodName] = spy;
   }
 
