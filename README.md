@@ -1,7 +1,5 @@
-[![npm package](https://img.shields.io/npm/v/expect.svg?style=flat-square)](https://www.npmjs.org/package/expect)
 [![build status](https://img.shields.io/travis/mjackson/expect.svg?style=flat-square)](https://travis-ci.org/mjackson/expect)
-[![dependency status](https://img.shields.io/david/mjackson/expect.svg?style=flat-square)](https://david-dm.org/mjackson/expect)
-[![code climate](https://img.shields.io/codeclimate/github/mjackson/expect.svg?style=flat-square)](https://codeclimate.com/github/mjackson/expect)
+[![npm package](https://img.shields.io/npm/v/expect.svg?style=flat-square)](https://www.npmjs.org/package/expect)
 
 [expect](https://github.com/mjackson/expect) is a thin wrapper around node's [assert](http://nodejs.org/api/assert.html) module that lets you write better assertions.
 
