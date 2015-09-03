@@ -215,6 +215,19 @@ Expectation.prototype.toHaveBeenCalledWith = function () {
   return this;
 };
 
+Expectation.prototype.toNotHaveBeenCalled = function (message) {
+  var spy = this.actual;
+
+  assert(
+    spy.__isSpy,
+    'The actual value used in toNotHaveBeenCalled must be a spy'
+  );
+
+  expect(spy.calls.length).toBe(0, message || 'spy was called');
+
+  return this;
+};
+
 Expectation.prototype.withArgs = function() {
   assert(
     isFunction(this.actual),

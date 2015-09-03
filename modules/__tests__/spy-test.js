@@ -17,6 +17,27 @@ describe('createSpy', function () {
   });
 });
 
+
+describe('A function spied but not called', function () {
+  var video = {
+    play: function () {}
+  };
+
+  var spy;
+  beforeEach(function () {
+    spy = expect.spyOn(video, 'play');
+  });
+
+  it('number of calls to be zero', function () {
+    expect(spy.calls.length).toEqual(0);
+  });
+
+  it('was not called', function () {
+    expect(spy).toNotHaveBeenCalled();
+  });
+
+});
+
 describe('A function that was spied on using spyOn', function () {
   var video = {
     play: function () {}
