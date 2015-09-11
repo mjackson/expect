@@ -34,4 +34,16 @@ describe('Expectation#toBeA', function () {
       expect('actual').toBeA('number');
     }).toThrow(/to be/);
   });
+
+  it('does not throw when the actual value is an array', function () {
+    expect(function () {
+      expect([]).toBeAn('array');
+    }).toNotThrow();
+  });
+
+  it('throws when the actual value is not an array', function () {
+    expect(function () {
+      expect('actual').toBeAn('array');
+    }).toThrow(/to be/);
+  });
 });

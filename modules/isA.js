@@ -5,7 +5,13 @@ var isFunction = require('./isFunction');
  * or its typeof is the given value.
  */
 function isA(object, value) {
-  return isFunction(value) ? object instanceof value : typeof object === value;
+  if (isFunction(value))
+    return object instanceof value;
+
+  if (value === 'array')
+    return Array.isArray(object);
+
+  return typeof object === value;
 }
 
 module.exports = isA;
