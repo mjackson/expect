@@ -7,60 +7,6 @@ When you use expect, you write assertions similarly to how you would say them, e
 
 ### Usage
 
-##### expect(object).toBe(value, [message])
-
-Asserts that `object` is strictly equal to `value` using [assert.strictEqual](http://nodejs.org/api/assert.html#assert_assert_strictequal_actual_expected_message).
-
-##### expect(object).toNotBe(value, [message])
-
-Asserts that `object` is not strictly equal to `value` using [assert.notStrictEqual](http://nodejs.org/api/assert.html#assert_assert_notstrictequal_actual_expected_message).
-
-##### expect(object).toEqual(value, [message])
-
-Asserts that the given `object` equals `value` using [assert.deepEqual](http://nodejs.org/api/assert.html#assert_assert_deepequal_actual_expected_message).
-
-##### expect(object).toNotEqual(value, [message])
-
-Asserts that the given `object` is not equal to `value` using [assert.notDeepEqual](http://nodejs.org/api/assert.html#assert_assert_notdeepequal_actual_expected_message).
-
-##### expect(block).toThrow([error], [message])
-
-Asserts that the given `block` throws an error using [assert.throws](http://nodejs.org/api/assert.html#assert_assert_throws_block_error_message). The `error` argument may be a constructor, `RegExp`, or validation function.
-
-```js
-expect(function () {
-  throw new Error('boom!');
-}).toThrow(/boom/);
-```
-
-##### expect(block).withArgs(arg1[,arg2...]).toThrow([error], [message])
-
-Asserts that the given `block` throws an error, when called `args`, using [assert.throws](http://nodejs.org/api/assert.html#assert_assert_throws_block_error_message). The `error` argument may be a constructor, `RegExp`, or validation function.
-
-```js
-expect(function (check) {
-  if (check === 'bad') {
-    throw new Error('boom!');
-  }
-}).withArgs('bad').toThrow(/boom/);
-```
-
-##### expect(block).withContext(context).toThrow([error], [message])
-
-Asserts that the given `block` throws an error, when called on `context`, using [assert.throws](http://nodejs.org/api/assert.html#assert_assert_throws_block_error_message). The `error` argument may be a constructor, `RegExp`, or validation function.
-
-```js
-expect(function () {
-  if (this.check === 'bad') {
-    throw new Error('boom!');
-  }
-}).withContext({ check: 'bad' }).toThrow(/boom/);
-```
-
-##### expect(block).toNotThrow([message])
-
-Asserts that the given `block` does not throw using [assert.doesNotThrow](http://nodejs.org/api/assert.html#assert_assert_doesnotthrow_block_message).
-
 ##### expect(object).toExist([message])
 
 Asserts the given `object` is truthy.
@@ -76,6 +22,58 @@ Asserts the given `object` is falsy.
 ```js
 expect(null).toNotExist();
 ```
+
+##### expect(object).toBe(value, [message])
+
+Asserts that `object` is strictly equal to `value` using `===`.
+
+##### expect(object).toNotBe(value, [message])
+
+Asserts that `object` is not strictly equal to `value` using `===`.
+
+##### expect(object).toEqual(value, [message])
+
+Asserts that the given `object` equals `value` using [deep-equal](https://www.npmjs.com/package/deep-equal).
+
+##### expect(object).toNotEqual(value, [message])
+
+Asserts that the given `object` is not equal to `value` using [deep-equal](https://www.npmjs.com/package/deep-equal).
+
+##### expect(block).toThrow([error], [message])
+
+Asserts that the given `block` `throw`s an error. The `error` argument may be a constructor (to test using `instanceof`), or a string/`RegExp` to test against `error.message`.
+
+```js
+expect(function () {
+  throw new Error('boom!');
+}).toThrow(/boom/);
+```
+
+##### expect(block).withArgs(...args).toThrow([error], [message])
+
+Asserts that the given `block` `throw`s an error when called with `args`. The `error` argument may be a constructor (to test using `instanceof`), or a string/`RegExp` to test against `error.message`.
+
+```js
+expect(function (check) {
+  if (check === 'bad')
+    throw new Error('boom!');
+}).withArgs('bad').toThrow(/boom/);
+```
+
+##### expect(block).withContext(context).toThrow([error], [message])
+
+Asserts that the given `block` `throw`s an error when called in the given `context`. The `error` argument may be a constructor (to test using `instanceof`), or a string/`RegExp` to test against `error.message`.
+
+```js
+expect(function () {
+  if (this.check === 'bad')
+    throw new Error('boom!');
+}).withContext({ check: 'bad' }).toThrow(/boom/);
+```
+
+##### expect(block).toNotThrow([message])
+
+Asserts that the given `block` does not `throw`.
 
 ##### expect(object).toBeA(constructor, [message])
 ##### expect(object).toBeAn(constructor, [message])
