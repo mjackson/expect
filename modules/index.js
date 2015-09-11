@@ -1,7 +1,7 @@
 var assert = require('assert');
+var invariant = require('invariant');
 var inspect = require('object-inspect');
 var isRegExp = require('is-regexp');
-var formatString = require('util').format;
 var isArray = Array.isArray;
 
 function isFunction(object) {
@@ -70,59 +70,59 @@ Expectation.prototype.toNotThrow = wrapAssertion(assert.doesNotThrow);
 
 Expectation.prototype.toExist = function (message) {
   message = message || inspect(this.actual) + ' should exist';
-  assert(this.actual, message);
+  invariant(this.actual, message);
   return this;
 };
 
 Expectation.prototype.toNotExist = function (message) {
   message = message || inspect(this.actual) + ' should not exist';
-  assert(!this.actual, message);
+  invariant(!this.actual, message);
   return this;
 };
 
 Expectation.prototype.toBeA = function (value, message) {
-  assert(
+  invariant(
     isFunction(value) || typeof value === 'string',
     'The expected value used in toBeA(n) must be a function or string'
   );
 
   if (isFunction(value)) {
     message = message || inspect(this.actual) + ' is not a ' + (value.name || value.toString());
-    assert(this.actual instanceof value, message);
+    invariant(this.actual instanceof value, message);
   } else {
     message = message || inspect(this.actual) + ' is not a(n) ' + value;
-    assert(typeof this.actual === value, message);
+    invariant(typeof this.actual === value, message);
   }
 
   return this;
 };
 
 Expectation.prototype.toMatch = function (pattern, message) {
-  assert(
+  invariant(
     isRegExp(pattern),
     'The expected value used in toMatch must be a RegExp'
   );
 
   message = message || inspect(this.actual) + ' does not match ' + inspect(pattern);
-  assert(pattern.test(this.actual), message);
+  invariant(pattern.test(this.actual), message);
 
   return this;
 };
 
 Expectation.prototype.toBeLessThan = function (value, message) {
   message = message || inspect(this.actual) + ' is not less than ' + inspect(value);
-  assert(this.actual < value, message);
+  invariant(this.actual < value, message);
   return this;
 };
 
 Expectation.prototype.toBeGreaterThan = function (value, message) {
   message = message || inspect(this.actual) + ' is not greater than ' + inspect(value);
-  assert(this.actual > value, message);
+  invariant(this.actual > value, message);
   return this;
 };
 
 Expectation.prototype.toInclude = function (value, comparator, message) {
-  assert(
+  invariant(
     isArray(this.actual) || typeof this.actual === 'string',
     'The actual value used in toInclude/toContain must be an array or string'
   );
@@ -135,12 +135,12 @@ Expectation.prototype.toInclude = function (value, comparator, message) {
   message = message || inspect(this.actual) + ' does not include ' + inspect(value);
 
   if (isArray(this.actual)) {
-    assert(
+    invariant(
       arrayContains(this.actual, value, comparator),
       message
     );
   } else {
-    assert(
+    invariant(
       stringContains(this.actual, value),
       message
     );
@@ -150,7 +150,7 @@ Expectation.prototype.toInclude = function (value, comparator, message) {
 };
 
 Expectation.prototype.toExclude = function (value, comparator, message) {
-  assert(
+  invariant(
     isArray(this.actual) || typeof this.actual === 'string',
     'The actual value used in toExclude/toNotContain must be an array or string'
   );
@@ -163,12 +163,12 @@ Expectation.prototype.toExclude = function (value, comparator, message) {
   message = message || inspect(this.actual) + ' includes ' + inspect(value);
 
   if (isArray(this.actual)) {
-    assert(
+    invariant(
       !arrayContains(this.actual, value, comparator),
       message
     );
   } else {
-    assert(
+    invariant(
       !stringContains(this.actual, value),
       message
     );
@@ -180,7 +180,7 @@ Expectation.prototype.toExclude = function (value, comparator, message) {
 Expectation.prototype.toHaveBeenCalled = function (message) {
   var spy = this.actual;
 
-  assert(
+  invariant(
     spy.__isSpy,
     'The actual value used in toHaveBeenCalled must be a spy'
   );
@@ -193,14 +193,14 @@ Expectation.prototype.toHaveBeenCalled = function (message) {
 Expectation.prototype.toHaveBeenCalledWith = function () {
   var spy = this.actual;
 
-  assert(
+  invariant(
     spy.__isSpy,
     'The actual value used in toHaveBeenCalledWith must be a spy'
   );
 
   var expectedArguments = Array.prototype.slice.call(arguments, 0);
 
-  assert(
+  invariant(
     spy.calls.some(function (call) {
       try {
         expect(call.arguments).toEqual(expectedArguments);
@@ -209,7 +209,8 @@ Expectation.prototype.toHaveBeenCalledWith = function () {
         return false;
       }
     }),
-    formatString('spy was never called with %s', inspect(expectedArguments))
+    'spy was never called with %s',
+    inspect(expectedArguments)
   );
 
   return this;
@@ -218,7 +219,7 @@ Expectation.prototype.toHaveBeenCalledWith = function () {
 Expectation.prototype.toNotHaveBeenCalled = function (message) {
   var spy = this.actual;
 
-  assert(
+  invariant(
     spy.__isSpy,
     'The actual value used in toNotHaveBeenCalled must be a spy'
   );
@@ -229,7 +230,7 @@ Expectation.prototype.toNotHaveBeenCalled = function (message) {
 };
 
 Expectation.prototype.withArgs = function() {
-  assert(
+  invariant(
     isFunction(this.actual),
     'The actual value used in withArgs must be a function'
   );
@@ -242,7 +243,7 @@ Expectation.prototype.withArgs = function() {
 };
 
 Expectation.prototype.withContext = function(context) {
-  assert(
+  invariant(
     isFunction(this.actual),
     'The actual value used in withContext must be a function'
   );
