@@ -1,0 +1,13 @@
+{
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "env": {
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "strict": 0
+  }
+}
