@@ -2,11 +2,17 @@ module.exports = {
 
   output: {
     library: 'expect',
-    libraryTarget: 'var'
+    libraryTarget: 'umd'
   },
 
   node: {
-    buffer: false
+    Buffer: false
+  },
+
+  module: {
+    loaders: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
+    ]
   }
 
 };
