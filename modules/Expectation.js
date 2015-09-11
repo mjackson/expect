@@ -176,6 +176,27 @@ Expectation.prototype.toMatch = function (pattern, message) {
   return this;
 };
 
+Expectation.prototype.toNotMatch = function (pattern, message) {
+  invariant(
+    typeof this.actual === 'string',
+    'The "actual" argument in expect(actual).toNotMatch() must be a string'
+  );
+
+  invariant(
+    isRegExp(pattern),
+    'The "value" argument in toNotMatch(value) must be a RegExp'
+  );
+
+  invariant(
+    !pattern.test(this.actual),
+    (message || 'Expected %s to not match %s'),
+    this.actual,
+    pattern
+  );
+
+  return this;
+};
+
 Expectation.prototype.toBeLessThan = function (value, message) {
   invariant(
     typeof this.actual === 'number',
