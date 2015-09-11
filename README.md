@@ -95,6 +95,24 @@ Asserts the `typeof` the given `object` is `string`.
 expect(2).toBeA('number');
 ```
 
+##### expect(object).toNotBeA(constructor, [message])
+##### expect(object).toNotBeAn(constructor, [message])
+
+Asserts the given `object` is *not* an `instanceof constructor`.
+
+```js
+expect(new User).toBeA(User);
+expect(new Asset).toBeAn(Asset);
+```
+
+##### expect(object).toNotBeA(string, [message])
+
+Asserts the `typeof` the given `object` is *not* `string`.
+
+```js
+expect(2).toBeA('number');
+```
+
 ##### expect(string).toMatch(pattern, [message])
 
 Asserts the given `string` matches `pattern`, which must be a `RegExp`.

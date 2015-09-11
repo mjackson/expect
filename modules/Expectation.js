@@ -139,6 +139,22 @@ Expectation.prototype.toBeA = function (value, message) {
   return this;
 };
 
+Expectation.prototype.toNotBeA = function (value, message) {
+  invariant(
+    isFunction(value) || typeof value === 'string',
+    'The "value" argument in toNotBeA(value) must be a function or a string'
+  );
+
+  invariant(
+    !isA(this.actual, value),
+    (message || 'Expected %s to be a %s'),
+    this.actual,
+    value
+  );
+
+  return this;
+};
+
 Expectation.prototype.toMatch = function (pattern, message) {
   invariant(
     typeof this.actual === 'string',
@@ -344,6 +360,7 @@ Expectation.prototype.withArgs = function () {
 
 var aliases = {
   toBeAn: 'toBeA',
+  toNotBeAn: 'toNotBeA',
   toBeTruthy: 'toExist',
   toBeFalsy: 'toNotExist',
   toBeFewerThan: 'toBeLessThan',
