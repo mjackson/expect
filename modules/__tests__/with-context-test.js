@@ -4,11 +4,10 @@ describe('Expectation#withContext', function () {
   var context = {
     check: true
   };
-  var fn = function(arg) {
+  var fn = function (arg) {
     if (this.check && typeof arg === 'undefined') {
       throw new Error('context found');
     }
-
     if (this.check && arg === 'good') {
       throw new Error('context and args found');
     }
@@ -29,6 +28,6 @@ describe('Expectation#withContext', function () {
   it('throws when actual is not a function', function () {
     expect(function () {
       expect('not a function').withContext(context).toThrow();
-    }).toThrow(/The actual value used in withContext must be a function/);
+    }).toThrow(/must be a function/);
   });
 });

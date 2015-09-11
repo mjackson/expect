@@ -1,7 +1,7 @@
 var expect = require('../index');
 
 describe('Expectation#withArgs', function () {
-  var fn = function(arg1, arg2) {
+  var fn = function (arg1, arg2) {
     if (arg1 === 'first' && typeof arg2 === 'undefined') {
       throw new Error('first arg found');
     }
@@ -24,7 +24,7 @@ describe('Expectation#withArgs', function () {
 
   it('throws when actual is not a function', function () {
     expect(function () {
-      expect('not a function').withArgs('first').toThrow();
-    }).toThrow(/The actual value used in withArgs must be a function/);
+      expect('not a function').withArgs('first');
+    }).toThrow(/must be a function/);
   });
 });

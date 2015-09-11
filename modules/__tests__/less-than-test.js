@@ -10,6 +10,6 @@ describe('Expectation#toBeLessThan', function () {
   it('throws when the actual value is not less than the expected value', function () {
     expect(function () {
       expect(3).toBeLessThan(2);
-    }).toThrow(/not less/);
+    }).toThrow(/to be less than/);
   });
 });

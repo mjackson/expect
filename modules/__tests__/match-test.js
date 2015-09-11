@@ -16,6 +16,6 @@ describe('Expectation#toMatch', function () {
   it('throws when the actual value does not match the pattern', function () {
     expect(function () {
       expect('actual').toMatch(/nope/);
-    }).toThrow(/does not match/);
+    }).toThrow(/to match/);
   });
 });
