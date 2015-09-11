@@ -1,7 +1,7 @@
 [![build status](https://img.shields.io/travis/mjackson/expect.svg?style=flat-square)](https://travis-ci.org/mjackson/expect)
 [![npm package](https://img.shields.io/npm/v/expect.svg?style=flat-square)](https://www.npmjs.org/package/expect)
 
-[expect](https://github.com/mjackson/expect) is a thin wrapper around node's [assert](http://nodejs.org/api/assert.html) module that lets you write better assertions.
+[expect](https://github.com/mjackson/expect) lets you write better assertions.
 
 When you use expect, you write assertions similarly to how you would say them, e.g. "I expect this value to be equal to 3" or "I expect this array to contain 3". When you write assertions in this way, you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
 
