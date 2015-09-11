@@ -5,6 +5,7 @@
   "main": "modules/index.js",
   "dependencies": {
     "assert": "^1.3.0",
+    "is-regexp": "^1.0.0",
     "object-inspect": "^1.0.2"
   },
   "devDependencies": {

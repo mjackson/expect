@@ -1,6 +1,6 @@
 var assert = require('assert');
 var inspect = require('object-inspect');
-var isRegExp = require('util').isRegExp;
+var isRegExp = require('is-regexp');
 var formatString = require('util').format;
 var isArray = Array.isArray;
 
