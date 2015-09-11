@@ -216,10 +216,10 @@ Using [npm](https://www.npmjs.org/):
 
     $ npm install expect
 
-Or, include `dist/expect.min.js` in your page using a `<script>` tag:
+There is a UMD build in the npm package in the `umd` directory. Use it like:
 
-```html
-<script src="expect.min.js"></script>
+```js
+var expect = require('expect/umd/expect.min');
 ```
 
 ### Issues
