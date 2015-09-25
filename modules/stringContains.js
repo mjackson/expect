@@ -2,7 +2,7 @@
  * Returns true if the given string contains the value, false otherwise.
  */
 function stringContains(string, value) {
-  return string.indexOf(value) !== -1;
+  return string.indexOf(value) !== -1
 }
 
-module.exports = stringContains;
+module.exports = stringContains

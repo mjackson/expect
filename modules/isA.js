@@ -1,4 +1,4 @@
-var isFunction = require('./isFunction');
+var isFunction = require('./isFunction')
 
 /**
  * Returns true if the given object is an instanceof value
@@ -6,12 +6,12 @@ var isFunction = require('./isFunction');
  */
 function isA(object, value) {
   if (isFunction(value))
-    return object instanceof value;
+    return object instanceof value
 
   if (value === 'array')
-    return Array.isArray(object);
+    return Array.isArray(object)
 
-  return typeof object === value;
+  return typeof object === value
 }
 
-module.exports = isA;
+module.exports = isA

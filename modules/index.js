@@ -1,6 +1,6 @@
-var expect = require('./Expectation');
+var expect = require('./Expectation')
 
-expect.createSpy = require('./SpyUtils').createSpy;
-expect.spyOn = require('./SpyUtils').spyOn;
+expect.createSpy = require('./SpyUtils').createSpy
+expect.spyOn = require('./SpyUtils').spyOn
 
-module.exports = expect;
+module.exports = expect

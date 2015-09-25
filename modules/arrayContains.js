@@ -5,11 +5,11 @@
  */
 function arrayContains(array, value, comparator) {
   if (comparator == null)
-    return array.indexOf(value) !== -1;
+    return array.indexOf(value) !== -1
 
   return array.some(function (item) {
-    return comparator(item, value) !== false;
-  });
+    return comparator(item, value) !== false
+  })
 }
 
-module.exports = arrayContains;
+module.exports = arrayContains
