@@ -4,14 +4,14 @@ function invariant(condition, messageFormat) {
   if (condition)
     return
     
-  const extraArgs = Array.prototype.slice.call(arguments, 2)
-  const index = 0
+  let extraArgs = Array.prototype.slice.call(arguments, 2)
+  let index = 0
 
-  const message = messageFormat.replace(/%s/g, function () {
-    return inspect(extraArgs[index++])
-  })
-
-  throw new Error(message)
+  throw new Error(
+    messageFormat.replace(/%s/g, function () {
+      return inspect(extraArgs[index++])
+    })
+  )
 }
 
 export default invariant
