@@ -1,5 +1,6 @@
 /*eslint-env mocha */
 import expect from '../index'
+import Expectation from '../Expectation'
 
 describe('Expectation#toBeA', function () {
   it('requires the value to be a function or string', function () {
@@ -7,8 +8,6 @@ describe('Expectation#toBeA', function () {
       expect('actual').toBeA(4)
     }).toThrow(/must be a function or a string/)
   })
-
-  const Expectation = expect
 
   it('does not throw when the actual value is an instanceof the constructor', function () {
     expect(function () {

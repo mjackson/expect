@@ -15,18 +15,18 @@ Then with a module bundler like webpack, use as you would anything else:
 
 ```js
 // using an ES6 transpiler, like babel
-import expect, { spyOn, createSpy } from 'expect'
+import expect, { createSpy, spyOn } from 'expect'
 
 // not using an ES6 transpiler
-var expect = require('expect').default
-var spyOn = require('expect').spyOn
-var createSpy = require('expect').createSpy
+var expect = require('expect')
+var createSpy = expect.createSpy
+var spyOn = expect.spyOn
 ```
 
 There is a UMD build in the npm package in the `umd` directory. Use it like:
 
 ```js
-var expect = require('expect/umd/expect.min').default
+var expect = require('expect/umd/expect.min')
 ```
 
 ### Assertions

@@ -14,370 +14,374 @@ const isArray = Array.isArray
  * in a more natural style, without the need to remember the order of arguments.
  * This helps prevent you from making mistakes when writing tests.
  */
-function Expectation(actual) {
-  if (!(this instanceof Expectation))
-    return new Expectation(actual)
+class Expectation {
 
-  this.actual = actual
+  constructor(actual) {
+    if (!(this instanceof Expectation))
+      return new Expectation(actual)
 
-  if (isFunction(actual)) {
-    this.context = null
-    this.args = []
-  }
-}
+    this.actual = actual
 
-Expectation.prototype.toExist = function (message) {
-  invariant(
-    this.actual,
-    (message || 'Expected %s to exist'),
-    this.actual
-  )
-
-  return this
-}
-
-Expectation.prototype.toNotExist = function (message) {
-  invariant(
-    !this.actual,
-    (message || 'Expected %s to not exist'),
-    this.actual
-  )
-
-  return this
-}
-
-Expectation.prototype.toBe = function (value, message) {
-  invariant(
-    this.actual === value,
-    (message || 'Expected %s to be %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toNotBe = function (value, message) {
-  invariant(
-    this.actual !== value,
-    (message || 'Expected %s to not be %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toEqual = function (value, message) {
-  invariant(
-    deepEqual(this.actual, value),
-    (message || 'Expected %s to equal %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toNotEqual = function (value, message) {
-  invariant(
-    !deepEqual(this.actual, value),
-    (message || 'Expected %s to not equal %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toThrow = function (value, message) {
-  invariant(
-    isFunction(this.actual),
-    'The "actual" argument in expect(actual).toThrow() must be a function, %s was given',
-    this.actual
-  )
-
-  invariant(
-    functionThrows(this.actual, this.context, this.args, value),
-    (message || 'Expected %s to throw %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toNotThrow = function (value, message) {
-  invariant(
-    isFunction(this.actual),
-    'The "actual" argument in expect(actual).toNotThrow() must be a function, %s was given',
-    this.actual
-  )
-
-  invariant(
-    !functionThrows(this.actual, this.context, this.args, value),
-    (message || 'Expected %s to not throw %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toBeA = function (value, message) {
-  invariant(
-    isFunction(value) || typeof value === 'string',
-    'The "value" argument in toBeA(value) must be a function or a string'
-  )
-
-  invariant(
-    isA(this.actual, value),
-    (message || 'Expected %s to be a %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toNotBeA = function (value, message) {
-  invariant(
-    isFunction(value) || typeof value === 'string',
-    'The "value" argument in toNotBeA(value) must be a function or a string'
-  )
-
-  invariant(
-    !isA(this.actual, value),
-    (message || 'Expected %s to be a %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toMatch = function (pattern, message) {
-  invariant(
-    typeof this.actual === 'string',
-    'The "actual" argument in expect(actual).toMatch() must be a string'
-  )
-
-  invariant(
-    isRegExp(pattern),
-    'The "value" argument in toMatch(value) must be a RegExp'
-  )
-
-  invariant(
-    pattern.test(this.actual),
-    (message || 'Expected %s to match %s'),
-    this.actual,
-    pattern
-  )
-
-  return this
-}
-
-Expectation.prototype.toNotMatch = function (pattern, message) {
-  invariant(
-    typeof this.actual === 'string',
-    'The "actual" argument in expect(actual).toNotMatch() must be a string'
-  )
-
-  invariant(
-    isRegExp(pattern),
-    'The "value" argument in toNotMatch(value) must be a RegExp'
-  )
-
-  invariant(
-    !pattern.test(this.actual),
-    (message || 'Expected %s to not match %s'),
-    this.actual,
-    pattern
-  )
-
-  return this
-}
-
-Expectation.prototype.toBeLessThan = function (value, message) {
-  invariant(
-    typeof this.actual === 'number',
-    'The "actual" argument in expect(actual).toBeLessThan() must be a number'
-  )
-
-  invariant(
-    typeof value === 'number',
-    'The "value" argument in toBeLessThan(value) must be a number'
-  )
-
-  invariant(
-    this.actual < value,
-    (message || 'Expected %s to be less than %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toBeGreaterThan = function (value, message) {
-  invariant(
-    typeof this.actual === 'number',
-    'The "actual" argument in expect(actual).toBeGreaterThan() must be a number'
-  )
-
-  invariant(
-    typeof value === 'number',
-    'The "value" argument in toBeGreaterThan(value) must be a number'
-  )
-
-  invariant(
-    this.actual > value,
-    (message || 'Expected %s to be greater than %s'),
-    this.actual,
-    value
-  )
-
-  return this
-}
-
-Expectation.prototype.toInclude = function (value, comparator, message) {
-  invariant(
-    isArray(this.actual) || typeof this.actual === 'string',
-    'The "actual" argument in expect(actual).toInclude() must be an array or a string'
-  )
-
-  if (typeof comparator === 'string') {
-    message = comparator
-    comparator = null
+    if (isFunction(actual)) {
+      this.context = null
+      this.args = []
+    }
   }
 
-  message = message || 'Expected %s to include %s'
-
-  if (isArray(this.actual)) {
+  toExist(message) {
     invariant(
-      arrayContains(this.actual, value, comparator),
-      message,
+      this.actual,
+      (message || 'Expected %s to exist'),
+      this.actual
+    )
+
+    return this
+  }
+
+  toNotExist(message) {
+    invariant(
+      !this.actual,
+      (message || 'Expected %s to not exist'),
+      this.actual
+    )
+
+    return this
+  }
+
+  toBe(value, message) {
+    invariant(
+      this.actual === value,
+      (message || 'Expected %s to be %s'),
       this.actual,
       value
     )
-  } else {
+
+    return this
+  }
+
+  toNotBe(value, message) {
     invariant(
-      stringContains(this.actual, value),
-      message,
+      this.actual !== value,
+      (message || 'Expected %s to not be %s'),
       this.actual,
       value
     )
+
+    return this
   }
 
-  return this
-}
-
-Expectation.prototype.toExclude = function (value, comparator, message) {
-  invariant(
-    isArray(this.actual) || typeof this.actual === 'string',
-    'The "actual" argument in expect(actual).toExclude() must be an array or a string'
-  )
-
-  if (typeof comparator === 'string') {
-    message = comparator
-    comparator = null
-  }
-
-  message = message || 'Expected %s to exclude %s'
-
-  if (isArray(this.actual)) {
+  toEqual(value, message) {
     invariant(
-      !arrayContains(this.actual, value, comparator),
-      message,
+      deepEqual(this.actual, value),
+      (message || 'Expected %s to equal %s'),
       this.actual,
       value
     )
-  } else {
+
+    return this
+  }
+
+  toNotEqual(value, message) {
     invariant(
-      !stringContains(this.actual, value),
-      message,
+      !deepEqual(this.actual, value),
+      (message || 'Expected %s to not equal %s'),
       this.actual,
       value
     )
+
+    return this
   }
 
-  return this
-}
+  toThrow(value, message) {
+    invariant(
+      isFunction(this.actual),
+      'The "actual" argument in expect(actual).toThrow() must be a function, %s was given',
+      this.actual
+    )
 
-Expectation.prototype.toHaveBeenCalled = function (message) {
-  const spy = this.actual
+    invariant(
+      functionThrows(this.actual, this.context, this.args, value),
+      (message || 'Expected %s to throw %s'),
+      this.actual,
+      value
+    )
 
-  invariant(
-    spy && spy.__isSpy,
-    'The "actual" argument in expect(actual).toHaveBeenCalled() must be a spy'
-  )
+    return this
+  }
 
-  invariant(
-    spy.calls.length > 0,
-    (message || 'spy was not called')
-  )
+  toNotThrow(value, message) {
+    invariant(
+      isFunction(this.actual),
+      'The "actual" argument in expect(actual).toNotThrow() must be a function, %s was given',
+      this.actual
+    )
 
-  return this
-}
+    invariant(
+      !functionThrows(this.actual, this.context, this.args, value),
+      (message || 'Expected %s to not throw %s'),
+      this.actual,
+      value
+    )
 
-Expectation.prototype.toHaveBeenCalledWith = function () {
-  const spy = this.actual
+    return this
+  }
 
-  invariant(
-    spy && spy.__isSpy,
-    'The "actual" argument in expect(actual).toHaveBeenCalledWith() must be a spy'
-  )
+  toBeA(value, message) {
+    invariant(
+      isFunction(value) || typeof value === 'string',
+      'The "value" argument in toBeA(value) must be a function or a string'
+    )
 
-  const expectedArgs = Array.prototype.slice.call(arguments, 0)
+    invariant(
+      isA(this.actual, value),
+      (message || 'Expected %s to be a %s'),
+      this.actual,
+      value
+    )
 
-  invariant(
-    spy.calls.some(function (call) {
-      return deepEqual(call.arguments, expectedArgs)
-    }),
-    'spy was never called with %s',
-    expectedArgs
-  )
+    return this
+  }
 
-  return this
-}
+  toNotBeA(value, message) {
+    invariant(
+      isFunction(value) || typeof value === 'string',
+      'The "value" argument in toNotBeA(value) must be a function or a string'
+    )
 
-Expectation.prototype.toNotHaveBeenCalled = function (message) {
-  const spy = this.actual
+    invariant(
+      !isA(this.actual, value),
+      (message || 'Expected %s to be a %s'),
+      this.actual,
+      value
+    )
 
-  invariant(
-    spy && spy.__isSpy,
-    'The "actual" argument in expect(actual).toNotHaveBeenCalled() must be a spy'
-  )
+    return this
+  }
 
-  invariant(
-    spy.calls.length === 0,
-    (message || 'spy was not supposed to be called')
-  )
+  toMatch(pattern, message) {
+    invariant(
+      typeof this.actual === 'string',
+      'The "actual" argument in expect(actual).toMatch() must be a string'
+    )
 
-  return this
-}
+    invariant(
+      isRegExp(pattern),
+      'The "value" argument in toMatch(value) must be a RegExp'
+    )
 
-Expectation.prototype.withContext = function (context) {
-  invariant(
-    isFunction(this.actual),
-    'The "actual" argument in expect(actual).withContext() must be a function'
-  )
+    invariant(
+      pattern.test(this.actual),
+      (message || 'Expected %s to match %s'),
+      this.actual,
+      pattern
+    )
 
-  this.context = context
+    return this
+  }
 
-  return this
-}
+  toNotMatch(pattern, message) {
+    invariant(
+      typeof this.actual === 'string',
+      'The "actual" argument in expect(actual).toNotMatch() must be a string'
+    )
 
-Expectation.prototype.withArgs = function () {
-  invariant(
-    isFunction(this.actual),
-    'The "actual" argument in expect(actual).withArgs() must be a function'
-  )
+    invariant(
+      isRegExp(pattern),
+      'The "value" argument in toNotMatch(value) must be a RegExp'
+    )
 
-  if (arguments.length)
-    this.args = this.args.concat(Array.prototype.slice.call(arguments, 0))
+    invariant(
+      !pattern.test(this.actual),
+      (message || 'Expected %s to not match %s'),
+      this.actual,
+      pattern
+    )
 
-  return this
+    return this
+  }
+
+  toBeLessThan(value, message) {
+    invariant(
+      typeof this.actual === 'number',
+      'The "actual" argument in expect(actual).toBeLessThan() must be a number'
+    )
+
+    invariant(
+      typeof value === 'number',
+      'The "value" argument in toBeLessThan(value) must be a number'
+    )
+
+    invariant(
+      this.actual < value,
+      (message || 'Expected %s to be less than %s'),
+      this.actual,
+      value
+    )
+
+    return this
+  }
+
+  toBeGreaterThan(value, message) {
+    invariant(
+      typeof this.actual === 'number',
+      'The "actual" argument in expect(actual).toBeGreaterThan() must be a number'
+    )
+
+    invariant(
+      typeof value === 'number',
+      'The "value" argument in toBeGreaterThan(value) must be a number'
+    )
+
+    invariant(
+      this.actual > value,
+      (message || 'Expected %s to be greater than %s'),
+      this.actual,
+      value
+    )
+
+    return this
+  }
+
+  toInclude(value, comparator, message) {
+    invariant(
+      isArray(this.actual) || typeof this.actual === 'string',
+      'The "actual" argument in expect(actual).toInclude() must be an array or a string'
+    )
+
+    if (typeof comparator === 'string') {
+      message = comparator
+      comparator = null
+    }
+
+    message = message || 'Expected %s to include %s'
+
+    if (isArray(this.actual)) {
+      invariant(
+        arrayContains(this.actual, value, comparator),
+        message,
+        this.actual,
+        value
+      )
+    } else {
+      invariant(
+        stringContains(this.actual, value),
+        message,
+        this.actual,
+        value
+      )
+    }
+
+    return this
+  }
+
+  toExclude(value, comparator, message) {
+    invariant(
+      isArray(this.actual) || typeof this.actual === 'string',
+      'The "actual" argument in expect(actual).toExclude() must be an array or a string'
+    )
+
+    if (typeof comparator === 'string') {
+      message = comparator
+      comparator = null
+    }
+
+    message = message || 'Expected %s to exclude %s'
+
+    if (isArray(this.actual)) {
+      invariant(
+        !arrayContains(this.actual, value, comparator),
+        message,
+        this.actual,
+        value
+      )
+    } else {
+      invariant(
+        !stringContains(this.actual, value),
+        message,
+        this.actual,
+        value
+      )
+    }
+
+    return this
+  }
+
+  toHaveBeenCalled(message) {
+    const spy = this.actual
+
+    invariant(
+      spy && spy.__isSpy,
+      'The "actual" argument in expect(actual).toHaveBeenCalled() must be a spy'
+    )
+
+    invariant(
+      spy.calls.length > 0,
+      (message || 'spy was not called')
+    )
+
+    return this
+  }
+
+  toHaveBeenCalledWith() {
+    const spy = this.actual
+
+    invariant(
+      spy && spy.__isSpy,
+      'The "actual" argument in expect(actual).toHaveBeenCalledWith() must be a spy'
+    )
+
+    const expectedArgs = Array.prototype.slice.call(arguments, 0)
+
+    invariant(
+      spy.calls.some(function (call) {
+        return deepEqual(call.arguments, expectedArgs)
+      }),
+      'spy was never called with %s',
+      expectedArgs
+    )
+
+    return this
+  }
+
+  toNotHaveBeenCalled(message) {
+    const spy = this.actual
+
+    invariant(
+      spy && spy.__isSpy,
+      'The "actual" argument in expect(actual).toNotHaveBeenCalled() must be a spy'
+    )
+
+    invariant(
+      spy.calls.length === 0,
+      (message || 'spy was not supposed to be called')
+    )
+
+    return this
+  }
+
+  withContext(context) {
+    invariant(
+      isFunction(this.actual),
+      'The "actual" argument in expect(actual).withContext() must be a function'
+    )
+
+    this.context = context
+
+    return this
+  }
+
+  withArgs() {
+    invariant(
+      isFunction(this.actual),
+      'The "actual" argument in expect(actual).withArgs() must be a function'
+    )
+
+    if (arguments.length)
+      this.args = this.args.concat(Array.prototype.slice.call(arguments, 0))
+
+    return this
+  }
+  
 }
 
 const aliases = {
