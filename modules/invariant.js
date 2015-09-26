@@ -4,10 +4,10 @@ function invariant(condition, messageFormat) {
   if (condition)
     return
     
-  var extraArgs = Array.prototype.slice.call(arguments, 2)
-  var index = 0
+  const extraArgs = Array.prototype.slice.call(arguments, 2)
+  const index = 0
 
-  var message = messageFormat.replace(/%s/g, function () {
+  const message = messageFormat.replace(/%s/g, function () {
     return inspect(extraArgs[index++])
   })
 

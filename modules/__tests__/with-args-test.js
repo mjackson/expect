@@ -2,7 +2,7 @@
 import expect from '../index'
 
 describe('Expectation#withArgs', function () {
-  var fn = function (arg1, arg2) {
+  const fn = function (arg1, arg2) {
     if (arg1 === 'first' && typeof arg2 === 'undefined') {
       throw new Error('first arg found')
     }

@@ -7,7 +7,7 @@ import stringContains from './stringContains'
 import arrayContains from './arrayContains'
 import isA from './isA'
 
-var isArray = Array.isArray
+const isArray = Array.isArray
 
 /**
  * An Expectation is a wrapper around an assertion that allows it to be written
@@ -305,7 +305,7 @@ Expectation.prototype.toExclude = function (value, comparator, message) {
 }
 
 Expectation.prototype.toHaveBeenCalled = function (message) {
-  var spy = this.actual
+  const spy = this.actual
 
   invariant(
     spy && spy.__isSpy,
@@ -321,14 +321,14 @@ Expectation.prototype.toHaveBeenCalled = function (message) {
 }
 
 Expectation.prototype.toHaveBeenCalledWith = function () {
-  var spy = this.actual
+  const spy = this.actual
 
   invariant(
     spy && spy.__isSpy,
     'The "actual" argument in expect(actual).toHaveBeenCalledWith() must be a spy'
   )
 
-  var expectedArgs = Array.prototype.slice.call(arguments, 0)
+  const expectedArgs = Array.prototype.slice.call(arguments, 0)
 
   invariant(
     spy.calls.some(function (call) {
@@ -342,7 +342,7 @@ Expectation.prototype.toHaveBeenCalledWith = function () {
 }
 
 Expectation.prototype.toNotHaveBeenCalled = function (message) {
-  var spy = this.actual
+  const spy = this.actual
 
   invariant(
     spy && spy.__isSpy,
@@ -380,7 +380,7 @@ Expectation.prototype.withArgs = function () {
   return this
 }
 
-var aliases = {
+const aliases = {
   toBeAn: 'toBeA',
   toNotBeAn: 'toNotBeA',
   toBeTruthy: 'toExist',
@@ -391,7 +391,7 @@ var aliases = {
   toNotContain: 'toExclude'
 }
 
-for (var alias in aliases)
+for (let alias in aliases)
   Expectation.prototype[alias] = Expectation.prototype[aliases[alias]]
 
 export default Expectation

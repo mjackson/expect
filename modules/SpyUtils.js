@@ -12,9 +12,9 @@ export function createSpy(fn) {
     'createSpy needs a function'
   )
 
-  var targetFn, thrownValue, returnValue
+  let targetFn, thrownValue, returnValue
 
-  var spy = function () {
+  const spy = function () {
     spy.calls.push({
       context: this,
       arguments: Array.prototype.slice.call(arguments, 0)
@@ -60,10 +60,10 @@ export function createSpy(fn) {
 }
 
 export function spyOn(object, methodName) {
-  var original = object[methodName]
+  const original = object[methodName]
 
   if (original == null || !original.__isSpy) {
-    var spy = createSpy(original)
+    const spy = createSpy(original)
 
     spy.restore = spy.destroy = function () {
       object[methodName] = original

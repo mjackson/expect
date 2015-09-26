@@ -8,7 +8,7 @@ describe('Expectation#toBeA', function () {
     }).toThrow(/must be a function or a string/)
   })
 
-  var Expectation = expect
+  const Expectation = expect
 
   it('does not throw when the actual value is an instanceof the constructor', function () {
     expect(function () {

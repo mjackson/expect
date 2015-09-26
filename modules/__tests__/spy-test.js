@@ -4,7 +4,7 @@ import expect, { createSpy, spyOn } from '../index'
 describe('createSpy', function () {
   describe('when given a function', function () {
     it('returns a spy function', function () {
-      var spy = createSpy(function () {})
+      const spy = createSpy(function () {})
       expect(spy).toBeA(Function)
     })
   })
@@ -20,11 +20,11 @@ describe('createSpy', function () {
 
 
 describe('A function spied but not called', function () {
-  var video = {
+  const video = {
     play: function () {}
   }
 
-  var spy
+  let spy
   beforeEach(function () {
     spy = spyOn(video, 'play')
   })
@@ -39,11 +39,11 @@ describe('A function spied but not called', function () {
 })
 
 describe('A function that was spied on using spyOn', function () {
-  var video = {
+  const video = {
     play: function () {}
   }
 
-  var spy
+  let spy
   beforeEach(function () {
     spy = spyOn(video, 'play')
     video.play('some', 'args')
@@ -77,9 +77,9 @@ describe('A function that was spied on using spyOn', function () {
 })
 
 describe('An undefined property that was spied on using spyOn', function () {
-  var video = {}
+  const video = {}
 
-  var spy
+  let spy
   beforeEach(function () {
     spy = spyOn(video, 'play')
     video.play('some', 'args')
@@ -113,15 +113,15 @@ describe('An undefined property that was spied on using spyOn', function () {
 })
 
 describe('A spy', function () {
-  var targetContext, targetArguments
-  var target = {
+  let targetContext, targetArguments
+  const target = {
     method: function () {
       targetContext = this
       targetArguments = Array.prototype.slice.call(arguments, 0)
     }
   }
 
-  var spy
+  let spy
   beforeEach(function () {
     spy = createSpy(target.method)
     targetContext = targetArguments = null
@@ -139,7 +139,7 @@ describe('A spy', function () {
   })
 
   describe('that calls some other function', function () {
-    var otherContext, otherArguments
+    let otherContext, otherArguments
     function otherFn() {
       otherContext = this
       otherArguments = Array.prototype.slice.call(arguments, 0)
@@ -156,7 +156,7 @@ describe('A spy', function () {
     })
 
     it('uses the correct context', function () {
-      var context = {}
+      const context = {}
       spy.call(context)
       expect(otherContext).toBe(context)
     })
@@ -178,7 +178,7 @@ describe('A spy', function () {
     })
 
     it('uses the correct context', function () {
-      var context = {}
+      const context = {}
       spy.call(context)
       expect(targetContext).toBe(context)
     })

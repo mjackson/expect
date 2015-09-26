@@ -20,7 +20,7 @@ function functionThrows(fn, context, args, value) {
     if (isFunction(value) && error instanceof value)
       return true
 
-    var message = error.message || error
+    const message = error.message || error
 
     if (typeof message === 'string') {
       if (isRegExp(value) && value.test(error.message))

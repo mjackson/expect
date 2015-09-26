@@ -2,10 +2,10 @@
 import expect from '../index'
 
 describe('Expectation#withContext', function () {
-  var context = {
+  const context = {
     check: true
   }
-  var fn = function (arg) {
+  const fn = function (arg) {
     if (this.check && typeof arg === 'undefined') {
       throw new Error('context found')
     }
