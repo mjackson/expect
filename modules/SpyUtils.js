@@ -3,7 +3,7 @@ import isFunction from './isFunction'
 
 function noop() {}
 
-export function createSpy(fn) {
+export function createSpy(fn, destroy=noop) {
   if (fn == null)
     fn = noop
 
@@ -54,6 +54,8 @@ export function createSpy(fn) {
     return spy.calls[spy.calls.length - 1]
   }
 
+  spy.destroy = spy.restore = destroy
+
   spy.__isSpy = true
 
   return spy
@@ -62,14 +64,10 @@ export function createSpy(fn) {
 export function spyOn(object, methodName) {
   const original = object[methodName]
 
-  if (original == null || !original.__isSpy) {
-    const spy = createSpy(original)
-
-    spy.restore = spy.destroy = function () {
+  if (!isSpy(original)) {
+    object[methodName] = createSpy(original, function () {
       object[methodName] = original
-    }
-
-    object[methodName] = spy
+    })
   }
 
   return object[methodName]

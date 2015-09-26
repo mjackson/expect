@@ -1,5 +1,5 @@
 /*eslint-env mocha */
-import expect, { createSpy, spyOn } from '../index'
+import expect, { createSpy, spyOn, isSpy } from '../index'
 
 describe('createSpy', function () {
   describe('when given a function', function () {
@@ -17,7 +17,6 @@ describe('createSpy', function () {
     })
   })
 })
-
 
 describe('A function spied but not called', function () {
   const video = {
@@ -125,6 +124,18 @@ describe('A spy', function () {
   beforeEach(function () {
     spy = createSpy(target.method)
     targetContext = targetArguments = null
+  })
+
+  it('is a spy', function () {
+    expect(isSpy(spy)).toBe(true)
+  })
+
+  it('has a destroy method', function () {
+    expect(spy.destroy).toBeA(Function)
+  })
+
+  it('has a restore method', function () {
+    expect(spy.restore).toBeA(Function)
   })
 
   it('knows how many times it has been called', function () {
