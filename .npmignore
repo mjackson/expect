@@ -1,7 +1,8 @@
-.jshintignore
+.babelrc
+.eslintrc
 .travis.yml
-dist
-tests
+__tests__
 karma.conf.js
+scripts
 tests.webpack.js
 webpack.config.js
