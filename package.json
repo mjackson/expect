@@ -1,6 +1,6 @@
 {
   "name": "expect",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Write better assertions",
   "main": "lib/index",
   "dependencies": {
