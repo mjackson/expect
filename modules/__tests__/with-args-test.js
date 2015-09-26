@@ -1,5 +1,5 @@
 /*eslint-env mocha */
-var expect = require('../index')
+import expect from '../index'
 
 describe('Expectation#withArgs', function () {
   var fn = function (arg1, arg2) {

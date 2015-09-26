@@ -5,4 +5,4 @@ function isFunction(object) {
   return typeof object === 'function'
 }
 
-module.exports = isFunction
+export default isFunction

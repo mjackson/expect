@@ -1,5 +1,5 @@
 /*eslint-env mocha */
-var expect = require('../index')
+import expect from '../index'
 
 describe('Expectation#toBeA', function () {
   it('requires the value to be a function or string', function () {

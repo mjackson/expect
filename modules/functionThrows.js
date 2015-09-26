@@ -1,5 +1,5 @@
-var isRegExp = require('is-regexp')
-var isFunction = require('./isFunction')
+import isRegExp from 'is-regexp'
+import isFunction from './isFunction'
 
 /**
  * Returns true if the given function throws the given value
@@ -34,4 +34,4 @@ function functionThrows(fn, context, args, value) {
   return false
 }
 
-module.exports = functionThrows
+export default functionThrows

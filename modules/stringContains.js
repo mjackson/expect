@@ -5,4 +5,4 @@ function stringContains(string, value) {
   return string.indexOf(value) !== -1
 }
 
-module.exports = stringContains
+export default stringContains

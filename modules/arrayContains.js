@@ -12,4 +12,4 @@ function arrayContains(array, value, comparator) {
   })
 }
 
-module.exports = arrayContains
+export default arrayContains

@@ -1,5 +1,5 @@
 /*eslint-env mocha */
-var expect = require('../index')
+import expect from '../index'
 
 describe('Expectation#withContext', function () {
   var context = {

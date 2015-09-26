@@ -1,10 +1,10 @@
 /*eslint-env mocha */
-var expect = require('../index')
+import expect, { createSpy, spyOn } from '../index'
 
 describe('createSpy', function () {
   describe('when given a function', function () {
     it('returns a spy function', function () {
-      var spy = expect.createSpy(function () {})
+      var spy = createSpy(function () {})
       expect(spy).toBeA(Function)
     })
   })
@@ -12,7 +12,7 @@ describe('createSpy', function () {
   describe('when not given a function', function () {
     it('throws an error', function () {
       expect(function () {
-        expect.createSpy(0)
+        createSpy(0)
       }).toThrow()
     })
   })
@@ -26,7 +26,7 @@ describe('A function spied but not called', function () {
 
   var spy
   beforeEach(function () {
-    spy = expect.spyOn(video, 'play')
+    spy = spyOn(video, 'play')
   })
 
   it('number of calls to be zero', function () {
@@ -36,7 +36,6 @@ describe('A function spied but not called', function () {
   it('was not called', function () {
     expect(spy).toNotHaveBeenCalled()
   })
-
 })
 
 describe('A function that was spied on using spyOn', function () {
@@ -46,7 +45,7 @@ describe('A function that was spied on using spyOn', function () {
 
   var spy
   beforeEach(function () {
-    spy = expect.spyOn(video, 'play')
+    spy = spyOn(video, 'play')
     video.play('some', 'args')
   })
 
@@ -82,7 +81,7 @@ describe('An undefined property that was spied on using spyOn', function () {
 
   var spy
   beforeEach(function () {
-    spy = expect.spyOn(video, 'play')
+    spy = spyOn(video, 'play')
     video.play('some', 'args')
   })
 
@@ -124,7 +123,7 @@ describe('A spy', function () {
 
   var spy
   beforeEach(function () {
-    spy = expect.createSpy(target.method)
+    spy = createSpy(target.method)
     targetContext = targetArguments = null
   })
 

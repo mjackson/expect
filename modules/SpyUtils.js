@@ -1,9 +1,9 @@
-var invariant = require('./invariant')
-var isFunction = require('./isFunction')
+import invariant from './invariant'
+import isFunction from './isFunction'
 
 function noop() {}
 
-function createSpy(fn) {
+export function createSpy(fn) {
   if (fn == null)
     fn = noop
 
@@ -59,7 +59,7 @@ function createSpy(fn) {
   return spy
 }
 
-function spyOn(object, methodName) {
+export function spyOn(object, methodName) {
   var original = object[methodName]
 
   if (original == null || !original.__isSpy) {
@@ -73,9 +73,4 @@ function spyOn(object, methodName) {
   }
 
   return object[methodName]
-}
-
-module.exports = {
-  createSpy: createSpy,
-  spyOn: spyOn
 }

@@ -1,4 +1,4 @@
-var inspect = require('object-inspect')
+import inspect from 'object-inspect'
 
 function invariant(condition, messageFormat) {
   if (condition)
@@ -14,4 +14,4 @@ function invariant(condition, messageFormat) {
   throw new Error(message)
 }
 
-module.exports = invariant
+export default invariant

@@ -1,5 +1,5 @@
 /*eslint-env mocha */
-var expect = require('../index')
+import expect from '../index'
 
 describe('Expectation#toBeGreaterThan', function () {
   it('does not throw when the actual value is greater than the expected value', function () {

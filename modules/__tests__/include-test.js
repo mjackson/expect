@@ -1,5 +1,5 @@
 /*eslint-env mocha */
-var expect = require('../index')
+import expect from '../index'
 
 describe('Expectation#toInclude', function () {
   it('requires the actual value to be an array or string', function () {

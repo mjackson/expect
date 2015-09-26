@@ -1,11 +1,12 @@
-var deepEqual = require('deep-equal')
-var isRegExp = require('is-regexp')
-var invariant = require('./invariant')
-var isFunction = require('./isFunction')
-var functionThrows = require('./functionThrows')
-var stringContains = require('./stringContains')
-var arrayContains = require('./arrayContains')
-var isA = require('./isA')
+import deepEqual from 'deep-equal'
+import isRegExp from 'is-regexp'
+import invariant from './invariant'
+import isFunction from './isFunction'
+import functionThrows from './functionThrows'
+import stringContains from './stringContains'
+import arrayContains from './arrayContains'
+import isA from './isA'
+
 var isArray = Array.isArray
 
 /**
@@ -393,4 +394,4 @@ var aliases = {
 for (var alias in aliases)
   Expectation.prototype[alias] = Expectation.prototype[aliases[alias]]
 
-module.exports = Expectation
+export default Expectation

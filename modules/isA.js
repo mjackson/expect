@@ -1,4 +1,4 @@
-var isFunction = require('./isFunction')
+import isFunction from './isFunction'
 
 /**
  * Returns true if the given object is an instanceof value
@@ -14,4 +14,4 @@ function isA(object, value) {
   return typeof object === value
 }
 
-module.exports = isA
+export default isA

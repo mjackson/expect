@@ -1,5 +1,5 @@
 /*eslint-env mocha */
-var expect = require('../index')
+import expect from '../index'
 
 describe('Expectation#toBeTruthy', function () {
   it('does not throw on truthy actual values', function () {
@@ -23,7 +23,6 @@ describe('Expectation#toBeTruthy', function () {
       expect(undefined).toBeTruthy()
     }).toThrow()
   })
-
 })
 
 describe('Expectation#toBeFalsy', function () {

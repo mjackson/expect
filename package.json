@@ -28,7 +28,7 @@
     "build-umd": "NODE_ENV=production webpack modules/index.js umd/expect.js",
     "build-min": "NODE_ENV=production webpack -p modules/index.js umd/expect.min.js",
     "lint": "eslint modules",
-    "test": "npm run lint && mocha --reporter spec 'modules/**/__tests__/*-test.js'",
+    "test": "npm run lint && mocha --compilers js:babel/register --reporter spec 'modules/**/__tests__/*-test.js'",
     "test-browser": "npm run lint && karma start"
   },
   "keywords": [
