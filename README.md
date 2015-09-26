@@ -15,12 +15,13 @@ Then with a module bundler like webpack, use as you would anything else:
 
 ```js
 // using an ES6 transpiler, like babel
-import expect, { createSpy, spyOn } from 'expect'
+import expect, { createSpy, spyOn, isSpy } from 'expect'
 
 // not using an ES6 transpiler
 var expect = require('expect')
 var createSpy = expect.createSpy
 var spyOn = expect.spyOn
+var isSpy = expect.isSpy
 ```
 
 There is a UMD build in the npm package in the `umd` directory. Use it like:

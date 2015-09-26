@@ -74,3 +74,7 @@ export function spyOn(object, methodName) {
 
   return object[methodName]
 }
+
+export function isSpy(object) {
+  return object && object.__isSpy === true
+}

@@ -5,6 +5,7 @@ import isFunction from './isFunction'
 import functionThrows from './functionThrows'
 import stringContains from './stringContains'
 import arrayContains from './arrayContains'
+import { isSpy } from './SpyUtils'
 import isA from './isA'
 
 const isArray = Array.isArray
@@ -307,7 +308,7 @@ class Expectation {
     const spy = this.actual
 
     invariant(
-      spy && spy.__isSpy,
+      isSpy(spy),
       'The "actual" argument in expect(actual).toHaveBeenCalled() must be a spy'
     )
 
@@ -323,7 +324,7 @@ class Expectation {
     const spy = this.actual
 
     invariant(
-      spy && spy.__isSpy,
+      isSpy(spy),
       'The "actual" argument in expect(actual).toHaveBeenCalledWith() must be a spy'
     )
 
@@ -344,7 +345,7 @@ class Expectation {
     const spy = this.actual
 
     invariant(
-      spy && spy.__isSpy,
+      isSpy(spy),
       'The "actual" argument in expect(actual).toNotHaveBeenCalled() must be a spy'
     )
 
