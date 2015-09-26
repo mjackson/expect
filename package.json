@@ -24,7 +24,7 @@
     "webpack": "^1.4.13"
   },
   "scripts": {
-    "build": "babel ./modules -d lib --ignore '__tests__'",
+    "build": "babel ./modules -d lib --stage 0 --loose all --ignore '__tests__'",
     "build-umd": "NODE_ENV=production webpack modules/index.js umd/expect.js",
     "build-min": "NODE_ENV=production webpack -p modules/index.js umd/expect.min.js",
     "lint": "eslint modules",
