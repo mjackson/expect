@@ -17,9 +17,6 @@ const isArray = Array.isArray
 class Expectation {
 
   constructor(actual) {
-    if (!(this instanceof Expectation))
-      return new Expectation(actual)
-
     this.actual = actual
 
     if (isFunction(actual)) {
