@@ -5,14 +5,38 @@
 
 When you use expect, you write assertions similarly to how you would say them, e.g. "I expect this value to be equal to 3" or "I expect this array to contain 3". When you write assertions in this way, you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
 
-### Usage
+### Installation
+
+Using [npm](https://www.npmjs.org/):
+
+    $ npm install expect
+
+Then with a module bundler like webpack, use as you would anything else:
+
+```js
+// using an ES6 transpiler, like babel
+import expect, { spyOn, createSpy } from 'expect'
+
+// not using an ES6 transpiler
+var expect = require('expect').default
+var spyOn = require('expect').spyOn
+var createSpy = require('expect').createSpy
+```
+
+There is a UMD build in the npm package in the `umd` directory. Use it like:
+
+```js
+var expect = require('expect/umd/expect.min').default
+```
+
+### Assertions
 
 ##### expect(object).toExist([message])
 
 Asserts the given `object` is truthy.
 
 ```js
-expect('something truthy').toExist();
+expect('something truthy').toExist()
 ```
 
 ##### expect(object).toNotExist([message])
@@ -20,7 +44,7 @@ expect('something truthy').toExist();
 Asserts the given `object` is falsy.
 
 ```js
-expect(null).toNotExist();
+expect(null).toNotExist()
 ```
 
 ##### expect(object).toBe(value, [message])
@@ -45,8 +69,8 @@ Asserts that the given `block` `throw`s an error. The `error` argument may be a 
 
 ```js
 expect(function () {
-  throw new Error('boom!');
-}).toThrow(/boom/);
+  throw new Error('boom!')
+}).toThrow(/boom/)
 ```
 
 ##### expect(block).withArgs(...args).toThrow([error], [message])
@@ -56,8 +80,8 @@ Asserts that the given `block` `throw`s an error when called with `args`. The `e
 ```js
 expect(function (check) {
   if (check === 'bad')
-    throw new Error('boom!');
-}).withArgs('bad').toThrow(/boom/);
+    throw new Error('boom!')
+}).withArgs('bad').toThrow(/boom/)
 ```
 
 ##### expect(block).withContext(context).toThrow([error], [message])
@@ -67,8 +91,8 @@ Asserts that the given `block` `throw`s an error when called in the given `conte
 ```js
 expect(function () {
   if (this.check === 'bad')
-    throw new Error('boom!');
-}).withContext({ check: 'bad' }).toThrow(/boom/);
+    throw new Error('boom!')
+}).withContext({ check: 'bad' }).toThrow(/boom/)
 ```
 
 ##### expect(block).toNotThrow([message])
@@ -81,8 +105,8 @@ Asserts that the given `block` does not `throw`.
 Asserts the given `object` is an `instanceof constructor`.
 
 ```js
-expect(new User).toBeA(User);
-expect(new Asset).toBeAn(Asset);
+expect(new User).toBeA(User)
+expect(new Asset).toBeAn(Asset)
 ```
 
 ##### expect(object).toBeA(string, [message])
@@ -90,7 +114,7 @@ expect(new Asset).toBeAn(Asset);
 Asserts the `typeof` the given `object` is `string`.
 
 ```js
-expect(2).toBeA('number');
+expect(2).toBeA('number')
 ```
 
 ##### expect(object).toNotBeA(constructor, [message])
@@ -99,8 +123,8 @@ expect(2).toBeA('number');
 Asserts the given `object` is *not* an `instanceof constructor`.
 
 ```js
-expect(new User).toBeA(User);
-expect(new Asset).toBeAn(Asset);
+expect(new User).toBeA(User)
+expect(new Asset).toBeAn(Asset)
 ```
 
 ##### expect(object).toNotBeA(string, [message])
@@ -108,7 +132,7 @@ expect(new Asset).toBeAn(Asset);
 Asserts the `typeof` the given `object` is *not* `string`.
 
 ```js
-expect(2).toBeA('number');
+expect(2).toBeA('number')
 ```
 
 ##### expect(string).toMatch(pattern, [message])
@@ -116,7 +140,7 @@ expect(2).toBeA('number');
 Asserts the given `string` matches `pattern`, which must be a `RegExp`.
 
 ```js
-expect('a string').toMatch(/string/);
+expect('a string').toMatch(/string/)
 ```
 
 ##### expect(number).toBeLessThan(value, [message])
@@ -125,7 +149,7 @@ expect('a string').toMatch(/string/);
 Asserts the given `number` is less than `value`.
 
 ```js
-expect(2).toBeLessThan(3);
+expect(2).toBeLessThan(3)
 ```
 
 ##### expect(number).toBeGreaterThan(value, [message])
@@ -134,7 +158,7 @@ expect(2).toBeLessThan(3);
 Asserts the given `number` is greater than `value`.
 
 ```js
-expect(3).toBeGreaterThan(2);
+expect(3).toBeGreaterThan(2)
 ```
 
 ##### expect(array).toInclude(value, [comparator], [message])
@@ -143,7 +167,7 @@ expect(3).toBeGreaterThan(2);
 Asserts the given `array` contains `value`. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
 
 ```js
-expect([ 1, 2, 3 ]).toInclude(3);
+expect([ 1, 2, 3 ]).toInclude(3)
 ```
 
 ##### expect(array).toExclude(value, [comparator], [message])
@@ -152,7 +176,7 @@ expect([ 1, 2, 3 ]).toInclude(3);
 Asserts the given `array` does not contain `value`. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
 
 ```js
-expect([ 1, 2, 3 ]).toExclude(4);
+expect([ 1, 2, 3 ]).toExclude(4)
 ```
 
 ##### expect(string).toInclude(value, [message])
@@ -161,8 +185,8 @@ expect([ 1, 2, 3 ]).toExclude(4);
 Asserts the given `string` contains `value`.
 
 ```js
-expect('hello world').toInclude('world');
-expect('hello world').toContain('world');
+expect('hello world').toInclude('world')
+expect('hello world').toContain('world')
 ```
 
 ##### expect(string).toExclude(value, [message])
@@ -171,30 +195,8 @@ expect('hello world').toContain('world');
 Asserts the given `string` does not contain `value`.
 
 ```js
-expect('hello world').toExclude('goodbye');
-expect('hello world').toNotContain('goodbye');
-```
-
-### Spies
-
-expect.js also includes the ability to create spy functions that can track the calls that are made to other functions and make various assertions based on the arguments and context that were used.
-
-```js
-var video = {
-  play: function () {},
-  pause: function () {},
-  rewind: function () {}
-};
-
-var spy = expect.spyOn(video, 'play');
-
-video.play('some', 'args');
-
-expect(spy.calls.length).toEqual(1);
-expect(spy.calls[0].context).toBe(video);
-expect(spy.calls[0].arguments).toEqual([ 'some', 'args' ]);
-expect(spy).toHaveBeenCalled();
-expect(spy).toHaveBeenCalledWith('some', 'args');
+expect('hello world').toExclude('goodbye')
+expect('hello world').toNotContain('goodbye')
 ```
 
 ### Chaining Assertions
@@ -205,19 +207,29 @@ Every assertion returns an `Expectation` object, so you can chain assertions tog
 expect(3.14)
   .toExist()
   .toBeLessThan(4)
-  .toBeGreaterThan(3);
+  .toBeGreaterThan(3)
 ```
 
-### Installation
+### Spies
 
-Using [npm](https://www.npmjs.org/):
-
-    $ npm install expect
-
-There is a UMD build in the npm package in the `umd` directory. Use it like:
+expect also includes the ability to create spy functions that can track the calls that are made to other functions and make various assertions based on the arguments and context that were used.
 
 ```js
-var expect = require('expect/umd/expect.min');
+var video = {
+  play: function () {},
+  pause: function () {},
+  rewind: function () {}
+}
+
+var spy = expect.spyOn(video, 'play')
+
+video.play('some', 'args')
+
+expect(spy.calls.length).toEqual(1)
+expect(spy.calls[0].context).toBe(video)
+expect(spy.calls[0].arguments).toEqual([ 'some', 'args' ])
+expect(spy).toHaveBeenCalled()
+expect(spy).toHaveBeenCalledWith('some', 'args')
 ```
 
 ### Issues
