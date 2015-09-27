@@ -285,9 +285,81 @@ expect(spy.calls[0].context).toBe(video)
 expect(spy.calls[0].arguments).toEqual([ 'some', 'args' ])
 expect(spy).toHaveBeenCalled()
 expect(spy).toHaveBeenCalledWith('some', 'args')
+
+spy.restore()
+expect.restoreSpies()
 ```
 
-<br>
+##### expect.spyOn(target, method)
+
+Replaces the `method` in `target` with a spy.
+
+```js
+var video = {
+  play: function () {}
+}
+
+expect.spyOn(video, 'play')
+video.play()
+
+spy.restore()
+```
+
+##### expect.restoreSpies()
+
+Restores all spies created with `expect.spyOn()`. This is the same as calling `spy.restore()` on all spies created.
+
+```js
+// mocha.js example
+beforeEach(function () {
+  expect.spyOn(profile, 'load')
+})
+
+afterEach(function () {
+  expect.restoreSpies()
+})
+
+it('works', function () {
+  profile.load()
+  expect(profile.load).toHaveBeenCalled()
+})
+```
+
+##### spy.andCall(fn)
+
+Makes the spy invoke a function `fn` when called.
+
+```
+var dice = createSpy().andCall(function () {
+  return (Math.random() * 6) | 0
+})
+```
+
+##### spy.andCallThrough()
+
+Makes the spy call the original function it's spying on.
+
+```js
+spyOn(profile.load).andCallThrough()
+```
+
+##### spy.andReturn(object)
+
+```js
+var dice = createSpy().andReturn(3)
+```
+
+##### spy.andThrow(error)
+
+Makes the spy `throw error` when called.
+
+```js
+var failing = createSpy().andThrow(new Error('Not working'))
+```
+
+##### spy.restore()
+
+Restores a spy originally created with `spyOn()`.
 
 ## Issues
 
