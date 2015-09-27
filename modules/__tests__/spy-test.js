@@ -112,30 +112,54 @@ describe('An undefined property that was spied on using spyOn', function () {
 })
 
 describe('expect#spyOn', function () {
-  const original = function () {}
-  const target = { method: original }
+  describe('with one spy', function () {
+    const original = function () {}
+    const target = { method: original }
 
-  beforeEach(function () {
-    spyOn(target, 'method')
+    beforeEach(function () {
+      spyOn(target, 'method')
+    })
+
+    it('works with spyOn()', function () {
+      expect(target.method).toNotEqual(original)
+      expect.restoreSpies()
+      expect(target.method).toEqual(original)
+    })
+
+    it('is idempotent', function () {
+      expect(target.method).toNotEqual(original)
+      expect.restoreSpies()
+      expect.restoreSpies()
+      expect(target.method).toEqual(original)
+    })
+
+    it('can work even on createSpy()', function () {
+      createSpy(original)
+      expect.restoreSpies()
+    })
   })
 
-  it('works with spyOn()', function () {
-    expect(target.method).toNotEqual(original)
-    expect.restoreSpies()
-    expect(target.method).toEqual(original)
+  describe('with multiple spies', function () {
+    const originals = [ function () {}, function () {} ]
+    const targets = [
+      { method: originals[0] },
+      { method: originals[1] }
+    ]
+
+    it('still works', function () {
+      spyOn(targets[0], 'method')
+      spyOn(targets[1], 'method')
+
+      expect(targets[0].method).toNotEqual(originals[0])
+      expect(targets[1].method).toNotEqual(originals[1])
+
+      expect.restoreSpies()
+
+      expect(targets[0].method).toEqual(originals[0])
+      expect(targets[1].method).toEqual(originals[1])
+    })
   })
 
-  it('is idempotent', function () {
-    expect(target.method).toNotEqual(original)
-    expect.restoreSpies()
-    expect.restoreSpies()
-    expect(target.method).toEqual(original)
-  })
-
-  it('can work even on createSpy()', function () {
-    createSpy(original)
-    expect.restoreSpies()
-  })
 })
 
 describe('A spy', function () {
