@@ -3,6 +3,8 @@ import isFunction from './isFunction'
 
 function noop() {}
 
+let spies = []
+
 export function createSpy(fn, destroy=noop) {
   if (fn == null)
     fn = noop
@@ -58,6 +60,8 @@ export function createSpy(fn, destroy=noop) {
 
   spy.__isSpy = true
 
+  spies.push(spy)
+
   return spy
 }
 
@@ -75,4 +79,12 @@ export function spyOn(object, methodName) {
 
 export function isSpy(object) {
   return object && object.__isSpy === true
+}
+
+export function restoreSpies() {
+  for (var i = spies.length - 1; i >= 0; i--) {
+    spies[i].restore()
+  }
+
+  spies = []
 }

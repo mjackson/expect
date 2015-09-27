@@ -111,6 +111,33 @@ describe('An undefined property that was spied on using spyOn', function () {
   })
 })
 
+describe('expect#spyOn', function () {
+  const original = function () {}
+  const target = { method: original }
+
+  beforeEach(function () {
+    spyOn(target, 'method')
+  })
+
+  it('works with spyOn()', function () {
+    expect(target.method).toNotEqual(original)
+    expect.restoreSpies()
+    expect(target.method).toEqual(original)
+  })
+
+  it('is idempotent', function () {
+    expect(target.method).toNotEqual(original)
+    expect.restoreSpies()
+    expect.restoreSpies()
+    expect(target.method).toEqual(original)
+  })
+
+  it('can work even on createSpy()', function () {
+    createSpy(original)
+    expect.restoreSpies()
+  })
+})
+
 describe('A spy', function () {
   let targetContext, targetArguments
   const target = {
