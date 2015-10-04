@@ -77,6 +77,7 @@ class Expectation {
         value
       )
     } catch (e) {
+      // These attributes are consumed by Mocha to produce a diff output.
       e.showDiff = true
       e.actual = this.actual
       e.expected = value
