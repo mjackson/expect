@@ -5,7 +5,7 @@ function noop() {}
 
 let spies = []
 
-export function createSpy(fn, destroy=noop) {
+export function createSpy(fn, restore=noop) {
   if (fn == null)
     fn = noop
 
@@ -56,7 +56,7 @@ export function createSpy(fn, destroy=noop) {
     return spy.calls[spy.calls.length - 1]
   }
 
-  spy.destroy = spy.restore = destroy
+  spy.restore = spy.destroy = restore
 
   spy.__isSpy = true
 
@@ -82,9 +82,8 @@ export function isSpy(object) {
 }
 
 export function restoreSpies() {
-  for (var i = spies.length - 1; i >= 0; i--) {
+  for (var i = spies.length - 1; i >= 0; i--)
     spies[i].restore()
-  }
 
   spies = []
 }
