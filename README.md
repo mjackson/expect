@@ -7,8 +7,6 @@
 
 When you use expect, you write assertions similarly to how you would say them, e.g. "I expect this value to be equal to 3" or "I expect this array to contain 3". When you write assertions in this way, you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
 
-<br>
-
 ## Installation
 
 Using [npm](https://www.npmjs.org/):
@@ -33,8 +31,6 @@ There is a UMD build in the npm package in the `umd` directory. Use it like:
 ```js
 var expect = require('expect/umd/expect.min')
 ```
-
-<br>
 
 ## Assertions
 
@@ -174,7 +170,7 @@ expect(2).toBeA('number')
 
 ### toMatch
 
-> `##### expect(string).toMatch(pattern, [message])`
+> `expect(string).toMatch(pattern, [message])`
 
 Asserts the given `string` matches `pattern`, which must be a `RegExp`.
 
@@ -250,8 +246,6 @@ expect('hello world').toExclude('goodbye')
 expect('hello world').toNotContain('goodbye')
 ```
 
-<br>
-
 ## Chaining Assertions
 
 Every assertion returns an `Expectation` object, so you can chain assertions together.
@@ -262,8 +256,6 @@ expect(3.14)
   .toBeLessThan(4)
   .toBeGreaterThan(3)
 ```
-
-<br>
 
 ## Spies
 
@@ -290,7 +282,19 @@ spy.restore()
 expect.restoreSpies()
 ```
 
-##### expect.spyOn(target, method)
+### createSpy
+
+> `expect.createSpy()`
+
+Creates a spy function.
+
+```js
+var spy = expect.createSpy()
+```
+
+### spyOn
+
+> `expect.spyOn(target, method)`
 
 Replaces the `method` in `target` with a spy.
 
@@ -305,7 +309,9 @@ video.play()
 spy.restore()
 ```
 
-##### expect.restoreSpies()
+### restoreSpies
+
+> `expect.restoreSpies()`
 
 Restores all spies created with `expect.spyOn()`. This is the same as calling `spy.restore()` on all spies created.
 
@@ -325,7 +331,11 @@ it('works', function () {
 })
 ```
 
-##### spy.andCall(fn)
+## Spy methods
+
+### andCall
+
+> `spy.andCall(fn)`
 
 Makes the spy invoke a function `fn` when called.
 
@@ -335,7 +345,9 @@ var dice = createSpy().andCall(function () {
 })
 ```
 
-##### spy.andCallThrough()
+### andCallThrough
+
+> `spy.andCallThrough()`
 
 Makes the spy call the original function it's spying on.
 
@@ -343,23 +355,32 @@ Makes the spy call the original function it's spying on.
 spyOn(profile.load).andCallThrough()
 ```
 
-##### spy.andReturn(object)
+### andReturn
+
+> `spy.andReturn(object)`
+
+Makes the spy return a value.
 
 ```js
-var dice = createSpy().andReturn(3)
+var dice = expect.createSpy().andReturn(3)
 ```
 
-##### spy.andThrow(error)
+### andThrow
 
-Makes the spy `throw error` when called.
+> `spy.andThrow(error)`
+
+Makes the spy throw an `error` when called.
 
 ```js
-var failing = createSpy().andThrow(new Error('Not working'))
+var failing = expect.createSpy()
+  .andThrow(new Error('Not working'))
 ```
 
-##### spy.restore()
+### restore
 
-Restores a spy originally created with `spyOn()`.
+> `spy.restore()`
+
+Restores a spy originally created with `expect.spyOn()`.
 
 ## Issues
 
