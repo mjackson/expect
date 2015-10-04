@@ -69,12 +69,19 @@ class Expectation {
   }
 
   toEqual(value, message) {
-    invariant(
-      deepEqual(this.actual, value),
-      (message || 'Expected %s to equal %s'),
-      this.actual,
-      value
-    )
+    try {
+      invariant(
+        deepEqual(this.actual, value),
+        (message || 'Expected %s to equal %s'),
+        this.actual,
+        value
+      )
+    } catch (e) {
+      e.showDiff = true
+      e.actual = this.actual
+      e.expected = value
+      throw e
+    }
 
     return this
   }
