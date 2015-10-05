@@ -1,6 +1,6 @@
 # expect
 
-[![build status](https://img.shields.io/travis/mjackson/expect.svg?style=flat-square)](https://travis-ci.org/mjackson/expect)
+[![build status](https://img.shields.io/travis/mjackson/expect/master.svg?style=flat-square)](https://travis-ci.org/mjackson/expect)
 [![npm package](https://img.shields.io/npm/v/expect.svg?style=flat-square)](https://www.npmjs.org/package/expect)
 
 [expect](https://github.com/mjackson/expect) lets you write better assertions.
