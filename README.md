@@ -386,6 +386,24 @@ var failing = expect.createSpy()
 
 Restores a spy originally created with `expect.spyOn()`.
 
+## Extending expect
+
+You can add your own assertions using `expect.extend` and `expect.assert`:
+
+```js
+expect.extend({
+  toBeAColor() {
+    expect.assert(
+      this.actual.match(/^#[a-fA-F0-9]{6}$/),
+      'expected %s to be an HTML color',
+      this.actual
+    )
+  }
+})
+
+expect('#ff00ff').toBeAColor()
+```
+
 ## Issues
 
 Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
