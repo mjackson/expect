@@ -349,10 +349,14 @@ var dice = createSpy().andCall(function () {
 
 > `spy.andCallThrough()`
 
-Makes the spy call the original function it's spying on. This is only useful when spies are created using `spyOn()`.
+Makes the spy call the original function it's spying on.
 
 ```js
 spyOn(profile, 'load').andCallThrough()
+
+var getEmail = createSpy(function() {
+  return "hi@gmail.com"
+}).andCallThrough()
 ```
 
 ### andReturn
