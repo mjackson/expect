@@ -354,7 +354,7 @@ Makes the spy call the original function it's spying on.
 ```js
 spyOn(profile, 'load').andCallThrough()
 
-var getEmail = createSpy(function() {
+var getEmail = createSpy(function () {
   return "hi@gmail.com"
 }).andCallThrough()
 ```
