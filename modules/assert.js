@@ -1,10 +1,9 @@
 import inspect from 'object-inspect'
 
-function assert(condition, messageFormat) {
+function assert(condition, messageFormat, ...extraArgs) {
   if (condition)
     return
     
-  let extraArgs = Array.prototype.slice.call(arguments, 2)
   let index = 0
 
   throw new Error(
