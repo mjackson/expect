@@ -88,7 +88,7 @@ export function isSpy(object) {
 }
 
 export function restoreSpies() {
-  for (var i = spies.length - 1; i >= 0; i--)
+  for (let i = spies.length - 1; i >= 0; i--)
     spies[i].restore()
 
   spies = []
