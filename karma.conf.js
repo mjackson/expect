@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+
 module.exports = function (config) {
   config.set({
 
@@ -14,12 +16,22 @@ module.exports = function (config) {
     },
 
     webpack: {
-      devtool: 'inline-source-map'
+      devtool: 'inline-source-map',
+      module: {
+        loaders: [
+          { test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
+        ]
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify('test')
+        })
+      ]
     },
 
     webpackServer: {
       noInfo: true
     }
 
-  });
-};
+  })
+}

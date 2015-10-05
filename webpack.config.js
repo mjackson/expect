@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+
 module.exports = {
 
   output: {
@@ -5,14 +7,16 @@ module.exports = {
     libraryTarget: 'umd'
   },
 
-  node: {
-    Buffer: false
-  },
-
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel?stage=0&loose=all' }
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
     ]
-  }
+  },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    })
+  ]
 
 }
