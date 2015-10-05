@@ -1,3 +1,10 @@
+## HEAD
+
+- [#29] - Show object diffs using toEqual() in Mocha
+- Add `expect.restoreSpies()`
+
+[#29]: https://github.com/mjackson/expect/issues/29
+
 ## [v1.11.1]
 > Sep 26, 2015
 
