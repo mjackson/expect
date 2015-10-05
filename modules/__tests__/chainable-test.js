@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#Chainable', function () {
+describe('chaining assertions', function () {
   it('should allow chaining for array-like applications', function () {
     expect([ 1, 2, 'foo', 3 ])
       .toExist()
