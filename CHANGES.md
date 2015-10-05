@@ -1,9 +1,11 @@
 ## HEAD
 
+- Add `expect.extend(assertions)` (see [#34])
 - Add `expect.restoreSpies()` (see [#12])
 - Show object diffs using `toEqual()` in Mocha (see [#29])
 
 [#29]: https://github.com/mjackson/expect/issues/29
+[#34]: https://github.com/mjackson/expect/pull/34
 
 ## [v1.11.1]
 > Sep 26, 2015
