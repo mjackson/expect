@@ -1,15 +1,14 @@
 ## HEAD
 
-- [#12] - Add `expect.restoreSpies()` method
-- [#29] - Show object diffs using toEqual() in Mocha
+- Add `expect.restoreSpies()` method (see [#12])
+- Show object diffs using toEqual() in Mocha (see [#29])
 
-[#12]: https://github.com/mjackson/expect/issues/12
 [#29]: https://github.com/mjackson/expect/issues/29
 
 ## [v1.11.1]
 > Sep 26, 2015
 
-- [#12] - Add `spy.destroy()` method
+- Add `spy.destroy()` method (see [#12])
 
 [#12]: https://github.com/mjackson/expect/issues/12
 [v1.11.1]: https://github.com/mjackson/expect/compare/v1.11.0...v1.11.1
