@@ -1,4 +1,4 @@
-import invariant from './invariant'
+import assert from './assert'
 import isFunction from './isFunction'
 
 function noop() {}
@@ -9,7 +9,7 @@ export function createSpy(fn, restore=noop) {
   if (fn == null)
     fn = noop
 
-  invariant(
+  assert(
     isFunction(fn),
     'createSpy needs a function'
   )
@@ -69,7 +69,7 @@ export function spyOn(object, methodName) {
   const original = object[methodName]
 
   if (!isSpy(original)) {
-    invariant(
+    assert(
       isFunction(original),
       'Cannot spyOn the %s property; it is not a function',
       methodName

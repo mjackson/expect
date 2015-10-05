@@ -1,6 +1,6 @@
 import deepEqual from 'deep-equal'
 import isRegExp from 'is-regexp'
-import invariant from './invariant'
+import assert from './assert'
 import isFunction from './isFunction'
 import functionThrows from './functionThrows'
 import stringContains from './stringContains'
@@ -27,7 +27,7 @@ class Expectation {
   }
 
   toExist(message) {
-    invariant(
+    assert(
       this.actual,
       (message || 'Expected %s to exist'),
       this.actual
@@ -37,7 +37,7 @@ class Expectation {
   }
 
   toNotExist(message) {
-    invariant(
+    assert(
       !this.actual,
       (message || 'Expected %s to not exist'),
       this.actual
@@ -47,7 +47,7 @@ class Expectation {
   }
 
   toBe(value, message) {
-    invariant(
+    assert(
       this.actual === value,
       (message || 'Expected %s to be %s'),
       this.actual,
@@ -58,7 +58,7 @@ class Expectation {
   }
 
   toNotBe(value, message) {
-    invariant(
+    assert(
       this.actual !== value,
       (message || 'Expected %s to not be %s'),
       this.actual,
@@ -70,7 +70,7 @@ class Expectation {
 
   toEqual(value, message) {
     try {
-      invariant(
+      assert(
         deepEqual(this.actual, value),
         (message || 'Expected %s to equal %s'),
         this.actual,
@@ -88,7 +88,7 @@ class Expectation {
   }
 
   toNotEqual(value, message) {
-    invariant(
+    assert(
       !deepEqual(this.actual, value),
       (message || 'Expected %s to not equal %s'),
       this.actual,
@@ -99,13 +99,13 @@ class Expectation {
   }
 
   toThrow(value, message) {
-    invariant(
+    assert(
       isFunction(this.actual),
       'The "actual" argument in expect(actual).toThrow() must be a function, %s was given',
       this.actual
     )
 
-    invariant(
+    assert(
       functionThrows(this.actual, this.context, this.args, value),
       (message || 'Expected %s to throw %s'),
       this.actual,
@@ -116,13 +116,13 @@ class Expectation {
   }
 
   toNotThrow(value, message) {
-    invariant(
+    assert(
       isFunction(this.actual),
       'The "actual" argument in expect(actual).toNotThrow() must be a function, %s was given',
       this.actual
     )
 
-    invariant(
+    assert(
       !functionThrows(this.actual, this.context, this.args, value),
       (message || 'Expected %s to not throw %s'),
       this.actual,
@@ -133,12 +133,12 @@ class Expectation {
   }
 
   toBeA(value, message) {
-    invariant(
+    assert(
       isFunction(value) || typeof value === 'string',
       'The "value" argument in toBeA(value) must be a function or a string'
     )
 
-    invariant(
+    assert(
       isA(this.actual, value),
       (message || 'Expected %s to be a %s'),
       this.actual,
@@ -149,12 +149,12 @@ class Expectation {
   }
 
   toNotBeA(value, message) {
-    invariant(
+    assert(
       isFunction(value) || typeof value === 'string',
       'The "value" argument in toNotBeA(value) must be a function or a string'
     )
 
-    invariant(
+    assert(
       !isA(this.actual, value),
       (message || 'Expected %s to be a %s'),
       this.actual,
@@ -165,17 +165,17 @@ class Expectation {
   }
 
   toMatch(pattern, message) {
-    invariant(
+    assert(
       typeof this.actual === 'string',
       'The "actual" argument in expect(actual).toMatch() must be a string'
     )
 
-    invariant(
+    assert(
       isRegExp(pattern),
       'The "value" argument in toMatch(value) must be a RegExp'
     )
 
-    invariant(
+    assert(
       pattern.test(this.actual),
       (message || 'Expected %s to match %s'),
       this.actual,
@@ -186,17 +186,17 @@ class Expectation {
   }
 
   toNotMatch(pattern, message) {
-    invariant(
+    assert(
       typeof this.actual === 'string',
       'The "actual" argument in expect(actual).toNotMatch() must be a string'
     )
 
-    invariant(
+    assert(
       isRegExp(pattern),
       'The "value" argument in toNotMatch(value) must be a RegExp'
     )
 
-    invariant(
+    assert(
       !pattern.test(this.actual),
       (message || 'Expected %s to not match %s'),
       this.actual,
@@ -207,17 +207,17 @@ class Expectation {
   }
 
   toBeLessThan(value, message) {
-    invariant(
+    assert(
       typeof this.actual === 'number',
       'The "actual" argument in expect(actual).toBeLessThan() must be a number'
     )
 
-    invariant(
+    assert(
       typeof value === 'number',
       'The "value" argument in toBeLessThan(value) must be a number'
     )
 
-    invariant(
+    assert(
       this.actual < value,
       (message || 'Expected %s to be less than %s'),
       this.actual,
@@ -228,17 +228,17 @@ class Expectation {
   }
 
   toBeGreaterThan(value, message) {
-    invariant(
+    assert(
       typeof this.actual === 'number',
       'The "actual" argument in expect(actual).toBeGreaterThan() must be a number'
     )
 
-    invariant(
+    assert(
       typeof value === 'number',
       'The "value" argument in toBeGreaterThan(value) must be a number'
     )
 
-    invariant(
+    assert(
       this.actual > value,
       (message || 'Expected %s to be greater than %s'),
       this.actual,
@@ -249,7 +249,7 @@ class Expectation {
   }
 
   toInclude(value, comparator, message) {
-    invariant(
+    assert(
       isArray(this.actual) || typeof this.actual === 'string',
       'The "actual" argument in expect(actual).toInclude() must be an array or a string'
     )
@@ -262,14 +262,14 @@ class Expectation {
     message = message || 'Expected %s to include %s'
 
     if (isArray(this.actual)) {
-      invariant(
+      assert(
         arrayContains(this.actual, value, comparator),
         message,
         this.actual,
         value
       )
     } else {
-      invariant(
+      assert(
         stringContains(this.actual, value),
         message,
         this.actual,
@@ -281,7 +281,7 @@ class Expectation {
   }
 
   toExclude(value, comparator, message) {
-    invariant(
+    assert(
       isArray(this.actual) || typeof this.actual === 'string',
       'The "actual" argument in expect(actual).toExclude() must be an array or a string'
     )
@@ -294,14 +294,14 @@ class Expectation {
     message = message || 'Expected %s to exclude %s'
 
     if (isArray(this.actual)) {
-      invariant(
+      assert(
         !arrayContains(this.actual, value, comparator),
         message,
         this.actual,
         value
       )
     } else {
-      invariant(
+      assert(
         !stringContains(this.actual, value),
         message,
         this.actual,
@@ -315,12 +315,12 @@ class Expectation {
   toHaveBeenCalled(message) {
     const spy = this.actual
 
-    invariant(
+    assert(
       isSpy(spy),
       'The "actual" argument in expect(actual).toHaveBeenCalled() must be a spy'
     )
 
-    invariant(
+    assert(
       spy.calls.length > 0,
       (message || 'spy was not called')
     )
@@ -331,14 +331,14 @@ class Expectation {
   toHaveBeenCalledWith() {
     const spy = this.actual
 
-    invariant(
+    assert(
       isSpy(spy),
       'The "actual" argument in expect(actual).toHaveBeenCalledWith() must be a spy'
     )
 
     const expectedArgs = Array.prototype.slice.call(arguments, 0)
 
-    invariant(
+    assert(
       spy.calls.some(function (call) {
         return deepEqual(call.arguments, expectedArgs)
       }),
@@ -352,12 +352,12 @@ class Expectation {
   toNotHaveBeenCalled(message) {
     const spy = this.actual
 
-    invariant(
+    assert(
       isSpy(spy),
       'The "actual" argument in expect(actual).toNotHaveBeenCalled() must be a spy'
     )
 
-    invariant(
+    assert(
       spy.calls.length === 0,
       (message || 'spy was not supposed to be called')
     )
@@ -366,7 +366,7 @@ class Expectation {
   }
 
   withContext(context) {
-    invariant(
+    assert(
       isFunction(this.actual),
       'The "actual" argument in expect(actual).withContext() must be a function'
     )
@@ -377,7 +377,7 @@ class Expectation {
   }
 
   withArgs() {
-    invariant(
+    assert(
       isFunction(this.actual),
       'The "actual" argument in expect(actual).withArgs() must be a function'
     )

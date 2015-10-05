@@ -1,6 +1,6 @@
 import inspect from 'object-inspect'
 
-function invariant(condition, messageFormat) {
+function assert(condition, messageFormat) {
   if (condition)
     return
     
@@ -14,4 +14,4 @@ function invariant(condition, messageFormat) {
   )
 }
 
-export default invariant
+export default assert
