@@ -13,7 +13,7 @@ Using [npm](https://www.npmjs.org/):
 
     $ npm install expect
 
-Then with a module bundler like webpack, use as you would anything else:
+Then with a module bundler like [webpack](https://webpack.github.io/), use as you would anything else:
 
 ```js
 // using an ES6 transpiler, like babel
