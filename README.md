@@ -401,7 +401,3 @@ To run the tests in Chrome:
 
     $ npm install
     $ npm run test-browser
-
-## License
-
-[MIT](http://opensource.org/licenses/MIT)
