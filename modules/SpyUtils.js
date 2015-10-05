@@ -69,6 +69,12 @@ export function spyOn(object, methodName) {
   const original = object[methodName]
 
   if (!isSpy(original)) {
+    invariant(
+      isFunction(original),
+      'Cannot spyOn the %s property; it is not a function',
+      methodName
+    )
+
     object[methodName] = createSpy(original, function () {
       object[methodName] = original
     })
