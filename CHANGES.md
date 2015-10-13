@@ -1,3 +1,11 @@
+## [v1.12.2]
+> Oct 13, 2015
+
+- Fix postinstall script on Windows (see [#39])
+
+[v1.12.2]: https://github.com/mjackson/expect/compare/v1.12.1...v1.12.2
+[#39]: https://github.com/mjackson/expect/issues/39
+
 ## [v1.12.1]
 > Oct 10, 2015
 
