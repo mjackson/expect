@@ -31,7 +31,7 @@
     "lint": "eslint modules",
     "test": "npm run lint && mocha --compilers js:babel/register --reporter spec 'modules/**/__tests__/*-test.js'",
     "test-browser": "npm run lint && karma start",
-    "postinstall": "node npm-scripts/postinstall.js"
+    "postinstall": "node ./npm-scripts/postinstall.js"
   },
   "keywords": [
     "expect",
