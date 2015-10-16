@@ -404,6 +404,10 @@ expect.extend({
 expect('#ff00ff').toBeAColor()
 ```
 
+## Extensions
+
+- [expect-to-equal-jsx](https://github.com/algolia/expect-to-equal-jsx)
+
 ## Issues
 
 Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
