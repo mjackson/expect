@@ -406,7 +406,7 @@ expect('#ff00ff').toBeAColor()
 
 ## Extensions
 
-- [expect-to-equal-jsx](https://github.com/algolia/expect-to-equal-jsx)
+- [expect-jsx](https://github.com/algolia/expect-jsx) Add things like `expect(ReactComponent).toEqualJSX(<TestComponent prop="yes" />)`
 
 ## Issues
 
