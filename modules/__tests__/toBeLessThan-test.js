@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#toBeLessThan', function () {
+describe('toBeLessThan', function () {
   it('does not throw when the actual value is less than the expected value', function () {
     expect(function () {
       expect(2).toBeLessThan(3)

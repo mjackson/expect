@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#withContext', function () {
+describe('withContext', function () {
   const context = {
     check: true
   }

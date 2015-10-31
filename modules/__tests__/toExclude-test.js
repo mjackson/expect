@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#toExclude', function () {
+describe('toExclude', function () {
   it('requires the actual value to be an array or string', function () {
     expect(function () {
       expect(1).toExclude(2)

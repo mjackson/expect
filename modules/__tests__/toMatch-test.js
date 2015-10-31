@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#toMatch', function () {
+describe('toMatch', function () {
   it('requires the pattern to be a RegExp', function () {
     expect(function () {
       expect('actual').toMatch('expected')
@@ -21,7 +21,7 @@ describe('Expectation#toMatch', function () {
   })
 })
 
-describe('Expectation#toNotMatch', function () {
+describe('toNotMatch', function () {
   it('requires the pattern to be a RegExp', function () {
     expect(function () {
       expect('actual').toNotMatch('expected')

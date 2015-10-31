@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#toInclude', function () {
+describe('toInclude', function () {
   it('requires the actual value to be an array or string', function () {
     expect(function () {
       expect(1).toInclude(2)

@@ -2,7 +2,7 @@
 import expect from '../index'
 import Expectation from '../Expectation'
 
-describe('Expectation#toBeA', function () {
+describe('toBeA', function () {
   it('requires the value to be a function or string', function () {
     expect(function () {
       expect('actual').toBeA(4)

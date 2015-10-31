@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#toBeTruthy', function () {
+describe('toBeTruthy', function () {
   it('does not throw on truthy actual values', function () {
     expect(function () {
       expect(1).toBeTruthy()
@@ -25,7 +25,7 @@ describe('Expectation#toBeTruthy', function () {
   })
 })
 
-describe('Expectation#toBeFalsy', function () {
+describe('toBeFalsy', function () {
   it('throws on truthy values', function () {
     expect(function () {
       expect(42).toBeFalsy()

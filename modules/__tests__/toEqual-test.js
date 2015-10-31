@@ -1,7 +1,7 @@
 /*eslint-env mocha */
 import expect from '../index'
 
-describe('Expectation#toEqual', function () {
+describe('toEqual', function () {
   it('works', function () {
     expect(function () {
       expect('actual').toEqual('expected')
