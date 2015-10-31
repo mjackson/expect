@@ -411,15 +411,3 @@ expect('#ff00ff').toBeAColor()
 ## Issues
 
 Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
-
-## Tests
-
-To run the tests in node:
-
-    $ npm install
-    $ npm test
-
-To run the tests in Chrome:
-
-    $ npm install
-    $ npm run test-browser
