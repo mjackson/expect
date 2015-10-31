@@ -103,7 +103,7 @@ class Expectation {
       functionThrows(this.actual, this.context, this.args, value),
       (message || 'Expected %s to throw %s'),
       this.actual,
-      value
+      value || 'an error'
     )
 
     return this
@@ -120,7 +120,7 @@ class Expectation {
       !functionThrows(this.actual, this.context, this.args, value),
       (message || 'Expected %s to not throw %s'),
       this.actual,
-      value
+      value || 'an error'
     )
 
     return this
