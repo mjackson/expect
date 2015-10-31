@@ -2,10 +2,9 @@ var webpack = require('webpack')
 
 module.exports = function (config) {
   config.set({
-
     browsers: [ 'Chrome' ],
-
     frameworks: [ 'mocha' ],
+    reporters: [ 'dots' ],
 
     files: [
       'tests.webpack.js'
@@ -32,6 +31,5 @@ module.exports = function (config) {
     webpackServer: {
       noInfo: true
     }
-
   })
 }
