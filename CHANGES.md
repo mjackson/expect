@@ -1,3 +1,7 @@
+## HEAD
+
+- Better error messages in `toThrow`/`toNotThrow`
+
 ## [v1.12.2]
 > Oct 13, 2015
 
