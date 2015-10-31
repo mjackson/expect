@@ -1,14 +1,8 @@
 import deepEqual from 'deep-equal'
 import isRegExp from 'is-regexp'
 import assert from './assert'
-import isFunction from './isFunction'
-import functionThrows from './functionThrows'
-import stringContains from './stringContains'
-import arrayContains from './arrayContains'
 import { isSpy } from './SpyUtils'
-import isA from './isA'
-
-const isArray = Array.isArray
+import { functionThrows, arrayContains, stringContains, isArray, isFunction, isA } from './TestUtils'
 
 /**
  * An Expectation is a wrapper around an assertion that allows it to be written

@@ -1,5 +1,5 @@
 import assert from './assert'
-import isFunction from './isFunction'
+import { isFunction } from './TestUtils'
 
 function noop() {}
 
