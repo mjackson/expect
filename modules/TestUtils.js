@@ -1,3 +1,4 @@
+import deepEqual from 'deep-equal'
 import isRegExp from 'is-regexp'
 
 /**
@@ -24,7 +25,7 @@ export function functionThrows(fn, context, args, value) {
     if (typeof message === 'string') {
       if (isRegExp(value) && value.test(error.message))
         return true
-      
+
       if (typeof value === 'string' && message.indexOf(value) !== -1)
         return true
     }
@@ -40,7 +41,7 @@ export function functionThrows(fn, context, args, value) {
  */
 export function arrayContains(array, value, comparator) {
   if (comparator == null)
-    return array.indexOf(value) !== -1
+    comparator = deepEqual
 
   return array.some(function (item) {
     return comparator(item, value) !== false

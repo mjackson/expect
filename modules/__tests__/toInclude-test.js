@@ -11,12 +11,17 @@ describe('toInclude', function () {
   it('does not throw when an array contains the expected value', function () {
     expect(function () {
       expect([ 1, 2, 3 ]).toInclude(2)
+      expect([ { a: 1 }, { c: 2 } ]).toInclude({ c: 2 })
     }).toNotThrow()
   })
 
   it('throws when an array does not contain the expected value', function () {
     expect(function () {
       expect([ 1, 2, 3 ]).toInclude(4)
+    }).toThrow(/to include/)
+
+    expect(function () {
+      expect([ { a: 1 }, { c: 2 } ]).toInclude({ a: 2 })
     }).toThrow(/to include/)
   })
 
