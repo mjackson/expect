@@ -30,7 +30,7 @@ npm test -- --single-run
 
 update_version 'package.json' $next_version
 
-git commit -am "Version $next_version"
+git commit --allow-empty -am "Version $next_version"
 
 git tag $next_ref
 git tag latest -f
