@@ -26,12 +26,6 @@ var spyOn = expect.spyOn
 var isSpy = expect.isSpy
 ```
 
-There is a UMD build in the npm package in the `umd` directory. Use it like:
-
-```js
-var expect = require('expect/umd/expect.min')
-```
-
 The UMD build is also available on [npmcdn](https://npmcdn.com):
 
 ```html
