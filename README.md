@@ -32,11 +32,13 @@ There is a UMD build in the npm package in the `umd` directory. Use it like:
 var expect = require('expect/umd/expect.min')
 ```
 
-`expect` is also available on [npmcdn](https://npmcdn.com):
+The UMD build is also available on [npmcdn](https://npmcdn.com):
 
 ```html
 <script src="https://npmcdn.com/expect/umd/expect.min.js"></script>
 ```
+
+You can find the library on `window.expect`.
 
 ## Assertions
 
