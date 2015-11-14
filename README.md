@@ -1,7 +1,4 @@
-# expect
-
-[![build status](https://img.shields.io/travis/mjackson/expect/master.svg?style=flat-square)](https://travis-ci.org/mjackson/expect)
-[![npm package](https://img.shields.io/npm/v/expect.svg?style=flat-square)](https://www.npmjs.org/package/expect)
+# expect [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
 
 [expect](https://github.com/mjackson/expect) lets you write better assertions.
 
@@ -413,3 +410,9 @@ expect('#ff00ff').toBeAColor()
 ## Issues
 
 Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
+
+[build-badge]: https://img.shields.io/travis/mjackson/expect/master.svg?style=flat-square
+[build]: https://travis-ci.org/mjackson/expect)
+
+[npm-badge]: https://img.shields.io/npm/v/expect.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/expect
