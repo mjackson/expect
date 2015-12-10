@@ -1,5 +1,5 @@
-import deepEqual from 'deep-equal'
-import isRegExp from 'is-regexp'
+import isEqual from 'is-equal'
+import isRegExp from 'is-regex'
 import assert from './assert'
 import { isSpy } from './SpyUtils'
 import { functionThrows, arrayContains, stringContains, isArray, isFunction, isA } from './TestUtils'
@@ -65,7 +65,7 @@ class Expectation {
   toEqual(value, message) {
     try {
       assert(
-        deepEqual(this.actual, value),
+        isEqual(this.actual, value),
         (message || 'Expected %s to equal %s'),
         this.actual,
         value
@@ -83,7 +83,7 @@ class Expectation {
 
   toNotEqual(value, message) {
     assert(
-      !deepEqual(this.actual, value),
+      !isEqual(this.actual, value),
       (message || 'Expected %s to not equal %s'),
       this.actual,
       value
@@ -334,7 +334,7 @@ class Expectation {
 
     assert(
       spy.calls.some(function (call) {
-        return deepEqual(call.arguments, expectedArgs)
+        return isEqual(call.arguments, expectedArgs)
       }),
       'spy was never called with %s',
       expectedArgs

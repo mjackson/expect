@@ -1,5 +1,5 @@
-import deepEqual from 'deep-equal'
-import isRegExp from 'is-regexp'
+import isEqual from 'is-equal'
+import isRegExp from 'is-regex'
 
 /**
  * Returns true if the given function throws the given value
@@ -41,7 +41,7 @@ export function functionThrows(fn, context, args, value) {
  */
 export function arrayContains(array, value, comparator) {
   if (comparator == null)
-    comparator = deepEqual
+    comparator = isEqual
 
   return array.some(function (item) {
     return comparator(item, value) !== false

@@ -8,6 +8,33 @@ describe('toEqual', function () {
     }).toThrow(/Expected 'actual' to equal 'expected'/)
   })
 
+  it('works when object has circular reference' , function () {
+    function circular() {
+      this.circularRef = this
+    }
+
+    const a = new circular()
+    const b = new circular()
+
+    expect(a).toEqual(b)
+  })
+
+  it('works with Map', function () {
+    const a = new Map()
+    a.set('key', 'value')
+
+    const b = new Map()
+    b.set('key', 'value')
+
+    expect(a).toEqual(b)
+  })
+
+  it('works with Set', function () {
+    const a = new Set('a')
+    const b = new Set('a')
+    expect(a).toEqual(b)
+  })
+
   it('shows diff', function () {
     try {
       expect('actual').toEqual('expected')
