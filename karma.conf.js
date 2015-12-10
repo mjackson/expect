@@ -60,6 +60,7 @@ module.exports = function (config) {
     reporters: [ 'mocha' ],
 
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'tests.webpack.js'
     ],
 
