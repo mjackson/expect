@@ -1,12 +1,22 @@
-## [HEAD]
+## [v1.13.1]
+> Dec 10, 2015
 
 - Fix comparisons of ES6 iterables Map and Set ([#47])
 - Fix comparisons of objects with circular references ([#50])
 - Better error messages in `toThrow`/`toNotThrow`
 
-[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+[v1.13.1]: https://github.com/mjackson/expect/compare/v1.13.0...v1.13.1
 [#47]: https://github.com/mjackson/expect/issues/47
 [#50]: https://github.com/mjackson/expect/issues/50
+
+## [v1.13.0]
+> Nov 13, 2015
+
+- Fix `toInclude` to use `deepEqual` for comparisons ([#44])
+- Run test suite in browsers
+
+[v1.13.0]: https://github.com/mjackson/expect/compare/v1.12.2...v1.13.0
+[#44]: https://github.com/mjackson/expect/issues/44
 
 ## [v1.12.2]
 > Oct 13, 2015
