@@ -1,6 +1,12 @@
-## HEAD
+## [HEAD]
 
+- Fix comparisons of ES6 iterables Map and Set ([#47])
+- Fix comparisons of objects with circular references ([#50])
 - Better error messages in `toThrow`/`toNotThrow`
+
+[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+[#47]: https://github.com/mjackson/expect/issues/47
+[#50]: https://github.com/mjackson/expect/issues/50
 
 ## [v1.12.2]
 > Oct 13, 2015
