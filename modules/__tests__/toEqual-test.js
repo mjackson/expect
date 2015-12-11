@@ -8,6 +8,12 @@ describe('toEqual', function () {
     }).toThrow(/Expected 'actual' to equal 'expected'/)
   })
 
+  it('works with objects that have the same keys in different order', function () {
+    const a = { a: 'a', b: 'b', c: 'c' }
+    const b = { b: 'b', c: 'c', a: 'a' }
+    expect(a).toEqual(b)
+  })
+
   it('works when object has circular reference' , function () {
     function circular() {
       this.circularRef = this

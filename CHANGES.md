@@ -1,3 +1,9 @@
+## [HEAD]
+
+- Bump is-equal dependency to 1.4
+
+[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+
 ## [v1.13.1]
 > Dec 10, 2015
 
