@@ -242,22 +242,22 @@ class Expectation {
     return this
   }
 
-  toInclude(value, comparator, message) {
+  toInclude(value, compareValues, message) {
     assert(
       isArray(this.actual) || typeof this.actual === 'string',
       'The "actual" argument in expect(actual).toInclude() must be an array or a string'
     )
 
-    if (typeof comparator === 'string') {
-      message = comparator
-      comparator = null
+    if (typeof compareValues === 'string') {
+      message = compareValues
+      compareValues = null
     }
 
     message = message || 'Expected %s to include %s'
 
     if (isArray(this.actual)) {
       assert(
-        arrayContains(this.actual, value, comparator),
+        arrayContains(this.actual, value, compareValues),
         message,
         this.actual,
         value
@@ -274,22 +274,22 @@ class Expectation {
     return this
   }
 
-  toExclude(value, comparator, message) {
+  toExclude(value, compareValues, message) {
     assert(
       isArray(this.actual) || typeof this.actual === 'string',
       'The "actual" argument in expect(actual).toExclude() must be an array or a string'
     )
 
-    if (typeof comparator === 'string') {
-      message = comparator
-      comparator = null
+    if (typeof compareValues === 'string') {
+      message = compareValues
+      compareValues = null
     }
 
     message = message || 'Expected %s to exclude %s'
 
     if (isArray(this.actual)) {
       assert(
-        !arrayContains(this.actual, value, comparator),
+        !arrayContains(this.actual, value, compareValues),
         message,
         this.actual,
         value

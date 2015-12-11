@@ -36,15 +36,15 @@ export function functionThrows(fn, context, args, value) {
 
 /**
  * Returns true if the given array contains the value, false
- * otherwise. The comparator function must return false to
+ * otherwise. The compareValues function must return false to
  * indicate a non-match.
  */
-export function arrayContains(array, value, comparator) {
-  if (comparator == null)
-    comparator = isEqual
+export function arrayContains(array, value, compareValues) {
+  if (compareValues == null)
+    compareValues = isEqual
 
   return array.some(function (item) {
-    return comparator(item, value) !== false
+    return compareValues(item, value) !== false
   })
 }
 
