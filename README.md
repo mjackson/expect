@@ -412,7 +412,7 @@ expect('#ff00ff').toBeAColor()
 Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
 
 [build-badge]: https://img.shields.io/travis/mjackson/expect/master.svg?style=flat-square
-[build]: https://travis-ci.org/mjackson/expect)
+[build]: https://travis-ci.org/mjackson/expect
 
 [npm-badge]: https://img.shields.io/npm/v/expect.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/expect
