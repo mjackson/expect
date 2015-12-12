@@ -25,21 +25,25 @@ describe('toEqual', function () {
     expect(a).toEqual(b)
   })
 
-  it('works with Map', function () {
-    const a = new Map()
-    a.set('key', 'value')
+  if (typeof Map !== 'undefined') {
+    it('works with Map', function () {
+      const a = new Map()
+      a.set('key', 'value')
 
-    const b = new Map()
-    b.set('key', 'value')
+      const b = new Map()
+      b.set('key', 'value')
 
-    expect(a).toEqual(b)
-  })
+      expect(a).toEqual(b)
+    })
+  }
 
-  it('works with Set', function () {
-    const a = new Set('a')
-    const b = new Set('a')
-    expect(a).toEqual(b)
-  })
+  if (typeof Set !== 'undefined') {
+    it('works with Set', function () {
+      const a = new Set('a')
+      const b = new Set('a')
+      expect(a).toEqual(b)
+    })
+  }
 
   it('shows diff', function () {
     try {
