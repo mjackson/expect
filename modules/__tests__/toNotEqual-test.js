@@ -16,8 +16,12 @@ describe('toNotEqual', function () {
 
   if (typeof Set !== 'undefined') {
     it('works with Set', function () {
-      const a = new Set('a')
-      const b = new Set('b')
+      const a = new Set()
+      a.add('a')
+
+      const b = new Set()
+      b.add('b')
+
       expect(a).toNotEqual(b)
     })
   }

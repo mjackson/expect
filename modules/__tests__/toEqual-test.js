@@ -39,8 +39,12 @@ describe('toEqual', function () {
 
   if (typeof Set !== 'undefined') {
     it('works with Set', function () {
-      const a = new Set('a')
-      const b = new Set('a')
+      const a = new Set()
+      a.add('a')
+
+      const b = new Set()
+      b.add('a')
+
       expect(a).toEqual(b)
     })
   }
