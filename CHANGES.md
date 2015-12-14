@@ -1,3 +1,10 @@
+## [v1.13.3]
+> Dec 14, 2015
+
+- Fix failing Map/Set tests
+
+[v1.13.3]: https://github.com/mjackson/expect/compare/v1.13.2...v1.13.3
+
 ## [v1.13.2]
 > Dec 11, 2015
 
