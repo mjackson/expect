@@ -69,13 +69,13 @@ Asserts that `object` is not strictly equal to `value` using `===`.
 
 > `expect(object).toEqual(value, [message])`
 
-Asserts that the given `object` equals `value` using [deep-equal](https://www.npmjs.com/package/deep-equal).
+Asserts that the given `object` equals `value` using [is-equal](https://www.npmjs.com/package/is-equal).
 
 ### toNotEqual
 
 > `expect(object).toNotEqual(value, [message])`
 
-Asserts that the given `object` is not equal to `value` using [deep-equal](https://www.npmjs.com/package/deep-equal).
+Asserts that the given `object` is not equal to `value` using [is-equal](https://www.npmjs.com/package/is-equal).
 
 ### toThrow
 
