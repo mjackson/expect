@@ -1,8 +1,9 @@
-## [HEAD]
+## [v1.13.4]
+> Dec 16, 2015
 
 - Fixed comparing two arrays of nested objects when the first items are not equal ([#53])
 
-[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+[v1.13.4]: https://github.com/mjackson/expect/compare/v1.13.3...v1.13.4
 [#53]: https://github.com/mjackson/expect/issues/53
 
 ## [v1.13.3]
