@@ -302,7 +302,7 @@ var video = {
   play: function () {}
 }
 
-expect.spyOn(video, 'play')
+var spy = expect.spyOn(video, 'play')
 video.play()
 
 spy.restore()
