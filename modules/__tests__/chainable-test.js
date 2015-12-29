@@ -14,6 +14,8 @@ describe('chaining assertions', function () {
     expect(3.14)
       .toExist()
       .toBeLessThan(4.2)
+      .toBeLessThanOrEqualTo(3.14)
       .toBeGreaterThan(3.0)
+      .toBeGreaterThanOrEqualTo(3.14)
   })
 })

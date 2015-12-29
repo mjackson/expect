@@ -221,6 +221,27 @@ class Expectation {
     return this
   }
 
+  toBeLessThanOrEqualTo(value, message) {
+    assert(
+      typeof this.actual === 'number',
+      'The "actual" argument in expect(actual).toBeLessThanOrEqualTo() must be a number'
+    )
+
+    assert(
+      typeof value === 'number',
+      'The "value" argument in toBeLessThanOrEqualTo(value) must be a number'
+    )
+
+    assert(
+      this.actual <= value,
+      (message || 'Expected %s to be less than or equal to %s'),
+      this.actual,
+      value
+    )
+
+    return this
+  }
+
   toBeGreaterThan(value, message) {
     assert(
       typeof this.actual === 'number',
@@ -235,6 +256,27 @@ class Expectation {
     assert(
       this.actual > value,
       (message || 'Expected %s to be greater than %s'),
+      this.actual,
+      value
+    )
+
+    return this
+  }
+
+  toBeGreaterThanOrEqualTo(value, message) {
+    assert(
+      typeof this.actual === 'number',
+      'The "actual" argument in expect(actual).toBeGreaterThanOrEqualTo() must be a number'
+    )
+
+    assert(
+      typeof value === 'number',
+      'The "value" argument in toBeGreaterThanOrEqualTo(value) must be a number'
+    )
+
+    assert(
+      this.actual >= value,
+      (message || 'Expected %s to be greater than or equal to %s'),
       this.actual,
       value
     )
@@ -381,7 +423,7 @@ class Expectation {
 
     return this
   }
-  
+
 }
 
 const aliases = {
