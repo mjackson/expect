@@ -1,5 +1,11 @@
 # expect [![Travis][build-badge]][build] [![npm package][npm-badge]][npm]
 
+[build-badge]: https://img.shields.io/travis/mjackson/expect/master.svg?style=flat-square
+[build]: https://travis-ci.org/mjackson/expect
+
+[npm-badge]: https://img.shields.io/npm/v/expect.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/expect
+
 [expect](https://github.com/mjackson/expect) lets you write better assertions.
 
 When you use expect, you write assertions similarly to how you would say them, e.g. "I expect this value to be equal to 3" or "I expect this array to contain 3". When you write assertions in this way, you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
@@ -410,9 +416,3 @@ expect('#ff00ff').toBeAColor()
 ## Issues
 
 Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
-
-[build-badge]: https://img.shields.io/travis/mjackson/expect/master.svg?style=flat-square
-[build]: https://travis-ci.org/mjackson/expect
-
-[npm-badge]: https://img.shields.io/npm/v/expect.svg?style=flat-square
-[npm]: https://www.npmjs.org/package/expect
