@@ -158,8 +158,8 @@ expect(2).toBeA('number')
 Asserts the given `object` is *not* an `instanceof constructor`.
 
 ```js
-expect(new User).toBeA(User)
-expect(new Asset).toBeAn(Asset)
+expect(new Asset).toNotBeA(User)
+expect(new User).toNotBeAn(Asset)
 ```
 
 ### toNotBeA(string)
@@ -170,7 +170,8 @@ expect(new Asset).toBeAn(Asset)
 Asserts the `typeof` the given `object` is *not* `string`.
 
 ```js
-expect(2).toBeA('number')
+expect('a string').toNotBeA('number')
+expect(2).toNotBeAn('object')
 ```
 
 ### toMatch
