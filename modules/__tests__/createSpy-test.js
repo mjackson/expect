@@ -45,6 +45,17 @@ describe('A spy', function () {
     expect(spy.restore).toBeA(Function)
   })
 
+  it('has a reset method', function () {
+    expect(spy.reset).toBeA(Function)
+  })
+
+  it('reset clears out all previous calls', function () {
+    spy()
+    expect(spy.calls.length).toEqual(1)
+    spy.reset()
+    expect(spy.calls.length).toEqual(0)
+  })
+
   it('knows how many times it has been called', function () {
     spy()
     spy()

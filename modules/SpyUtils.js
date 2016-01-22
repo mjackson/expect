@@ -56,6 +56,10 @@ export function createSpy(fn, restore=noop) {
     return spy.calls[spy.calls.length - 1]
   }
 
+  spy.reset = function () {
+    spy.calls = []
+  }
+
   spy.restore = spy.destroy = restore
 
   spy.__isSpy = true
