@@ -392,6 +392,12 @@ var failing = expect.createSpy()
 
 Restores a spy originally created with `expect.spyOn()`.
 
+### reset
+
+> `spy.reset()`
+
+Clears out all saved calls to the spy.
+
 ## Extending expect
 
 You can add your own assertions using `expect.extend` and `expect.assert`:
