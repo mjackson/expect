@@ -252,6 +252,36 @@ expect('hello world').toExclude('goodbye')
 expect('hello world').toNotContain('goodbye')
 ```
 
+### (spy) toHaveBeenCalled
+
+> `expect(spy).toHaveBeenCalled([message])`
+
+Asserts the given `spy` function has been called at least once.
+
+```js
+expect(spy).toHaveBeenCalled()
+```
+
+### (spy) toNotHaveBeenCalled
+
+> `expect(spy).toNotHaveBeenCalled([message])`
+
+Asserts the given `spy` function has *not* been called.
+
+```js
+expect(spy).toNotHaveBeenCalled()
+```
+
+### (spy) toHaveBeenCalledWith
+
+> `expect(spy).toHaveBeenCalledWith(...args)`
+
+Asserts the given `spy` function has been called with the expected arguments.
+
+```js
+expect(spy).toHaveBeenCalledWith('foo', 'bar')
+```
+
 ## Chaining Assertions
 
 Every assertion returns an `Expectation` object, so you can chain assertions together.
