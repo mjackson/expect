@@ -195,6 +195,16 @@ Asserts the given `number` is less than `value`.
 expect(2).toBeLessThan(3)
 ```
 
+### toBeLessThanOrEqualTo
+
+> `expect(number).toBeLessThanOrEqualTo(value, [message])`<br>
+
+Asserts the given `number` is less than or equal to `value`.
+
+```js
+expect(2).toBeLessThanOrEqualTo(3)
+```
+
 ### toBeGreaterThan
 
 > `expect(number).toBeGreaterThan(value, [message])`<br>
@@ -204,6 +214,16 @@ Asserts the given `number` is greater than `value`.
 
 ```js
 expect(3).toBeGreaterThan(2)
+```
+
+### toBeGreaterThanOrEqualTo
+
+> `expect(number).toBeGreaterThanOrEqualTo(value, [message])`<br>
+
+Asserts the given `number` is greater than or equal to `value`.
+
+```js
+expect(3).toBeGreaterThanOrEqualTo(2)
 ```
 
 ### toInclude
