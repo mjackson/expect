@@ -1,8 +1,8 @@
-## [HEAD]
+## [v1.14.0]
 
 - Added `toBeGreaterThanOrEqualTo` and `toBeLessThanOrEqualTo` ([#11] and [#59])
 
-[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+[v1.14.0]: https://github.com/mjackson/expect/compare/v1.13.4...v1.14.0
 [#11]: https://github.com/mjackson/expect/issues/11
 [#59]: https://github.com/mjackson/expect/issues/59
 
