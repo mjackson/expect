@@ -1,10 +1,13 @@
 ## [v1.14.0]
+> Feb 1, 2015
 
 - Added `toBeGreaterThanOrEqualTo` and `toBeLessThanOrEqualTo` ([#11] and [#59])
+- Added `spy.reset()` ([#57])
 
 [v1.14.0]: https://github.com/mjackson/expect/compare/v1.13.4...v1.14.0
 [#11]: https://github.com/mjackson/expect/issues/11
 [#59]: https://github.com/mjackson/expect/issues/59
+[#57]: https://github.com/mjackson/expect/pull/57
 
 ## [v1.13.4]
 > Dec 16, 2015
