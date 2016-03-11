@@ -2,7 +2,13 @@
   "name": "expect",
   "version": "1.14.0",
   "description": "Write better assertions",
-  "main": "lib/index",
+  "author": "Michael Jackson",
+  "license": "MIT",
+  "main": "lib",
+  "files": [
+    "lib",
+    "umd"
+  ],
   "dependencies": {
     "is-equal": "^1.4.2",
     "is-regex": "^1.0.3",
@@ -24,14 +30,17 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.0.1",
     "pretty-bytes": "^2.0.1",
+    "readline-sync": "^1.4.1",
     "webpack": "^1.4.13"
   },
   "scripts": {
-    "build": "babel ./modules -d lib --stage 0 --loose all --ignore '__tests__'",
+    "build": "node ./scripts/build.js",
+    "build-cjs": "babel ./modules -d lib --stage 0 --loose all --ignore '__tests__'",
     "build-umd": "NODE_ENV=production webpack modules/index.js umd/expect.js",
     "build-min": "NODE_ENV=production webpack -p modules/index.js umd/expect.min.js",
     "lint": "eslint modules",
-    "test": "npm run lint && karma start"
+    "test": "npm run lint && karma start",
+    "release": "node ./scripts/release.js"
   },
   "keywords": [
     "expect",
@@ -39,14 +48,8 @@
     "test",
     "spec"
   ],
-  "author": "Michael Jackson",
-  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mjackson/expect.git"
-  },
-  "bugs": {
-    "url": "https://github.com/mjackson/expect/issues"
-  },
-  "homepage": "https://github.com/mjackson/expect"
+    "url": "https://github.com/mjackson/expect.git"
+  }
 }
