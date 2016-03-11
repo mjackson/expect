@@ -21,10 +21,10 @@ Using [npm](https://www.npmjs.org/):
 Then, use as you would anything else:
 
 ```js
-// using an ES6 transpiler, like babel
+// using ES6 modules
 import expect, { createSpy, spyOn, isSpy } from 'expect'
 
-// not using an ES6 transpiler
+// using CommonJS modules
 var expect = require('expect')
 var createSpy = expect.createSpy
 var spyOn = expect.spyOn
