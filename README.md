@@ -472,7 +472,3 @@ expect('#ff00ff').toBeAColor()
 
 - [expect-element](https://github.com/mjackson/expect-element) Adds assertions that are useful for DOM elements
 - [expect-jsx](https://github.com/algolia/expect-jsx) Adds things like `expect(ReactComponent).toEqualJSX(<TestComponent prop="yes" />)`
-
-## Issues
-
-Please file issues on the [issue tracker on GitHub](https://github.com/mjackson/expect/issues).
