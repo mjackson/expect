@@ -7,6 +7,7 @@ function expect(actual) {
   return new Expectation(actual)
 }
 
+// TODO: Maybe remove these eventually?
 expect.createSpy = createSpy
 expect.spyOn = spyOn
 expect.isSpy = isSpy
@@ -15,3 +16,12 @@ expect.assert = assert
 expect.extend = extend
 
 export default expect
+
+export {
+  assert,
+  extend,
+  createSpy,
+  spyOn,
+  isSpy,
+  restoreSpies
+}

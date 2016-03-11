@@ -1,6 +1,6 @@
-import expect, { assert, spyOn } from '../index'
+import expect, { assert, extend } from '../index'
 
-describe('expect.extend', function () {
+describe('expect.extend', () => {
   const ColorAssertions = {
     toBeAColor() {
       assert(
@@ -11,18 +11,9 @@ describe('expect.extend', function () {
     }
   }
 
-  let assertSpy
-  beforeEach(function () {
-    expect.extend(ColorAssertions)
-    assertSpy = spyOn(expect, 'assert')
-  })
-
-  afterEach(function () {
-    assertSpy.restore()
-  })
-
-  it('works', function () {
-    expect('#ff00ff').toBeAColor()
-    expect(assertSpy).toHaveBeenCalled()
+  it('works', () => {
+    expect(expect().toBeAColor).toNotExist()
+    extend(ColorAssertions)
+    expect(expect().toBeAColor).toBeA(Function)
   })
 })
