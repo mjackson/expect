@@ -1,4 +1,3 @@
-/*eslint-env mocha */
 import expect from '../index'
 import Expectation from '../Expectation'
 

@@ -1,4 +1,3 @@
-/*eslint-env mocha */
 import expect, { assert, spyOn } from '../index'
 
 describe('expect.extend', function () {

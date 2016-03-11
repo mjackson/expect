@@ -1,4 +1,3 @@
-/*eslint-env mocha */
 import expect, { createSpy, isSpy } from '../index'
 
 describe('createSpy', function () {

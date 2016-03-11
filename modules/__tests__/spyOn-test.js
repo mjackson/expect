@@ -1,4 +1,3 @@
-/*eslint-env mocha */
 import expect, { spyOn } from '../index'
 
 describe('A function that was spied on', function () {

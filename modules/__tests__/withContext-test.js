@@ -1,4 +1,3 @@
-/*eslint-env mocha */
 import expect from '../index'
 
 describe('withContext', function () {

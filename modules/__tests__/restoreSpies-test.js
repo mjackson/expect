@@ -1,4 +1,3 @@
-/*eslint-env mocha */
 import expect, { createSpy, spyOn, restoreSpies } from '../index'
 
 describe('restoreSpies', function () {
