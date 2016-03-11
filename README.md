@@ -16,9 +16,9 @@ You can think of `expect` as a more compact alternative to [Chai](http://chaijs.
 
 Using [npm](https://www.npmjs.org/):
 
-    $ npm install expect
+    $ npm install --save expect
 
-Then with a module bundler like [webpack](https://webpack.github.io/), use as you would anything else:
+Then, use as you would anything else:
 
 ```js
 // using an ES6 transpiler, like babel
