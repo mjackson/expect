@@ -15,7 +15,7 @@ expect.restoreSpies = restoreSpies
 expect.assert = assert
 expect.extend = extend
 
-export default expect
+module.exports = expect
 
 export {
   assert,
