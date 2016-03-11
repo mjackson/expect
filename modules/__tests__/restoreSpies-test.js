@@ -1,41 +1,41 @@
 import expect, { createSpy, spyOn, restoreSpies } from '../index'
 
-describe('restoreSpies', function () {
-  describe('with one spy', function () {
-    const original = function () {}
+describe('restoreSpies', () => {
+  describe('with one spy', () => {
+    const original = () => {}
     const target = { method: original }
 
-    beforeEach(function () {
+    beforeEach(() => {
       spyOn(target, 'method')
     })
 
-    it('works with spyOn()', function () {
+    it('works with spyOn()', () => {
       expect(target.method).toNotEqual(original)
       restoreSpies()
       expect(target.method).toEqual(original)
     })
 
-    it('is idempotent', function () {
+    it('is idempotent', () => {
       expect(target.method).toNotEqual(original)
       restoreSpies()
       restoreSpies()
       expect(target.method).toEqual(original)
     })
 
-    it('can work even on createSpy()', function () {
+    it('can work even on createSpy()', () => {
       createSpy(original)
       restoreSpies()
     })
   })
 
-  describe('with multiple spies', function () {
-    const originals = [ function () {}, function () {} ]
+  describe('with multiple spies', () => {
+    const originals = [ () => {}, () => {} ]
     const targets = [
       { method: originals[0] },
       { method: originals[1] }
     ]
 
-    it('still works', function () {
+    it('still works', () => {
       spyOn(targets[0], 'method')
       spyOn(targets[1], 'method')
 

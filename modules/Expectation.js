@@ -2,7 +2,14 @@ import isEqual from 'is-equal'
 import isRegExp from 'is-regex'
 import assert from './assert'
 import { isSpy } from './SpyUtils'
-import { functionThrows, arrayContains, stringContains, isArray, isFunction, isA } from './TestUtils'
+import {
+  functionThrows,
+  arrayContains,
+  stringContains,
+  isArray,
+  isFunction,
+  isA
+} from './TestUtils'
 
 /**
  * An Expectation is a wrapper around an assertion that allows it to be written
@@ -364,7 +371,7 @@ class Expectation {
     return this
   }
 
-  toHaveBeenCalledWith() {
+  toHaveBeenCalledWith(...expectedArgs) {
     const spy = this.actual
 
     assert(
@@ -372,12 +379,8 @@ class Expectation {
       'The "actual" argument in expect(actual).toHaveBeenCalledWith() must be a spy'
     )
 
-    const expectedArgs = Array.prototype.slice.call(arguments, 0)
-
     assert(
-      spy.calls.some(function (call) {
-        return isEqual(call.arguments, expectedArgs)
-      }),
+      spy.calls.some(call => isEqual(call.arguments, expectedArgs)),
       'spy was never called with %s',
       expectedArgs
     )
@@ -412,14 +415,14 @@ class Expectation {
     return this
   }
 
-  withArgs() {
+  withArgs(...args) {
     assert(
       isFunction(this.actual),
       'The "actual" argument in expect(actual).withArgs() must be a function'
     )
 
-    if (arguments.length)
-      this.args = this.args.concat(Array.prototype.slice.call(arguments, 0))
+    if (args.length)
+      this.args = this.args.concat(...args)
 
     return this
   }
@@ -437,7 +440,8 @@ const aliases = {
   toNotContain: 'toExclude'
 }
 
-for (let alias in aliases)
-  Expectation.prototype[alias] = Expectation.prototype[aliases[alias]]
+for (const alias in aliases)
+  if (aliases.hasOwnProperty(alias))
+    Expectation.prototype[alias] = Expectation.prototype[aliases[alias]]
 
 export default Expectation

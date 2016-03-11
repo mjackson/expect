@@ -1,7 +1,7 @@
 import expect from '../index'
 
-describe('chaining assertions', function () {
-  it('should allow chaining for array-like applications', function () {
+describe('chaining assertions', () => {
+  it('should allow chaining for array-like applications', () => {
     expect([ 1, 2, 'foo', 3 ])
       .toExist()
       .toBeAn(Array)
@@ -9,7 +9,7 @@ describe('chaining assertions', function () {
       .toExclude('bar')
   })
 
-  it('should allow chaining for number checking', function () {
+  it('should allow chaining for number checking', () => {
     expect(3.14)
       .toExist()
       .toBeLessThan(4.2)

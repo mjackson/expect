@@ -1,7 +1,7 @@
 import expect from '../index'
 
-describe('toNotEqual', function () {
-  it('works with arrays of objects', function () {
+describe('toNotEqual', () => {
+  it('works with arrays of objects', () => {
     const a = [
       {
         id: 0,
@@ -32,7 +32,7 @@ describe('toNotEqual', function () {
   })
 
   if (typeof Map !== 'undefined') {
-    it('works with Map', function () {
+    it('works with Map', () => {
       const a = new Map()
       a.set('key', 'value')
 
@@ -44,7 +44,7 @@ describe('toNotEqual', function () {
   }
 
   if (typeof Set !== 'undefined') {
-    it('works with Set', function () {
+    it('works with Set', () => {
       const a = new Set()
       a.add('a')
 

@@ -1,31 +1,31 @@
 import expect from '../index'
 
-describe('toEqual', function () {
-  it('works', function () {
-    expect(function () {
+describe('toEqual', () => {
+  it('works', () => {
+    expect(() => {
       expect('actual').toEqual('expected')
     }).toThrow(/Expected 'actual' to equal 'expected'/)
   })
 
-  it('works with objects that have the same keys in different order', function () {
+  it('works with objects that have the same keys in different order', () => {
     const a = { a: 'a', b: 'b', c: 'c' }
     const b = { b: 'b', c: 'c', a: 'a' }
     expect(a).toEqual(b)
   })
 
-  it('works when object has circular reference' , function () {
-    function circular() {
+  it('works when object has circular reference', () => {
+    function Circular() {
       this.circularRef = this
     }
 
-    const a = new circular()
-    const b = new circular()
+    const a = new Circular()
+    const b = new Circular()
 
     expect(a).toEqual(b)
   })
 
   if (typeof Map !== 'undefined') {
-    it('works with Map', function () {
+    it('works with Map', () => {
       const a = new Map()
       a.set('key', 'value')
 
@@ -37,7 +37,7 @@ describe('toEqual', function () {
   }
 
   if (typeof Set !== 'undefined') {
-    it('works with Set', function () {
+    it('works with Set', () => {
       const a = new Set()
       a.add('a')
 
@@ -48,7 +48,7 @@ describe('toEqual', function () {
     })
   }
 
-  it('shows diff', function () {
+  it('shows diff', () => {
     try {
       expect('actual').toEqual('expected')
     } catch (err) {

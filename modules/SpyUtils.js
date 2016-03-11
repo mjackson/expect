@@ -1,11 +1,22 @@
+/* eslint-disable prefer-rest-params */
 import assert from './assert'
 import { isFunction } from './TestUtils'
 
-function noop() {}
+const noop = () => {}
+
+export const isSpy = (object) =>
+  object && object.__isSpy === true
 
 let spies = []
 
-export function createSpy(fn, restore=noop) {
+export const restoreSpies = () => {
+  for (let i = spies.length - 1; i >= 0; i--)
+    spies[i].restore()
+
+  spies = []
+}
+
+export function createSpy(fn, restore = noop) {
   if (fn == null)
     fn = noop
 
@@ -16,7 +27,7 @@ export function createSpy(fn, restore=noop) {
 
   let targetFn, thrownValue, returnValue
 
-  const spy = function () {
+  const spy = function spy() {
     spy.calls.push({
       context: this,
       arguments: Array.prototype.slice.call(arguments, 0)
@@ -33,30 +44,28 @@ export function createSpy(fn, restore=noop) {
 
   spy.calls = []
 
-  spy.andCall = function (fn) {
-    targetFn = fn
+  spy.andCall = (otherFn) => {
+    targetFn = otherFn
     return spy
   }
 
-  spy.andCallThrough = function () {
-    return spy.andCall(fn)
-  }
+  spy.andCallThrough = () =>
+    spy.andCall(fn)
 
-  spy.andThrow = function (object) {
+  spy.andThrow = (object) => {
     thrownValue = object
     return spy
   }
 
-  spy.andReturn = function (value) {
+  spy.andReturn = (value) => {
     returnValue = value
     return spy
   }
 
-  spy.getLastCall = function () {
-    return spy.calls[spy.calls.length - 1]
-  }
+  spy.getLastCall = () =>
+    spy.calls[spy.calls.length - 1]
 
-  spy.reset = function () {
+  spy.reset = () => {
     spy.calls = []
   }
 
@@ -79,21 +88,10 @@ export function spyOn(object, methodName) {
       methodName
     )
 
-    object[methodName] = createSpy(original, function () {
+    object[methodName] = createSpy(original, () => {
       object[methodName] = original
     })
   }
 
   return object[methodName]
-}
-
-export function isSpy(object) {
-  return object && object.__isSpy === true
-}
-
-export function restoreSpies() {
-  for (let i = spies.length - 1; i >= 0; i--)
-    spies[i].restore()
-
-  spies = []
 }

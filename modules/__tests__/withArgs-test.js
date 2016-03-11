@@ -1,7 +1,7 @@
 import expect from '../index'
 
-describe('withArgs', function () {
-  const fn = function (arg1, arg2) {
+describe('withArgs', () => {
+  const fn = (arg1, arg2) => {
     if (arg1 === 'first' && typeof arg2 === 'undefined') {
       throw new Error('first arg found')
     }
@@ -10,20 +10,20 @@ describe('withArgs', function () {
     }
   }
 
-  it('invokes actual function with args', function () {
-    expect(function () {
+  it('invokes actual function with args', () => {
+    expect(() => {
       expect(fn).withArgs('first').toThrow(/first arg found/)
     }).toNotThrow()
   })
 
-  it('can be chained', function () {
-    expect(function () {
+  it('can be chained', () => {
+    expect(() => {
       expect(fn).withArgs('first').withArgs('second').toThrow(/both args found/)
     }).toNotThrow()
   })
 
-  it('throws when actual is not a function', function () {
-    expect(function () {
+  it('throws when actual is not a function', () => {
+    expect(() => {
       expect('not a function').withArgs('first')
     }).toThrow(/must be a function/)
   })

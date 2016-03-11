@@ -1,46 +1,46 @@
 import expect from '../index'
 
-describe('toBeTruthy', function () {
-  it('does not throw on truthy actual values', function () {
-    expect(function () {
+describe('toBeTruthy', () => {
+  it('does not throw on truthy actual values', () => {
+    expect(() => {
       expect(1).toBeTruthy()
       expect({ hello: 'world' }).toBeTruthy()
       expect([ 1, 2, 3 ]).toBeTruthy()
     }).toNotThrow()
   })
 
-  it('throws on falsy actual values', function () {
-    expect(function () {
+  it('throws on falsy actual values', () => {
+    expect(() => {
       expect(0).toBeTruthy()
     }).toThrow()
 
-    expect(function () {
+    expect(() => {
       expect(null).toBeTruthy()
     }).toThrow()
 
-    expect(function () {
+    expect(() => {
       expect(undefined).toBeTruthy()
     }).toThrow()
   })
 })
 
-describe('toBeFalsy', function () {
-  it('throws on truthy values', function () {
-    expect(function () {
+describe('toBeFalsy', () => {
+  it('throws on truthy values', () => {
+    expect(() => {
       expect(42).toBeFalsy()
     }).toThrow()
 
-    expect(function () {
+    expect(() => {
       expect({ foo: 'bar' }).toBeFalsy()
     }).toThrow()
 
-    expect(function () {
+    expect(() => {
       expect([]).toBeFalsy()
     }).toThrow()
   })
 
-  it('does not throw with falsy actual values', function () {
-    expect(function () {
+  it('does not throw with falsy actual values', () => {
+    expect(() => {
       expect(0).toBeFalsy()
       expect(null).toBeFalsy()
       expect(undefined).toBeFalsy()

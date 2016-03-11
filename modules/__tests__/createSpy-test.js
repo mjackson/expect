@@ -1,138 +1,139 @@
+/* eslint-disable prefer-rest-params */
 import expect, { createSpy, isSpy } from '../index'
 
-describe('createSpy', function () {
-  describe('when given a function', function () {
-    it('returns a spy function', function () {
-      const spy = createSpy(function () {})
+describe('createSpy', () => {
+  describe('when given a function', () => {
+    it('returns a spy function', () => {
+      const spy = createSpy(() => {})
       expect(spy).toBeA(Function)
     })
   })
 
-  describe('when not given a function', function () {
-    it('throws an error', function () {
-      expect(function () {
+  describe('when not given a function', () => {
+    it('throws an error', () => {
+      expect(() => {
         createSpy(0)
       }).toThrow()
     })
   })
 })
 
-describe('A spy', function () {
+describe('A spy', () => {
   let targetContext, targetArguments
   const target = {
-    method: function () {
+    method() {
       targetContext = this
       targetArguments = Array.prototype.slice.call(arguments, 0)
     }
   }
 
   let spy
-  beforeEach(function () {
+  beforeEach(() => {
     spy = createSpy(target.method)
     targetContext = targetArguments = null
   })
 
-  it('is a spy', function () {
+  it('is a spy', () => {
     expect(isSpy(spy)).toBe(true)
   })
 
-  it('has a destroy method', function () {
+  it('has a destroy method', () => {
     expect(spy.destroy).toBeA(Function)
   })
 
-  it('has a restore method', function () {
+  it('has a restore method', () => {
     expect(spy.restore).toBeA(Function)
   })
 
-  it('has a reset method', function () {
+  it('has a reset method', () => {
     expect(spy.reset).toBeA(Function)
   })
 
-  it('reset clears out all previous calls', function () {
+  it('reset clears out all previous calls', () => {
     spy()
     expect(spy.calls.length).toEqual(1)
     spy.reset()
     expect(spy.calls.length).toEqual(0)
   })
 
-  it('knows how many times it has been called', function () {
+  it('knows how many times it has been called', () => {
     spy()
     spy()
     expect(spy.calls.length).toEqual(2)
   })
 
-  it('knows the arguments it was called with', function () {
+  it('knows the arguments it was called with', () => {
     spy(1, 2, 3)
     expect(spy).toHaveBeenCalledWith(1, 2, 3)
   })
 
-  describe('that calls some other function', function () {
+  describe('that calls some other function', () => {
     let otherContext, otherArguments
     function otherFn() {
       otherContext = this
       otherArguments = Array.prototype.slice.call(arguments, 0)
     }
 
-    beforeEach(function () {
+    beforeEach(() => {
       spy.andCall(otherFn)
       otherContext = otherArguments = null
     })
 
-    it('calls that function', function () {
+    it('calls that function', () => {
       spy()
       expect(otherContext).toNotBe(null)
     })
 
-    it('uses the correct context', function () {
+    it('uses the correct context', () => {
       const context = {}
       spy.call(context)
       expect(otherContext).toBe(context)
     })
 
-    it('passes the arguments through', function () {
+    it('passes the arguments through', () => {
       spy(1, 2, 3)
       expect(otherArguments).toEqual([ 1, 2, 3 ])
     })
   })
 
-  describe('that calls through', function () {
-    beforeEach(function () {
+  describe('that calls through', () => {
+    beforeEach(() => {
       spy.andCallThrough()
     })
 
-    it('calls the original function', function () {
+    it('calls the original function', () => {
       spy()
       expect(targetContext).toNotBe(null)
     })
 
-    it('uses the correct context', function () {
+    it('uses the correct context', () => {
       const context = {}
       spy.call(context)
       expect(targetContext).toBe(context)
     })
 
-    it('passes the arguments through', function () {
+    it('passes the arguments through', () => {
       spy(1, 2, 3)
       expect(targetArguments).toEqual([ 1, 2, 3 ])
     })
   })
 
-  describe('with a thrown value', function () {
-    beforeEach(function () {
+  describe('with a thrown value', () => {
+    beforeEach(() => {
       spy.andThrow('hello')
     })
 
-    it('throws the correct value', function () {
+    it('throws the correct value', () => {
       expect(spy).toThrow('hello')
     })
   })
 
-  describe('with a return value', function () {
-    beforeEach(function () {
+  describe('with a return value', () => {
+    beforeEach(() => {
       spy.andReturn('hello')
     })
 
-    it('returns the correct value', function () {
+    it('returns the correct value', () => {
       expect(spy()).toEqual('hello')
     })
   })
