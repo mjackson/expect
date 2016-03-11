@@ -9,6 +9,16 @@
     "lib",
     "umd"
   ],
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "build-cjs": "babel ./modules -d lib --ignore '__tests__'",
+    "build-umd": "NODE_ENV=production webpack modules/index.js umd/expect.js",
+    "build-min": "NODE_ENV=production webpack -p modules/index.js umd/expect.min.js",
+    "lint": "eslint modules",
+    "test": "npm run lint && karma start",
+    "release": "node ./scripts/release.js",
+    "prepublish": "npm run build"
+  },
   "dependencies": {
     "is-equal": "^1.4.2",
     "is-regex": "^1.0.3",
@@ -34,15 +44,6 @@
     "pretty-bytes": "^2.0.1",
     "readline-sync": "^1.4.1",
     "webpack": "^1.4.13"
-  },
-  "scripts": {
-    "build": "node ./scripts/build.js",
-    "build-cjs": "babel ./modules -d lib --ignore '__tests__'",
-    "build-umd": "NODE_ENV=production webpack modules/index.js umd/expect.js",
-    "build-min": "NODE_ENV=production webpack -p modules/index.js umd/expect.min.js",
-    "lint": "eslint modules",
-    "test": "npm run lint && karma start",
-    "release": "node ./scripts/release.js"
   },
   "keywords": [
     "expect",
