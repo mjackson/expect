@@ -51,7 +51,7 @@ Asserts the given `object` is truthy.
 expect('something truthy').toExist()
 ```
 
-#### toNotExist
+### toNotExist
 
 > `expect(object).toNotExist([message])`
 
