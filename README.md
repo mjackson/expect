@@ -462,6 +462,7 @@ expect.extend({
       'expected %s to be an HTML color',
       this.actual
     )
+    return this
   }
 })
 
