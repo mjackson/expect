@@ -8,6 +8,32 @@ export const isFunction = (object) =>
   typeof object === 'function'
 
 /**
+ * Returns true if the given object is an array.
+ */
+export const isArray = (object) =>
+  Array.isArray(object)
+
+/**
+ * Returns true if the given object is an object.
+ */
+export const isObject = (object) =>
+  object && !isArray(object) && typeof object === 'object'
+
+/**
+ * Returns true if the given object is an instanceof value
+ * or its typeof is the given value.
+ */
+export const isA = (object, value) => {
+  if (isFunction(value))
+    return object instanceof value
+
+  if (value === 'array')
+    return Array.isArray(object)
+
+  return typeof object === value
+}
+
+/**
  * Returns true if the given function throws the given value
  * when invoked. The value may be:
  *
@@ -53,27 +79,25 @@ export const arrayContains = (array, value, compareValues) => {
 }
 
 /**
+ * Returns true if the given object contains the value, false
+ * otherwise. The compareValues function must return false to
+ * indicate a non-match.
+ */
+export const objectContains = (object, value, compareValues) => {
+  if (compareValues == null)
+    compareValues = isEqual
+
+  return Object.keys(value).every(k => {
+    if (isObject(object[k])) {
+      return objectContains(object[k], value[k], compareValues)
+    }
+
+    return compareValues(object[k], value[k])
+  })
+}
+
+/**
  * Returns true if the given string contains the value, false otherwise.
  */
 export const stringContains = (string, value) =>
   string.indexOf(value) !== -1
-
-/**
- * Returns true if the given object is an array.
- */
-export const isArray = (object) =>
-  Array.isArray(object)
-
-/**
- * Returns true if the given object is an instanceof value
- * or its typeof is the given value.
- */
-export const isA = (object, value) => {
-  if (isFunction(value))
-    return object instanceof value
-
-  if (value === 'array')
-    return Array.isArray(object)
-
-  return typeof object === value
-}

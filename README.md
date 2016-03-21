@@ -228,7 +228,7 @@ Asserts the given `number` is greater than or equal to `value`.
 expect(3).toBeGreaterThanOrEqualTo(2)
 ```
 
-### toInclude
+### (array) toInclude
 
 > `expect(array).toInclude(value, [comparator], [message])`<br>
 > `expect(array).toContain(value, [comparator], [message])`
@@ -239,7 +239,7 @@ Asserts the given `array` contains `value`. The `comparator` function, if given,
 expect([ 1, 2, 3 ]).toInclude(3)
 ```
 
-### toExclude
+### (array) toExclude
 
 > `expect(array).toExclude(value, [comparator], [message])`<br>
 > `expect(array).toNotContain(value, [comparator], [message])`
@@ -248,6 +248,18 @@ Asserts the given `array` does not contain `value`. The `comparator` function, i
 
 ```js
 expect([ 1, 2, 3 ]).toExclude(4)
+```
+
+### (object) toInclude
+
+> `expect(object).toInclude(value, [comparator], [message])`<br>
+> `expect(object).toContain(value, [comparator], [message])`
+
+Asserts the given `object` contains all keys and values in `value`, recursively. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
+
+```js
+expect({ a: 1, b: 2 }).toInclude({ b: 2 })
+expect({ a: 1, b: 2, c: { d: 3 } }).toInclude({ b: 2, c: { d: 3 } })
 ```
 
 ### (string) toInclude

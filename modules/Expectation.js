@@ -6,7 +6,9 @@ import {
   functionThrows,
   arrayContains,
   stringContains,
+  objectContains,
   isArray,
+  isObject,
   isFunction,
   isA
 } from './TestUtils'
@@ -293,8 +295,8 @@ class Expectation {
 
   toInclude(value, compareValues, message) {
     assert(
-      isArray(this.actual) || typeof this.actual === 'string',
-      'The "actual" argument in expect(actual).toInclude() must be an array or a string'
+      isArray(this.actual) || isObject(this.actual) || typeof this.actual === 'string',
+      'The "actual" argument in expect(actual).toInclude() must be an array, object, or a string'
     )
 
     if (typeof compareValues === 'string') {
@@ -307,6 +309,13 @@ class Expectation {
     if (isArray(this.actual)) {
       assert(
         arrayContains(this.actual, value, compareValues),
+        message,
+        this.actual,
+        value
+      )
+    } else if (isObject(this.actual)) {
+      assert(
+        objectContains(this.actual, value, compareValues),
         message,
         this.actual,
         value
