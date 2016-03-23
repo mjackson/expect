@@ -20,9 +20,9 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "is-equal": "^1.4.2",
+    "is-equal": "^1.5.1",
     "is-regex": "^1.0.3",
-    "object-inspect": "^1.0.2"
+    "object-inspect": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
