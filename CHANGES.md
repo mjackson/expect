@@ -1,5 +1,34 @@
+## [HEAD]
+
+- Updated `is-equal` and `object-inspect` dependencies
+
+[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+
+## [v1.16.0]
+> Mar 23, 1016
+
+- Added support for objects in `toInclude` (thanks @elado)
+- Minor fixes to docs
+
+[v1.16.0]: https://github.com/mjackson/expect/compare/v1.15.2...v1.16.0
+
+## [v1.15.2]
+> Mar 11, 2016
+
+- Removed named exports, fixed a bad 1.15.0 release ([#72])
+
+[#72]: https://github.com/mjackson/expect/issues/72
+[v1.15.2]: https://github.com/mjackson/expect/compare/v1.15.0...v1.15.2
+
+## [v1.15.0]
+> Mar 10, 2016
+
+- Various build system improvements
+
+[v1.15.0]: https://github.com/mjackson/expect/compare/v1.14.0...v1.15.0
+
 ## [v1.14.0]
-> Feb 1, 2015
+> Feb 1, 2016
 
 - Added `toBeGreaterThanOrEqualTo` and `toBeLessThanOrEqualTo` ([#11] and [#59])
 - Added `spy.reset()` ([#57])
