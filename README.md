@@ -409,7 +409,7 @@ it('works', function () {
 
 Makes the spy invoke a function `fn` when called.
 
-```
+```js
 var dice = createSpy().andCall(function () {
   return (Math.random() * 6) | 0
 })
