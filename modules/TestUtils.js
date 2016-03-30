@@ -1,5 +1,6 @@
 import isEqual from 'is-equal'
 import isRegExp from 'is-regex'
+import ownKeys from './ownKeys'
 
 /**
  * Returns true if the given object is a function.
@@ -18,6 +19,13 @@ export const isArray = (object) =>
  */
 export const isObject = (object) =>
   object && !isArray(object) && typeof object === 'object'
+
+/**
+ * Returns true if the given object is an empty object.
+ */
+export const isEmptyObject = (object) =>
+  isObject(object)
+  && ownKeys(object).length === 0
 
 /**
  * Returns true if the given object is an instanceof value
@@ -87,8 +95,11 @@ export const objectContains = (object, value, compareValues) => {
   if (compareValues == null)
     compareValues = isEqual
 
-  return Object.keys(value).every(k => {
-    if (isObject(object[k])) {
+  if (isEmptyObject(value))
+    return true
+
+  return ownKeys(value).every(k => {
+    if (isObject(object[k]) && !isEmptyObject(value[k])) {
       return objectContains(object[k], value[k], compareValues)
     }
 

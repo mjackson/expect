@@ -24,6 +24,10 @@ describe('toInclude', () => {
     expect(() => {
       expect({ a: 1, b: 2, c: 3 }).toInclude({ b: 2 })
     }).toNotThrow()
+
+    expect(() => {
+      expect({ a: 1, b: 2 }).toInclude({})
+    }).toNotThrow()
   })
 
   it('throws when an object does not contain an expected object', () => {
@@ -33,6 +37,10 @@ describe('toInclude', () => {
 
     expect(() => {
       expect({ a: 1, b: 2, c: 3 }).toInclude({ b: 4 })
+    }).toThrow(/to include/)
+
+    expect(() => {
+      expect({ a: { b: 2 } }).toInclude({ a: {} })
     }).toThrow(/to include/)
   })
 
@@ -55,6 +63,31 @@ describe('toInclude', () => {
       )
     }).toThrow(/to include/)
   })
+
+
+  if (typeof Object.create === 'function') {
+    it('ignores nonenumerable properties of an expected object', () => {
+      expect(() => {
+        expect({}).toInclude(Object.create({}, { a: { value: 1 } }))
+      }).toNotThrow()
+    })
+  }
+
+  if (typeof Symbol === 'function') {
+    const symbol = Symbol()
+
+    it('does not throw when an object contains an expected object with a symbol key', () => {
+      expect(() => {
+        expect({ [symbol]: 1, b: 2 }).toInclude({ [symbol]: 1 })
+      }).toNotThrow()
+    })
+
+    it('throws when an object contain an expected object without a symbol key', () => {
+      expect(() => {
+        expect({ a: 1, b: 2 }).toInclude({ [symbol]: 1 })
+      }).toThrow(/to include/)
+    })
+  }
 
   it('throws when an array does not contain an expected integer', () => {
     expect(() => {
