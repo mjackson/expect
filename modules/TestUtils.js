@@ -21,13 +21,6 @@ export const isObject = (object) =>
   object && !isArray(object) && typeof object === 'object'
 
 /**
- * Returns true if the given object is an empty object.
- */
-export const isEmptyObject = (object) =>
-  isObject(object)
-  && ownKeys(object).length === 0
-
-/**
  * Returns true if the given object is an instanceof value
  * or its typeof is the given value.
  */
@@ -95,11 +88,8 @@ export const objectContains = (object, value, compareValues) => {
   if (compareValues == null)
     compareValues = isEqual
 
-  if (isEmptyObject(value))
-    return true
-
   return ownKeys(value).every(k => {
-    if (isObject(object[k]) && !isEmptyObject(value[k])) {
+    if (isObject(object[k]) && isObject(value[k])) {
       return objectContains(object[k], value[k], compareValues)
     }
 

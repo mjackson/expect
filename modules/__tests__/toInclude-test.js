@@ -38,10 +38,6 @@ describe('toInclude', () => {
     expect(() => {
       expect({ a: 1, b: 2, c: 3 }).toInclude({ b: 4 })
     }).toThrow(/to include/)
-
-    expect(() => {
-      expect({ a: { b: 2 } }).toInclude({ a: {} })
-    }).toThrow(/to include/)
   })
 
   it('does not throw when an object contains an expected object in a deep key', () => {
@@ -64,6 +60,27 @@ describe('toInclude', () => {
     }).toThrow(/to include/)
   })
 
+  it('compares partial object only when both expected and actual properties are object', () => {
+    expect(() => {
+      expect({ a: { b: 2 } }).toInclude({ a: {} })
+    }).toNotThrow()
+
+    expect(() => {
+      expect({ a: 1 }).toInclude({ a: {} })
+    }).toThrow(/to include/)
+
+    expect(() => {
+      expect({ a: [] }).toInclude({ a: {} })
+    }).toThrow(/to include/)
+
+    expect(() => {
+      expect({ a: '1' }).toInclude({ a: {} })
+    }).toThrow(/to include/)
+
+    expect(() => {
+      expect({ a: () => {} }).toInclude({ a: {} })
+    }).toThrow(/to include/)
+  })
 
   if (typeof Object.create === 'function') {
     it('ignores nonenumerable properties of an expected object', () => {
