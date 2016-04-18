@@ -387,7 +387,7 @@ class Expectation {
       typeof this.actual
     )
 
-    const contains = keys.reduce((previous, key) => previous && comparator(this.actual, key), true)
+    const contains = keys.every(key => comparator(this.actual, key))
 
     assert(
       contains,
@@ -417,7 +417,7 @@ class Expectation {
       typeof this.actual
     )
 
-    const contains = keys.reduce((previous, key) => previous && comparator(this.actual, key), true)
+    const contains = keys.every(key => comparator(this.actual, key))
 
     assert(
       !contains,
