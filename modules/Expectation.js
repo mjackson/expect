@@ -20,7 +20,6 @@ import {
  * This helps prevent you from making mistakes when writing tests.
  */
 class Expectation {
-
   constructor(actual) {
     this.actual = actual
 
@@ -303,19 +302,19 @@ class Expectation {
     if (compareValues == null)
       compareValues = isEqual
 
-    assert(
-      isArray(this.actual) || isObject(this.actual) || typeof this.actual === 'string',
-      'The "actual" argument in expect(actual).toInclude() must be an array, object, or a string'
-    )
-
     let contains = false
 
     if (isArray(this.actual)) {
       contains = arrayContains(this.actual, value, compareValues)
     } else if (isObject(this.actual)) {
       contains = objectContains(this.actual, value, compareValues)
-    } else {
+    } else if (typeof this.actual === 'string') {
       contains = stringContains(this.actual, value)
+    } else {
+      assert(
+        false,
+        'The "actual" argument in expect(actual).toInclude() must be an array, object, or a string'
+      )
     }
 
     assert(
@@ -337,19 +336,19 @@ class Expectation {
     if (compareValues == null)
       compareValues = isEqual
 
-    assert(
-      isArray(this.actual) || isObject(this.actual) || typeof this.actual === 'string',
-      'The "actual" argument in expect(actual).toExclude() must be an array, object, or a string'
-    )
-
     let contains = false
 
     if (isArray(this.actual)) {
       contains = arrayContains(this.actual, value, compareValues)
     } else if (isObject(this.actual)) {
       contains = objectContains(this.actual, value, compareValues)
-    } else {
+    } else if (typeof this.actual === 'string') {
       contains = stringContains(this.actual, value)
+    } else {
+      assert(
+        false,
+        'The "actual" argument in expect(actual).toExclude() must be an array, object, or a string'
+      )
     }
 
     assert(
@@ -493,7 +492,6 @@ class Expectation {
 
     return this
   }
-
 }
 
 const aliases = {
