@@ -1,5 +1,5 @@
 import isRegExp from 'is-regex'
-import ownKeys from './ownKeys'
+import objectKeys from 'object-keys'
 
 /**
  * Returns true if the given object is a function.
@@ -74,13 +74,28 @@ export const functionThrows = (fn, context, args, value) => {
 export const arrayContains = (array, value, compareValues) =>
   array.some(item => compareValues(item, value) !== false)
 
+const ownEnumerableKeys = (object) => {
+  if (typeof Reflect === 'object' && typeof Reflect.ownKeys === 'function') {
+    return Reflect.ownKeys(object)
+      .filter(key => Object.getOwnPropertyDescriptor(object, key).enumerable)
+  }
+
+  if (typeof Object.getOwnPropertySymbols === 'function') {
+    return Object.getOwnPropertySymbols(object)
+      .filter(key => Object.getOwnPropertyDescriptor(object, key).enumerable)
+      .concat(objectKeys(object))
+  }
+
+  return objectKeys(object)
+}
+
 /**
  * Returns true if the given object contains the value, false
  * otherwise. The compareValues function must return false to
  * indicate a non-match.
  */
 export const objectContains = (object, value, compareValues) =>
-  ownKeys(value).every(k => {
+  ownEnumerableKeys(value).every(k => {
     if (isObject(object[k]) && isObject(value[k]))
       return objectContains(object[k], value[k], compareValues)
 
