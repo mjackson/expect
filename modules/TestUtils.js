@@ -1,4 +1,5 @@
 import isRegExp from 'is-regex'
+import ownKeys from './ownKeys'
 
 /**
  * Returns true if the given object is a function.
@@ -79,10 +80,9 @@ export const arrayContains = (array, value, compareValues) =>
  * indicate a non-match.
  */
 export const objectContains = (object, value, compareValues) =>
-  Object.keys(value).every(k => {
-    if (isObject(object[k])) {
+  ownKeys(value).every(k => {
+    if (isObject(object[k]) && isObject(value[k]))
       return objectContains(object[k], value[k], compareValues)
-    }
 
     return compareValues(object[k], value[k])
   })
