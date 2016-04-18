@@ -14,6 +14,18 @@ import {
   stringContains
 } from './TestUtils'
 
+const addErrorInfo = (actual, expected, callback) => {
+  try {
+    callback()
+  } catch (error) {
+    // These attributes are consumed by Mocha to produce a diff output.
+    error.actual = actual
+    error.expected = expected
+    error.showDiff = true
+    throw error
+  }
+}
+
 /**
  * An Expectation is a wrapper around an assertion that allows it to be written
  * in a more natural style, without the need to remember the order of arguments.
@@ -72,31 +84,27 @@ class Expectation {
   }
 
   toEqual(value, message) {
-    try {
+    addErrorInfo(this.actual, value, () => {
       assert(
         isEqual(this.actual, value),
         (message || 'Expected %s to equal %s'),
         this.actual,
         value
       )
-    } catch (e) {
-      // These attributes are consumed by Mocha to produce a diff output.
-      e.showDiff = true
-      e.actual = this.actual
-      e.expected = value
-      throw e
-    }
+    })
 
     return this
   }
 
   toNotEqual(value, message) {
-    assert(
-      !isEqual(this.actual, value),
-      (message || 'Expected %s to not equal %s'),
-      this.actual,
-      value
-    )
+    addErrorInfo(this.actual, value, () => {
+      assert(
+        !isEqual(this.actual, value),
+        (message || 'Expected %s to not equal %s'),
+        this.actual,
+        value
+      )
+    })
 
     return this
   }
