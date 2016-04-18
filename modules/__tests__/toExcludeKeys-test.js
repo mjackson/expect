@@ -40,14 +40,4 @@ describe('toExcludeKeys', () => {
       expect([ 0, 1, 2 ]).toExcludeKeys([ 3 ])
     }).toNotThrow()
   })
-
-  it('allows a single key to be passed', () => {
-    expect(() => {
-      expect({ a: 1 }).toExcludeKeys('a')
-    }).toThrow(/exclude key/)
-
-    expect(() => {
-      expect({ a: 1 }).toExcludeKeys('b')
-    }).toNotThrow()
-  })
 })

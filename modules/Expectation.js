@@ -375,9 +375,6 @@ class Expectation {
       comparator = null
     }
 
-    if (!isArray(keys))
-      keys = [ keys ]
-
     if (comparator == null)
       comparator = has
 
@@ -399,14 +396,15 @@ class Expectation {
     return this
   }
 
+  toIncludeKey(key, ...args) {
+    return this.toIncludeKeys([ key ], ...args)
+  }
+
   toExcludeKeys(keys, comparator, message) {
     if (typeof comparator === 'string') {
       message = comparator
       comparator = null
     }
-
-    if (!isArray(keys))
-      keys = [ keys ]
 
     if (comparator == null)
       comparator = has
@@ -427,6 +425,10 @@ class Expectation {
     )
 
     return this
+  }
+
+  toExcludeKey(key, ...args) {
+    return this.toExcludeKeys([ key ], ...args)
   }
 
   toHaveBeenCalled(message) {
@@ -511,12 +513,10 @@ const aliases = {
   toBeMoreThan: 'toBeGreaterThan',
   toContain: 'toInclude',
   toNotContain: 'toExclude',
-  toIncludeKey: 'toIncludeKeys',
-  toExcludeKey: 'toExcludeKeys',
-  toContainKey: 'toIncludeKey',
-  toNotContainKey: 'toExcludeKey',
   toContainKeys: 'toIncludeKeys',
-  toNotContainKeys: 'toExcludeKeys'
+  toNotContainKeys: 'toExcludeKeys',
+  toContainKey: 'toIncludeKey',
+  toNotContainKey: 'toExcludeKey'
 }
 
 for (const alias in aliases)
