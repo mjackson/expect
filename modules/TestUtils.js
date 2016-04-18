@@ -1,4 +1,3 @@
-import isEqual from 'is-equal'
 import isRegExp from 'is-regex'
 
 /**
@@ -71,30 +70,22 @@ export const functionThrows = (fn, context, args, value) => {
  * otherwise. The compareValues function must return false to
  * indicate a non-match.
  */
-export const arrayContains = (array, value, compareValues) => {
-  if (compareValues == null)
-    compareValues = isEqual
-
-  return array.some(item => compareValues(item, value) !== false)
-}
+export const arrayContains = (array, value, compareValues) =>
+  array.some(item => compareValues(item, value) !== false)
 
 /**
  * Returns true if the given object contains the value, false
  * otherwise. The compareValues function must return false to
  * indicate a non-match.
  */
-export const objectContains = (object, value, compareValues) => {
-  if (compareValues == null)
-    compareValues = isEqual
-
-  return Object.keys(value).every(k => {
+export const objectContains = (object, value, compareValues) =>
+  Object.keys(value).every(k => {
     if (isObject(object[k])) {
       return objectContains(object[k], value[k], compareValues)
     }
 
     return compareValues(object[k], value[k])
   })
-}
 
 /**
  * Returns true if the given string contains the value, false otherwise.

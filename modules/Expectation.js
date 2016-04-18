@@ -4,13 +4,13 @@ import assert from './assert'
 import { isSpy } from './SpyUtils'
 import {
   functionThrows,
-  arrayContains,
-  stringContains,
-  objectContains,
+  isFunction,
   isArray,
   isObject,
-  isFunction,
-  isA
+  isA,
+  arrayContains,
+  objectContains,
+  stringContains
 } from './TestUtils'
 
 /**
@@ -294,72 +294,69 @@ class Expectation {
   }
 
   toInclude(value, compareValues, message) {
+    if (typeof compareValues === 'string') {
+      message = compareValues
+      compareValues = null
+    }
+
+    if (compareValues == null)
+      compareValues = isEqual
+
     assert(
       isArray(this.actual) || isObject(this.actual) || typeof this.actual === 'string',
       'The "actual" argument in expect(actual).toInclude() must be an array, object, or a string'
     )
 
-    if (typeof compareValues === 'string') {
-      message = compareValues
-      compareValues = null
-    }
-
-    message = message || 'Expected %s to include %s'
+    let contains = false
 
     if (isArray(this.actual)) {
-      assert(
-        arrayContains(this.actual, value, compareValues),
-        message,
-        this.actual,
-        value
-      )
+      contains = arrayContains(this.actual, value, compareValues)
     } else if (isObject(this.actual)) {
-      assert(
-        objectContains(this.actual, value, compareValues),
-        message,
-        this.actual,
-        value
-      )
+      contains = objectContains(this.actual, value, compareValues)
     } else {
-      assert(
-        stringContains(this.actual, value),
-        message,
-        this.actual,
-        value
-      )
+      contains = stringContains(this.actual, value)
     }
+
+    assert(
+      contains,
+      message || 'Expected %s to include %s',
+      this.actual,
+      value
+    )
 
     return this
   }
 
   toExclude(value, compareValues, message) {
-    assert(
-      isArray(this.actual) || typeof this.actual === 'string',
-      'The "actual" argument in expect(actual).toExclude() must be an array or a string'
-    )
-
     if (typeof compareValues === 'string') {
       message = compareValues
       compareValues = null
     }
 
-    message = message || 'Expected %s to exclude %s'
+    if (compareValues == null)
+      compareValues = isEqual
+
+    assert(
+      isArray(this.actual) || isObject(this.actual) || typeof this.actual === 'string',
+      'The "actual" argument in expect(actual).toExclude() must be an array, object, or a string'
+    )
+
+    let contains = false
 
     if (isArray(this.actual)) {
-      assert(
-        !arrayContains(this.actual, value, compareValues),
-        message,
-        this.actual,
-        value
-      )
+      contains = arrayContains(this.actual, value, compareValues)
+    } else if (isObject(this.actual)) {
+      contains = objectContains(this.actual, value, compareValues)
     } else {
-      assert(
-        !stringContains(this.actual, value),
-        message,
-        this.actual,
-        value
-      )
+      contains = stringContains(this.actual, value)
     }
+
+    assert(
+      !contains,
+      message || 'Expected %s to exclude %s',
+      this.actual,
+      value
+    )
 
     return this
   }
