@@ -299,6 +299,32 @@ expect('hello world').toExclude('goodbye')
 expect('hello world').toNotContain('goodbye')
 ```
 
+### toIncludeKey(s)
+> `expect(object).toIncludeKeys(keys, [comparator], [message])`<br>
+> `expect(object).toIncludeKey(key, [comparator], [message])`<br>
+> `expect(object).toContainKeys(keys, [comparator], [message])`<br>
+> `expect(object).toContainKey(key, [comparator], [message])`
+
+Asserts that the given `object` (may be an array, or a function, or anything with keys) contains *all* of the provided keys. The optional parameter `comparator` is a function which if given an object and a string key, it should return a boolean detailing whether or not the key exists in the object. By default, a shallow check with `Object.prototype.hasOwnProperty` is performed.
+
+```js
+expect({ a: 1 }).toIncludeKey('a')
+expect({ a: 1, b: 2 }).toIncludeKeys([ 'a', 'b' ])
+```
+
+### toExcludeKey(s)
+> `expect(object).toExcludeKeys(keys, [comparator], [message])`<br>
+> `expect(object).toExcludeKey(key, [comparator], [message])`<br>
+> `expect(object).toNotContainKeys(keys, [comparator], [message])`<br>
+> `expect(object).toNotContainKey(key, [comparator], [message])`
+
+Asserts that the given `object` (may be an array, or a function, or anything with keys) does not contain *any* of the provided keys. The optional parameter `comparator` is a function which if given an object and a string key, it should return a boolean detailing whether or not the key exists in the object. By default, a shallow check with `Object.prototype.hasOwnProperty` is performed.
+
+```js
+expect({ a: 1 }).toExcludeKey('b')
+expect({ a: 1, b: 2 }).toExcludeKeys([ 'c', 'd' ])
+```
+
 ### (spy) toHaveBeenCalled
 
 > `expect(spy).toHaveBeenCalled([message])`

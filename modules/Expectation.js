@@ -1,5 +1,6 @@
 import isEqual from 'is-equal'
 import isRegExp from 'is-regex'
+import has from 'has'
 import assert from './assert'
 import { isSpy } from './SpyUtils'
 import {
@@ -361,6 +362,66 @@ class Expectation {
     return this
   }
 
+  toIncludeKeys(keys, comparator, message) {
+    if (typeof comparator === 'string') {
+      message = comparator
+      comparator = null
+    }
+
+    if (!isArray(keys))
+      keys = [ keys ]
+
+    if (comparator == null)
+      comparator = has
+
+    assert(
+      typeof this.actual === 'object',
+      'The "actual" argument in expect(actual).toIncludeKeys() must be an object, not %s',
+      typeof this.actual
+    )
+
+    const contains = keys.reduce((previous, key) => previous && comparator(this.actual, key), true)
+
+    assert(
+      contains,
+      message || 'Expected %s to include key(s) %s',
+      this.actual,
+      keys.join(', ')
+    )
+
+    return this
+  }
+
+  toExcludeKeys(keys, comparator, message) {
+    if (typeof comparator === 'string') {
+      message = comparator
+      comparator = null
+    }
+
+    if (!isArray(keys))
+      keys = [ keys ]
+
+    if (comparator == null)
+      comparator = has
+
+    assert(
+      typeof this.actual === 'object',
+      'The "actual" argument in expect(actual).toExcludeKeys() must be an object, not %s',
+      typeof this.actual
+    )
+
+    const contains = keys.reduce((previous, key) => previous && comparator(this.actual, key), true)
+
+    assert(
+      !contains,
+      message || 'Expected %s to exclude key(s) %s',
+      this.actual,
+      keys.join(', ')
+    )
+
+    return this
+  }
+
   toHaveBeenCalled(message) {
     const spy = this.actual
 
@@ -443,7 +504,13 @@ const aliases = {
   toBeFewerThan: 'toBeLessThan',
   toBeMoreThan: 'toBeGreaterThan',
   toContain: 'toInclude',
-  toNotContain: 'toExclude'
+  toNotContain: 'toExclude',
+  toIncludeKey: 'toIncludeKeys',
+  toExcludeKey: 'toExcludeKeys',
+  toContainKey: 'toIncludeKey',
+  toNotContainKey: 'toExcludeKey',
+  toContainKeys: 'toIncludeKeys',
+  toNotContainKeys: 'toExcludeKeys'
 }
 
 for (const alias in aliases)
