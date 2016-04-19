@@ -228,78 +228,45 @@ Asserts the given `number` is greater than or equal to `value`.
 expect(3).toBeGreaterThanOrEqualTo(2)
 ```
 
-### (array) toInclude
+### toInclude
 
 > `expect(array).toInclude(value, [comparator], [message])`<br>
-> `expect(array).toContain(value, [comparator], [message])`
+> `expect(object).toInclude(value, [comparator], [message])`<br>
+> `expect(string).toInclude(value, [message])`
 
-Asserts the given `array` contains `value`. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
+Asserts that a given `value` is included (or "contained") within another. The `actual` value may be an array, object, or a string. The `comparator` function, if given, should compare two objects and `return false` if they are not equal. The default is to use [`isEqual`](https://github.com/ljharb/is-equal).
 
 ```js
 expect([ 1, 2, 3 ]).toInclude(3)
+expect({ a: 1, b: 2 }).toInclude({ b: 2 })
+expect({ a: 1, b: 2, c: { d: 3 } }).toInclude({ b: 2, c: { d: 3 } })
+expect('hello world').toInclude('world')
 ```
 
-### (array) toExclude
+Aliases:
+  - `toContain`
+
+### toExclude
 
 > `expect(array).toExclude(value, [comparator], [message])`<br>
-> `expect(array).toNotContain(value, [comparator], [message])`
+> `expect(object).toExclude(value, [comparator], [message])`<br>
+> `expect(string).toExclude(value, [message])`
 
-Asserts the given `array` does not contain `value`. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
+Asserts that a given `value` is not included (or "contained") within another. The `actual` value may be an array, object, or a string. The `comparator` function, if given, should compare two objects and `return false` if they are not equal. The default is to use [`isEqual`](https://github.com/ljharb/is-equal).
 
 ```js
 expect([ 1, 2, 3 ]).toExclude(4)
-```
-
-### (object) toInclude
-
-> `expect(object).toInclude(value, [comparator], [message])`<br>
-> `expect(object).toContain(value, [comparator], [message])`
-
-Asserts the given `object` contains all keys and values in `value`, recursively. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
-
-```js
-expect({ a: 1, b: 2 }).toInclude({ b: 2 })
-expect({ a: 1, b: 2, c: { d: 3 } }).toInclude({ b: 2, c: { d: 3 } })
-```
-
-### (object) toExclude
-
-> `expect(object).toExclude(value, [comparator], [message])`<br>
-> `expect(object).toNotContain(value, [comparator], [message])`
-
-Asserts the given `object` does not contain all keys and values in `value`, recursively. The `comparator` function, if given, should compare two objects and either `return false` or `throw` if they are not equal. It defaults to `assert.deepEqual`.
-
-```js
 expect({ a: 1, b: 2 }).toExclude({ c: 2 })
 expect({ a: 1, b: 2 }).toExclude({ b: 3 })
 expect({ a: 1, b: 2, c: { d: 3 } }).toExclude({ c: { d: 4 } })
-```
-
-### (string) toInclude
-
-> `expect(string).toInclude(value, [message])`<br>
-> `expect(string).toContain(value, [message])`
-
-Asserts the given `string` contains `value`.
-
-```js
-expect('hello world').toInclude('world')
-expect('hello world').toContain('world')
-```
-
-### (string) toExclude
-
-> `expect(string).toExclude(value, [message])`<br>
-> `expect(string).toNotContain(value, [message])`
-
-Asserts the given `string` does not contain `value`.
-
-```js
 expect('hello world').toExclude('goodbye')
-expect('hello world').toNotContain('goodbye')
 ```
+
+Aliases:
+  - `toNotContain`
 
 ### toIncludeKey(s)
+
 > `expect(object).toIncludeKeys(keys, [comparator], [message])`<br>
 > `expect(object).toIncludeKey(key, [comparator], [message])`<br>
 > `expect(object).toContainKeys(keys, [comparator], [message])`<br>
@@ -313,6 +280,7 @@ expect({ a: 1, b: 2 }).toIncludeKeys([ 'a', 'b' ])
 ```
 
 ### toExcludeKey(s)
+
 > `expect(object).toExcludeKeys(keys, [comparator], [message])`<br>
 > `expect(object).toExcludeKey(key, [comparator], [message])`<br>
 > `expect(object).toNotContainKeys(keys, [comparator], [message])`<br>
