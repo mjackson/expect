@@ -1,4 +1,4 @@
-## [HEAD]
+## [v1.17.0]
 
 - Added support for objects in `toExclude` ([#86], thanks @calebmer)
 - Added `toIncludeKeys` and `toExcludeKeys` ([#87], thanks @calebmer)
@@ -6,7 +6,7 @@
 - Deprecated `withContext` and `withArgs`. Use a closure instead.
 - Updated `is-equal` and `object-inspect` dependencies
 
-[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+[v1.17.0]: https://github.com/mjackson/expect/compare/v1.16.0...v1.17.0
 [#86]: https://github.com/mjackson/expect/pull/86
 [#87]: https://github.com/mjackson/expect/pull/87
 
