@@ -1,3 +1,10 @@
+## [HEAD]
+
+- Added support for using [tmatch] in `expect(object).toMatch`
+
+[HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD
+[tmatch]: https://github.com/tapjs/tmatch
+
 ## [v1.17.0]
 
 - Added support for objects in `toExclude` ([#86], thanks @calebmer)
