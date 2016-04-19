@@ -512,6 +512,7 @@ const aliases = {
   toBeFewerThan: 'toBeLessThan',
   toBeMoreThan: 'toBeGreaterThan',
   toContain: 'toInclude',
+  toNotInclude: 'toExclude',
   toNotContain: 'toExclude',
   toContainKeys: 'toIncludeKeys',
   toNotContainKeys: 'toExcludeKeys',

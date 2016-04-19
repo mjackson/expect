@@ -2,6 +2,7 @@
 
 - Added support for objects in `toExclude` ([#86], thanks @calebmer)
 - Added `toIncludeKeys` and `toExcludeKeys` ([#87], thanks @calebmer)
+- Added `toNotInclude` alias for `toExclude`
 - Updated `is-equal` and `object-inspect` dependencies
 
 [HEAD]: https://github.com/mjackson/expect/compare/latest...HEAD

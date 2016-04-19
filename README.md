@@ -263,6 +263,7 @@ expect('hello world').toExclude('goodbye')
 ```
 
 Aliases:
+  - `toNotInclude`
   - `toNotContain`
 
 ### toIncludeKey(s)
