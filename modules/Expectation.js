@@ -1,5 +1,6 @@
 import isEqual from 'is-equal'
 import isRegExp from 'is-regex'
+import tmatch from 'tmatch'
 import has from 'has'
 import assert from './assert'
 import { isSpy } from './SpyUtils'
@@ -176,18 +177,26 @@ class Expectation {
   }
 
   toMatch(pattern, message) {
-    assert(
-      typeof this.actual === 'string',
-      'The "actual" argument in expect(actual).toMatch() must be a string'
-    )
+    let matches = false
+
+    if (typeof this.actual === 'string') {
+      assert(
+        isRegExp(pattern),
+        'The "value" argument in expect(string).toMatch(value) must be a RegExp'
+      )
+
+      matches = pattern.test(this.actual)
+    } else if (isObject(this.actual)) {
+      matches = tmatch(this.actual, pattern)
+    } else {
+      assert(
+        false,
+        'The "actual" argument in expect(actual).toMatch() must be a string or an object'
+      )
+    }
 
     assert(
-      isRegExp(pattern),
-      'The "value" argument in toMatch(value) must be a RegExp'
-    )
-
-    assert(
-      pattern.test(this.actual),
+      matches,
       (message || 'Expected %s to match %s'),
       this.actual,
       pattern
@@ -197,18 +206,26 @@ class Expectation {
   }
 
   toNotMatch(pattern, message) {
-    assert(
-      typeof this.actual === 'string',
-      'The "actual" argument in expect(actual).toNotMatch() must be a string'
-    )
+    let matches = false
+
+    if (typeof this.actual === 'string') {
+      assert(
+        isRegExp(pattern),
+        'The "value" argument in toNotMatch(value) must be a RegExp'
+      )
+
+      matches = pattern.test(this.actual)
+    } else if (isObject(this.actual)) {
+      matches = tmatch(this.actual, pattern)
+    } else {
+      assert(
+        false,
+        'The "actual" argument in expect(actual).toNotMatch() must be a string or an object'
+      )
+    }
 
     assert(
-      isRegExp(pattern),
-      'The "value" argument in toNotMatch(value) must be a RegExp'
-    )
-
-    assert(
-      !pattern.test(this.actual),
+      !matches,
       (message || 'Expected %s to not match %s'),
       this.actual,
       pattern

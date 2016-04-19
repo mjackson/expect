@@ -24,7 +24,8 @@
     "is-equal": "^1.5.1",
     "is-regex": "^1.0.3",
     "object-inspect": "^1.1.0",
-    "object-keys": "^1.0.9"
+    "object-keys": "^1.0.9",
+    "tmatch": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
