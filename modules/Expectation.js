@@ -479,30 +479,59 @@ class Expectation {
 
     return this
   }
+}
 
-  withContext(context) {
-    assert(
-      isFunction(this.actual),
-      'The "actual" argument in expect(actual).withContext() must be a function'
-    )
+const deprecate = (fn, message) => {
+  let alreadyWarned = false
 
-    this.context = context
+  return function (...args) {
+    if (!alreadyWarned) {
+      alreadyWarned = true
+      console.warn(message)
+    }
 
-    return this
-  }
-
-  withArgs(...args) {
-    assert(
-      isFunction(this.actual),
-      'The "actual" argument in expect(actual).withArgs() must be a function'
-    )
-
-    if (args.length)
-      this.args = this.args.concat(...args)
-
-    return this
+    return fn.apply(this, args)
   }
 }
+
+Expectation.prototype.withContext = deprecate(function (context) {
+  assert(
+    isFunction(this.actual),
+    'The "actual" argument in expect(actual).withContext() must be a function'
+  )
+
+  this.context = context
+
+  return this
+}, `
+withContext is deprecated; use a closure instead.
+
+  expect(fn).withContext(context).toThrow()
+
+becomes
+
+  expect(() => fn.call(context)).toThrow()
+`)
+
+Expectation.prototype.withArgs = deprecate(function (...args) {
+  assert(
+    isFunction(this.actual),
+    'The "actual" argument in expect(actual).withArgs() must be a function'
+  )
+
+  if (args.length)
+    this.args = this.args.concat(...args)
+
+  return this
+}, `
+withArgs is deprecated; use a closure instead.
+
+  expect(fn).withArgs(a, b, c).toThrow()
+
+becomes
+
+  expect(() => fn(a, b, c)).toThrow()
+`)
 
 const aliases = {
   toBeAn: 'toBeA',

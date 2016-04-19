@@ -97,32 +97,6 @@ expect(function () {
 }).toThrow(/boom/)
 ```
 
-### withArgs
-
-> `expect(block).withArgs(...args).toThrow([error], [message])`
-
-Asserts that the given `block` `throw`s an error when called with `args`. The `error` argument may be a constructor (to test using `instanceof`), or a string/`RegExp` to test against `error.message`.
-
-```js
-expect(function (check) {
-  if (check === 'bad')
-    throw new Error('boom!')
-}).withArgs('bad').toThrow(/boom/)
-```
-
-### withContext
-
-> `expect(block).withContext(context).toThrow([error], [message])`
-
-Asserts that the given `block` `throw`s an error when called in the given `context`. The `error` argument may be a constructor (to test using `instanceof`), or a string/`RegExp` to test against `error.message`.
-
-```js
-expect(function () {
-  if (this.check === 'bad')
-    throw new Error('boom!')
-}).withContext({ check: 'bad' }).toThrow(/boom/)
-```
-
 ### toNotThrow
 
 > `expect(block).toNotThrow([message])`
