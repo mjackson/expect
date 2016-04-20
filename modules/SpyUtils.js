@@ -16,7 +16,7 @@ export const restoreSpies = () => {
   spies = []
 }
 
-export function createSpy(fn, restore = noop) {
+export const createSpy = (fn, restore = noop) => {
   if (fn == null)
     fn = noop
 
@@ -52,8 +52,8 @@ export function createSpy(fn, restore = noop) {
   spy.andCallThrough = () =>
     spy.andCall(fn)
 
-  spy.andThrow = (object) => {
-    thrownValue = object
+  spy.andThrow = (value) => {
+    thrownValue = value
     return spy
   }
 
@@ -78,7 +78,7 @@ export function createSpy(fn, restore = noop) {
   return spy
 }
 
-export function spyOn(object, methodName) {
+export const spyOn = (object, methodName) => {
   const original = object[methodName]
 
   if (!isSpy(original)) {
