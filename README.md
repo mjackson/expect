@@ -51,6 +51,9 @@ Asserts the given `object` is truthy.
 expect('something truthy').toExist()
 ```
 
+Aliases:
+  - `toBeTruthy`
+
 ### toNotExist
 
 > `expect(object).toNotExist([message])`
@@ -60,6 +63,9 @@ Asserts the given `object` is falsy.
 ```js
 expect(null).toNotExist()
 ```
+
+Aliases:
+  - `toBeFalsy`
 
 ### toBe
 
@@ -115,6 +121,9 @@ expect(new User).toBeA(User)
 expect(new Asset).toBeAn(Asset)
 ```
 
+Aliases:
+  - `toBeAn`
+
 ### toBeA(string)
 
 > `expect(object).toBeA(string, [message])`<br>
@@ -125,6 +134,9 @@ Asserts the `typeof` the given `object` is `string`.
 ```js
 expect(2).toBeA('number')
 ```
+
+Aliases:
+  - `toBeAn`
 
 ### toNotBeA(constructor)
 
@@ -138,6 +150,9 @@ expect(new Asset).toNotBeA(User)
 expect(new User).toNotBeAn(Asset)
 ```
 
+Aliases:
+  - `toNotBeAn`
+
 ### toNotBeA(string)
 
 > `expect(object).toNotBeA(string, [message])`<br>
@@ -149,6 +164,9 @@ Asserts the `typeof` the given `object` is *not* `string`.
 expect('a string').toNotBeA('number')
 expect(2).toNotBeAn('object')
 ```
+
+Aliases:
+  - `toNotBeAn`
 
 ### toMatch
 
@@ -203,6 +221,9 @@ Asserts the given `number` is less than `value`.
 expect(2).toBeLessThan(3)
 ```
 
+Aliases:
+  - `toBeFewerThan`
+
 ### toBeLessThanOrEqualTo
 
 > `expect(number).toBeLessThanOrEqualTo(value, [message])`<br>
@@ -223,6 +244,9 @@ Asserts the given `number` is greater than `value`.
 ```js
 expect(3).toBeGreaterThan(2)
 ```
+
+Aliases:
+  - `toBeMoreThan`
 
 ### toBeGreaterThanOrEqualTo
 
@@ -269,15 +293,13 @@ expect('hello world').toExclude('goodbye')
 ```
 
 Aliases:
-  - `toNotInclude`
   - `toNotContain`
+  - `toNotInclude`
 
 ### toIncludeKey(s)
 
 > `expect(object).toIncludeKeys(keys, [comparator], [message])`<br>
-> `expect(object).toIncludeKey(key, [comparator], [message])`<br>
-> `expect(object).toContainKeys(keys, [comparator], [message])`<br>
-> `expect(object).toContainKey(key, [comparator], [message])`
+> `expect(object).toIncludeKey(key, [comparator], [message])`
 
 Asserts that the given `object` (may be an array, or a function, or anything with keys) contains *all* of the provided keys. The optional parameter `comparator` is a function which if given an object and a string key, it should return a boolean detailing whether or not the key exists in the object. By default, a shallow check with `Object.prototype.hasOwnProperty` is performed.
 
@@ -286,12 +308,13 @@ expect({ a: 1 }).toIncludeKey('a')
 expect({ a: 1, b: 2 }).toIncludeKeys([ 'a', 'b' ])
 ```
 
+Aliases:
+  - `toContainKey(s)`
+
 ### toExcludeKey(s)
 
 > `expect(object).toExcludeKeys(keys, [comparator], [message])`<br>
-> `expect(object).toExcludeKey(key, [comparator], [message])`<br>
-> `expect(object).toNotContainKeys(keys, [comparator], [message])`<br>
-> `expect(object).toNotContainKey(key, [comparator], [message])`
+> `expect(object).toExcludeKey(key, [comparator], [message])`
 
 Asserts that the given `object` (may be an array, or a function, or anything with keys) does not contain *any* of the provided keys. The optional parameter `comparator` is a function which if given an object and a string key, it should return a boolean detailing whether or not the key exists in the object. By default, a shallow check with `Object.prototype.hasOwnProperty` is performed.
 
@@ -299,6 +322,10 @@ Asserts that the given `object` (may be an array, or a function, or anything wit
 expect({ a: 1 }).toExcludeKey('b')
 expect({ a: 1, b: 2 }).toExcludeKeys([ 'c', 'd' ])
 ```
+
+Aliases:
+  - `toNotContainKey(s)`
+  - `toNotIncludeKey(s)`
 
 ### (spy) toHaveBeenCalled
 

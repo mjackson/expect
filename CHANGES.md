@@ -1,3 +1,9 @@
+## [HEAD]
+
+- Added `toNotIncludeKey(s)` alias
+
+[HEAD]: https://github.com/mjackson/expect/compare/v1.18.0...HEAD
+
 ## [v1.18.0]
 > Apr 18, 2016
 

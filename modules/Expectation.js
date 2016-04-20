@@ -558,12 +558,14 @@ const aliases = {
   toBeFewerThan: 'toBeLessThan',
   toBeMoreThan: 'toBeGreaterThan',
   toContain: 'toInclude',
-  toNotInclude: 'toExclude',
   toNotContain: 'toExclude',
+  toNotInclude: 'toExclude',
   toContainKeys: 'toIncludeKeys',
   toNotContainKeys: 'toExcludeKeys',
+  toNotIncludeKeys: 'toExcludeKeys',
   toContainKey: 'toIncludeKey',
-  toNotContainKey: 'toExcludeKey'
+  toNotContainKey: 'toExcludeKey',
+  toNotIncludeKey: 'toExcludeKey'
 }
 
 for (const alias in aliases)
