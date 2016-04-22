@@ -1,14 +1,19 @@
 import inspect from 'object-inspect'
 
-function assert(condition, messageFormat, ...extraArgs) {
+const formatString = (string, args) => {
+  let index = 0
+  return string.replace(/%s/g, () => inspect(args[index++]))
+}
+
+const assert = (condition, createMessage, ...extraArgs) => {
   if (condition)
     return
 
-  let index = 0
+  const message = (typeof createMessage === 'string')
+    ? formatString(createMessage, extraArgs)
+    : createMessage(extraArgs)
 
-  throw new Error(
-    messageFormat.replace(/%s/g, () => inspect(extraArgs[index++]))
-  )
+  throw new Error(message)
 }
 
 export default assert

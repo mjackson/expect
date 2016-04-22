@@ -1,5 +1,7 @@
 ## [HEAD]
 
+- Added ability to pass a `createMessage` function to `assert` that is
+  only called when the assertion fails
 - Added `toNotIncludeKey(s)` alias
 
 [HEAD]: https://github.com/mjackson/expect/compare/v1.18.0...HEAD
