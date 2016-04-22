@@ -182,7 +182,7 @@ class Expectation {
     if (typeof this.actual === 'string') {
       assert(
         isRegExp(pattern),
-        'The "value" argument in expect(string).toMatch(value) must be a RegExp'
+        'The "pattern" argument in expect(string).toMatch(pattern) must be a RegExp'
       )
 
       matches = pattern.test(this.actual)
@@ -211,7 +211,7 @@ class Expectation {
     if (typeof this.actual === 'string') {
       assert(
         isRegExp(pattern),
-        'The "value" argument in toNotMatch(value) must be a RegExp'
+        'The "pattern" argument in expect(string).toNotMatch(pattern) must be a RegExp'
       )
 
       matches = pattern.test(this.actual)
