@@ -1,11 +1,11 @@
-## [HEAD]
+## [v1.19.0]
 
 - Spies preserve `length` property of original function ([#90], thanks @nfcampos)
 - Added ability to pass a `createMessage` function to `assert` that is
   only called when the assertion fails
 - Added `toNotIncludeKey(s)` alias
 
-[HEAD]: https://github.com/mjackson/expect/compare/v1.18.0...HEAD
+[v1.19.0]: https://github.com/mjackson/expect/compare/v1.18.0...v1.19.0
 
 ## [v1.18.0]
 > Apr 18, 2016
