@@ -1,5 +1,6 @@
 ## [HEAD]
 
+- Spies preserve `length` property of original function ([#90], thanks @nfcampos)
 - Added ability to pass a `createMessage` function to `assert` that is
   only called when the assertion fails
 - Added `toNotIncludeKey(s)` alias
