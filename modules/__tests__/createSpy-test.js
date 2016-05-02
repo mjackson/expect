@@ -37,6 +37,12 @@ describe('A spy', () => {
     expect(isSpy(spy)).toBe(true)
   })
 
+  it('has the same length as the function passed in', () => {
+    expect(spy.length).toBe(0)
+    expect(createSpy(a => a).length).toBe(1)
+    expect(createSpy((a, b, c) => a * b * c).length).toBe(3)
+  })
+
   it('has a destroy method', () => {
     expect(spy.destroy).toBeA(Function)
   })

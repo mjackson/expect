@@ -1,8 +1,12 @@
 /* eslint-disable prefer-rest-params */
+import { supportsDescriptors } from 'define-properties'
 import assert from './assert'
 import { isFunction } from './TestUtils'
 
 const noop = () => {}
+
+const supportsConfigurableFnLength = supportsDescriptors &&
+  Object.getOwnPropertyDescriptor(() => {}, 'length').configurable
 
 export const isSpy = (object) =>
   object && object.__isSpy === true
@@ -25,9 +29,9 @@ export const createSpy = (fn, restore = noop) => {
     'createSpy needs a function'
   )
 
-  let targetFn, thrownValue, returnValue
+  let targetFn, thrownValue, returnValue, spy
 
-  const spy = function spy() {
+  function spyLogic() {
     spy.calls.push({
       context: this,
       arguments: Array.prototype.slice.call(arguments, 0)
@@ -40,6 +44,17 @@ export const createSpy = (fn, restore = noop) => {
       throw thrownValue
 
     return returnValue
+  }
+
+  if (supportsConfigurableFnLength) {
+    spy = Object.defineProperty(spyLogic, 'length',
+      { value: fn.length, writable: false, enumerable: false, configurable: true })
+  } else {
+    spy = new Function('spy', `return function(${ // eslint-disable-line no-new-func
+      [ ...Array(fn.length) ].map((_, i) => `_${i}`).join(',')
+    }) {
+      return spy.apply(this, arguments)
+    }`)(spyLogic)
   }
 
   spy.calls = []

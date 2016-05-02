@@ -20,6 +20,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "define-properties": "~1.1.2",
     "has": "^1.0.1",
     "is-equal": "^1.5.1",
     "is-regex": "^1.0.3",
