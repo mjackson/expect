@@ -4,7 +4,7 @@
     "array-bracket-spacing": [2, "always"],
     "comma-dangle": [2, "never"],
     "curly": 0,
-    "eqeqeq": [2, "smart"],
+    "eqeqeq": [1, "smart"],
     "no-param-reassign": 0,
     "one-var": 0,
     "one-var-declaration-per-line": 0,
