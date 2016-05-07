@@ -7,6 +7,12 @@ describe('toIncludeKeys', () => {
     }).toThrow(/must be an object/)
   })
 
+  it('requires the keys to be an array', () => {
+    expect(() => {
+      expect({ a: 1 }).toIncludeKeys({ b: 2 })
+    }).toThrow(/must be an array/)
+  })
+
   it('does not throw when there is a key that exists', () => {
     expect(() => {
       expect({ a: 1 }).toIncludeKeys([ 'a' ])
