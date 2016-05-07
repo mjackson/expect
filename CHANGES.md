@@ -1,4 +1,5 @@
-## [HEAD]
+## [v1.20.0]
+> May 6, 2016
 
 - Objects that differ only by prototype are considered "equal". This means
   e.g. that `expect(Object.create(null)).toEqual({})` passes
@@ -6,7 +7,7 @@
   regression that was introduced in 1.13.1 ([#62])
 - Handle non-array keys in `toIncludeKeys` ([#94], thanks @wuct)
 
-[HEAD]: https://github.com/mjackson/expect/compare/v1.19.0...HEAD
+[v1.20.0]: https://github.com/mjackson/expect/compare/v1.19.0...v1.20.0
 [#62]: https://github.com/mjackson/expect/issues/62
 [#94]: https://github.com/mjackson/expect/pull/94
 
