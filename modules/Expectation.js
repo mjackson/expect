@@ -1,15 +1,15 @@
-import isEqual from 'is-equal'
-import isRegExp from 'is-regex'
-import tmatch from 'tmatch'
 import has from 'has'
+import tmatch from 'tmatch'
+import isRegExp from 'is-regex'
 import assert from './assert'
 import { isSpy } from './SpyUtils'
 import {
-  functionThrows,
+  isA,
   isFunction,
   isArray,
+  isEqual,
   isObject,
-  isA,
+  functionThrows,
   arrayContains,
   objectContains,
   stringContains

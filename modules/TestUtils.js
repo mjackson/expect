@@ -1,5 +1,29 @@
 import isRegExp from 'is-regex'
+import whyNotStrictlyEqual from 'is-equal/why'
 import objectKeys from 'object-keys'
+
+/**
+ * Returns the reason why the given arguments are not *conceptually*
+ * equal, if any; the empty string otherwise.
+ */
+export const whyNotEqual = (a, b) => {
+  const reason = whyNotStrictlyEqual(a, b)
+
+  if (reason !== '') {
+    // We consider objects that are equal in all aspects
+    // other than their prototype to be equal.
+    if (reason === 'arguments have a different [[Prototype]]')
+      return ''
+  }
+
+  return reason
+}
+
+/**
+ * Returns true if the given arguments are *conceptually* equal.
+ */
+export const isEqual = (a, b) =>
+  whyNotEqual(a, b) === ''
 
 /**
  * Returns true if the given object is a function.
