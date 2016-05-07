@@ -1,4 +1,17 @@
+## [HEAD]
+
+- Objects that differ only by prototype are considered "equal". This means
+  e.g. that `expect(Object.create(null)).toEqual({})` passes
+- Restored `isEqual` to behaving more like `==` instead of `===`. This is a
+  regression that was introduced in 1.13.1 ([#62])
+- Handle non-array keys in `toIncludeKeys` ([#94], thanks @wuct)
+
+[HEAD]: https://github.com/mjackson/expect/compare/v1.19.0...HEAD
+[#62]: https://github.com/mjackson/expect/issues/62
+[#94]: https://github.com/mjackson/expect/pull/94
+
 ## [v1.19.0]
+> May 2, 2016
 
 - Spies preserve `length` property of original function ([#90], thanks @nfcampos)
 - Added ability to pass a `createMessage` function to `assert` that is
