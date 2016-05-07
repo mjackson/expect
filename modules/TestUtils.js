@@ -7,6 +7,9 @@ import objectKeys from 'object-keys'
  * equal, if any; the empty string otherwise.
  */
 export const whyNotEqual = (a, b) => {
+  if (a == b)
+    return ''
+
   const reason = whyNotStrictlyEqual(a, b)
 
   if (reason !== '') {

@@ -2,9 +2,15 @@ import expect from '../index'
 
 describe('toEqual', () => {
   it('works', () => {
-    expect(() => {
-      expect('actual').toEqual('expected')
-    }).toThrow(/Expected 'actual' to equal 'expected'/)
+    expect('actual').toEqual('actual')
+  })
+
+  it('works with numbers and strings that have the same conceptual value', () => {
+    expect(2).toEqual('2')
+  })
+
+  it('works with null and undefined', () => {
+    expect(null).toEqual(undefined)
   })
 
   it('works with objects that have the same keys in different order', () => {
