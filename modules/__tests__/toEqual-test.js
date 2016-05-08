@@ -19,6 +19,12 @@ describe('toEqual', () => {
     expect(a).toEqual(b)
   })
 
+  it('works with objects that have the same keys with the same conceptual value', () => {
+    const a = { a: 1 }
+    const b = { a: '1' }
+    expect(a).toEqual(b)
+  })
+
   it('works when object has circular reference', () => {
     function Circular() {
       this.circularRef = this

@@ -1,3 +1,10 @@
+## [HEAD]
+
+- Objects that have different prototypes are not considered "equal". It
+  was a bug to ever treat them as such.
+
+[HEAD]: https://github.com/mjackson/expect/compare/v1.20.0...HEAD
+
 ## [v1.20.0]
 > May 6, 2016
 

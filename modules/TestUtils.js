@@ -6,21 +6,8 @@ import objectKeys from 'object-keys'
  * Returns the reason why the given arguments are not *conceptually*
  * equal, if any; the empty string otherwise.
  */
-export const whyNotEqual = (a, b) => {
-  if (a == b)
-    return ''
-
-  const reason = whyNotStrictlyEqual(a, b)
-
-  if (reason !== '') {
-    // We consider objects that are equal in all aspects
-    // other than their prototype to be equal.
-    if (reason === 'arguments have a different [[Prototype]]')
-      return ''
-  }
-
-  return reason
-}
+export const whyNotEqual = (a, b) =>
+  (a == b ? '' : whyNotStrictlyEqual(a, b))
 
 /**
  * Returns true if the given arguments are *conceptually* equal.
