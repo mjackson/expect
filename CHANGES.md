@@ -1,3 +1,10 @@
+## [HEAD]
+
+- `toMatch` and `toNotMatch` use `tmatch` directly, so a wider array
+  of objects and patterns are supported
+
+[HEAD]: https://github.com/mjackson/expect/compare/v1.20.1...HEAD
+
 ## [v1.20.1]
 > May 7, 2016
 

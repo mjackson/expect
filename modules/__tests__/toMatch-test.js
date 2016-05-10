@@ -1,12 +1,6 @@
 import expect from '../index'
 
 describe('expect(string).toMatch', () => {
-  it('requires the pattern to be a RegExp', () => {
-    expect(() => {
-      expect('actual').toMatch('expected')
-    }).toThrow(/must be a RegExp/)
-  })
-
   it('does not throw when the actual value matches the pattern', () => {
     expect(() => {
       expect('actual').toMatch(/^actual$/)
@@ -51,5 +45,17 @@ describe('expect(object).toMatch', () => {
         }
       })
     }).toThrow(/to match/)
+  })
+})
+
+describe('expect(array).toMatch', () => {
+  it('does not throw when the array contains an object that matches the pattern', () => {
+    const array = [
+      { one: 'one' },
+      { two: 'two' },
+      { three: 'three' }
+    ]
+
+    expect(array).toMatch([ { one: /one/ } ])
   })
 })

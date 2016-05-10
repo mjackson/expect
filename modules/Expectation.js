@@ -1,6 +1,5 @@
 import has from 'has'
 import tmatch from 'tmatch'
-import isRegExp from 'is-regex'
 import assert from './assert'
 import { isSpy } from './SpyUtils'
 import {
@@ -169,26 +168,8 @@ class Expectation {
   }
 
   toMatch(pattern, message) {
-    let matches = false
-
-    if (typeof this.actual === 'string') {
-      assert(
-        isRegExp(pattern),
-        'The "pattern" argument in expect(string).toMatch(pattern) must be a RegExp'
-      )
-
-      matches = pattern.test(this.actual)
-    } else if (isObject(this.actual)) {
-      matches = tmatch(this.actual, pattern)
-    } else {
-      assert(
-        false,
-        'The "actual" argument in expect(actual).toMatch() must be a string or an object'
-      )
-    }
-
     assert(
-      matches,
+      tmatch(this.actual, pattern),
       (message || 'Expected %s to match %s'),
       this.actual,
       pattern
@@ -198,26 +179,8 @@ class Expectation {
   }
 
   toNotMatch(pattern, message) {
-    let matches = false
-
-    if (typeof this.actual === 'string') {
-      assert(
-        isRegExp(pattern),
-        'The "pattern" argument in expect(string).toNotMatch(pattern) must be a RegExp'
-      )
-
-      matches = pattern.test(this.actual)
-    } else if (isObject(this.actual)) {
-      matches = tmatch(this.actual, pattern)
-    } else {
-      assert(
-        false,
-        'The "actual" argument in expect(actual).toNotMatch() must be a string or an object'
-      )
-    }
-
     assert(
-      !matches,
+      !tmatch(this.actual, pattern),
       (message || 'Expected %s to not match %s'),
       this.actual,
       pattern
