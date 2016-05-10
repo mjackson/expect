@@ -1,3 +1,4 @@
+/*eslint-disable newline-per-chained-call*/
 import expect from '../index'
 
 describe('withContext', () => {

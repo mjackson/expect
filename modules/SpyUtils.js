@@ -1,4 +1,4 @@
-/* eslint-disable prefer-rest-params */
+/*eslint-disable prefer-rest-params, no-underscore-dangle*/
 import { supportsDescriptors } from 'define-properties'
 import assert from './assert'
 import { isFunction } from './TestUtils'

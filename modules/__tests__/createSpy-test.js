@@ -1,4 +1,4 @@
-/* eslint-disable prefer-rest-params */
+/*eslint-disable prefer-rest-params*/
 import expect, { createSpy, isSpy } from '../index'
 
 describe('createSpy', () => {
