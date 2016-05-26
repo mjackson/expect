@@ -159,7 +159,7 @@ class Expectation {
 
     assert(
       !isA(this.actual, value),
-      (message || 'Expected %s to be a %s'),
+      (message || 'Expected %s to not be a %s'),
       this.actual,
       value
     )
