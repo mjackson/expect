@@ -442,7 +442,7 @@ it('works', function () {
 })
 ```
 
-## Spy methods
+## Spy methods and properties
 
 ### andCall
 
@@ -502,6 +502,32 @@ Restores a spy originally created with `expect.spyOn()`.
 > `spy.reset()`
 
 Clears out all saved calls to the spy.
+
+### calls
+
+> `spy.calls`
+
+An array of objects representing all saved calls to the spy.
+
+You can use the length of the `calls` array to make assertions about how many times you expect the spy to have been called.
+
+```js
+expect(spy.calls.length).toEqual(3)
+```
+
+You can also use the array to make assertions about each individual call. Each call object contains the following properties:
+
+#### context
+
+> `spy.calls[index].context`
+
+The `this` value of the call's execution context.
+
+#### arguments
+
+> `spy.calls[index].arguments`
+
+An array of the arguments passed to the spy for the particular call.
 
 ## Extending expect
 
