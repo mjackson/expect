@@ -1,40 +1,36 @@
-module.exports = function (config) {
-  // Browsers to run on BrowserStack
-  var customLaunchers = {
+const webpack = require('webpack')
+
+const projectName = 'expect'
+
+module.exports = (config) => {
+  const customLaunchers = {
     BS_Chrome: {
       base: 'BrowserStack',
       os: 'Windows',
-      os_version: '8.1',
+      os_version: '10',
       browser: 'chrome',
-      browser_version: '39.0'
+      browser_version: '47.0'
     },
     BS_Firefox: {
       base: 'BrowserStack',
       os: 'Windows',
-      os_version: '8.1',
+      os_version: '10',
       browser: 'firefox',
-      browser_version: '32.0'
+      browser_version: '43.0'
     },
     BS_Safari: {
       base: 'BrowserStack',
       os: 'OS X',
-      os_version: 'Yosemite',
+      os_version: 'El Capitan',
       browser: 'safari',
-      browser_version: '8.0'
+      browser_version: '9.0'
     },
-    BS_MobileSafari: {
+    BS_MobileSafari9: {
       base: 'BrowserStack',
       os: 'ios',
-      os_version: '7.0',
+      os_version: '9.1',
       browser: 'iphone',
       real_mobile: false
-    },
-    BS_InternetExplorer9: {
-      base: 'BrowserStack',
-      os: 'Windows',
-      os_version: '7',
-      browser: 'ie',
-      browser_version: '9.0'
     },
     BS_InternetExplorer10: {
       base: 'BrowserStack',
@@ -46,7 +42,7 @@ module.exports = function (config) {
     BS_InternetExplorer11: {
       base: 'BrowserStack',
       os: 'Windows',
-      os_version: '8.1',
+      os_version: '10',
       browser: 'ie',
       browser_version: '11.0'
     }
@@ -73,7 +69,12 @@ module.exports = function (config) {
         loaders: [
           { test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
         ]
-      }
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify('test')
+        })
+      ]
     },
 
     webpackServer: {
@@ -84,31 +85,22 @@ module.exports = function (config) {
   if (process.env.USE_CLOUD) {
     config.browsers = Object.keys(customLaunchers)
     config.reporters = [ 'dots' ]
+    config.concurrency = 2
+
     config.browserDisconnectTimeout = 10000
     config.browserDisconnectTolerance = 3
-    config.browserNoActivityTimeout = 30000
-    config.captureTimeout = 120000
 
     if (process.env.TRAVIS) {
-      var buildLabel = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')'
-
       config.browserStack = {
-        username: process.env.BROWSER_STACK_USERNAME,
-        accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
-        pollingTimeout: 10000,
-        startTunnel: true,
-        project: 'expect',
-        build: buildLabel,
+        project: projectName,
+        build: process.env.TRAVIS_BUILD_NUMBER,
         name: process.env.TRAVIS_JOB_NUMBER
       }
 
       config.singleRun = true
     } else {
       config.browserStack = {
-        username: process.env.BROWSER_STACK_USERNAME,
-        accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
-        pollingTimeout: 10000,
-        startTunnel: true
+        project: projectName
       }
     }
   }
