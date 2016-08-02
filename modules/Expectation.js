@@ -471,7 +471,7 @@ const deprecate = (fn, message) => {
   return function (...args) {
     if (!alreadyWarned) {
       alreadyWarned = true
-      console.warn(message)
+      console.warn(message) // eslint-disable-line no-console
     }
 
     return fn.apply(this, args)

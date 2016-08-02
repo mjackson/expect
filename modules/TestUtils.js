@@ -7,7 +7,7 @@ import objectKeys from 'object-keys'
  * equal, if any; the empty string otherwise.
  */
 export const whyNotEqual = (a, b) =>
-  (a == b ? '' : whyNotStrictlyEqual(a, b))
+  (a == b ? '' : whyNotStrictlyEqual(a, b)) // eslint-disable-line eqeqeq
 
 /**
  * Returns true if the given arguments are *conceptually* equal.
