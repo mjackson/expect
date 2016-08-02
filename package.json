@@ -2,6 +2,7 @@
   "name": "expect",
   "version": "1.20.2",
   "description": "Write better assertions",
+  "repository": "mjackson/expect",
   "author": "Michael Jackson",
   "license": "MIT",
   "main": "lib",
@@ -55,14 +56,5 @@
     "assert",
     "test",
     "spec"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mjackson/expect.git"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  }
+  ]
 }
