@@ -537,7 +537,7 @@ You can add your own assertions using `expect.extend` and `expect.assert`:
 expect.extend({
   toBeAColor() {
     expect.assert(
-      this.actual.match(/^#[a-fA-F0-9]{6}$/),
+      this.actual.match(/^#[a-fA-F0-9]{3,6}$/),
       'expected %s to be an HTML color',
       this.actual
     )
