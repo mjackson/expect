@@ -15,3 +15,12 @@ expect.assert = assert
 expect.extend = extend
 
 export default expect
+
+export {
+  createSpy,
+  spyOn,
+  isSpy,
+  restoreSpies,
+  assert,
+  extend
+}
