@@ -20,7 +20,9 @@ export default {
 				'define-properties': [ 'supportsDescriptors' ]
 			}
 		}),
-		buble(),
+		buble({
+			include: 'modules/**'
+		}),
 		replace({
 			'process.env.NODE_DEBUG': !production
 		})
