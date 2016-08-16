@@ -21,8 +21,8 @@ console.log(
 
 let start = Date.now();
 require('../umd/expect.js');
-console.log(`expect.js too ${Date.now() - start}ms to initialise`)
+console.log(`expect.js took ${Date.now() - start}ms to initialise`)
 
 start = Date.now();
 require('../umd/expect.min.js');
-console.log(`expect.min.js too ${Date.now() - start}ms to initialise`)
+console.log(`expect.min.js took ${Date.now() - start}ms to initialise`)
