@@ -27,7 +27,7 @@
     "is-regex": "^1.0.3",
     "object-inspect": "^1.1.0",
     "object-keys": "^1.0.9",
-    "tmatch": "^2.0.1"
+    "tmatch": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
