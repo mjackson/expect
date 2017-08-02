@@ -23,7 +23,7 @@
   "dependencies": {
     "define-properties": "~1.1.2",
     "has": "^1.0.1",
-    "is-equal": "^1.5.1",
+    "is-equal": "^1.5.5",
     "is-regex": "^1.0.3",
     "object-inspect": "^1.1.0",
     "object-keys": "^1.0.9",
