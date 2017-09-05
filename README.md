@@ -6,6 +6,16 @@
 [npm-badge]: https://img.shields.io/npm/v/expect.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/expect
 
+
+## Notice
+
+This package [has been donated](https://github.com/facebook/jest/issues/1679) to [Jest](https://github.com/facebook/jest). This means that all future development of `expect` will take place at [facebook/jest](https://github.com/facebook/jest).
+
+You can use [`jest-codemods`](https://github.com/skovhus/jest-codemods) to automatically migrate your old tests using `expect@1.x` to the new `Jest` version.
+
+
+## expect@1.x documentation
+
 [expect](https://github.com/mjackson/expect) lets you write better assertions.
 
 When you use `expect`, you write assertions similarly to how you would say them, e.g. "I expect this value to be equal to 3" or "I expect this array to contain 3". When you write assertions in this way, you don't need to remember the order of actual and expected arguments to functions like `assert.equal`, which helps you write better tests.
