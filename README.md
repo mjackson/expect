@@ -201,8 +201,8 @@ expect({
 
 ### toNotMatch
 
-> `expect(string).toMatch(pattern, [message])`<br>
-> `expect(object).toMatch(pattern, [message])`
+> `expect(string).toNotMatch(pattern, [message])`<br>
+> `expect(object).toNotMatch(pattern, [message])`
 
 Asserts the given `string` or `object` does not match a `pattern`. When using a string, `pattern` must be a `RegExp`. When using an object, `pattern` may be anything acceptable to [`tmatch`](https://github.com/tapjs/tmatch).
 
