@@ -405,9 +405,9 @@ expect.restoreSpies()
 
 ### createSpy
 
-> `expect.createSpy()`
+> `expect.createSpy([fn], [restore])`
 
-Creates a spy function.
+Creates a spy function with an (optional) implementation and (optional) restore logic. (In order for your provided implementation to be used, you must call [`andCallThrough`](https://github.com/mjackson/expect#andcallthrough).) For this reason, it's better to use [`andCall`](https://github.com/mjackson/expect#andcall) if you don't need custom restore logic.
 
 ```js
 var spy = expect.createSpy()
