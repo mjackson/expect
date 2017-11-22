@@ -9,9 +9,11 @@
 
 ## Notice
 
-This package [has been donated](https://github.com/facebook/jest/issues/1679) to [Jest](https://github.com/facebook/jest). This means that all future development of `expect` will take place at [facebook/jest](https://github.com/facebook/jest).
+This package [has been donated](https://github.com/facebook/jest/issues/1679) to [Jest](https://github.com/facebook/jest). This means that all future development of `expect` v21+ will take place at [facebook/jest](https://github.com/facebook/jest).
 
-You can use [`jest-codemods`](https://github.com/skovhus/jest-codemods) to automatically migrate your old tests using `expect@1.x` to the new `Jest` version.
+You can use [`jest-codemods`](https://github.com/skovhus/jest-codemods) to automatically migrate your old tests using `expect@1.x` to the new jest version of `expect` (>= 21)
+
+Versions prior to v21 will receive limited support and bugfixes, and any future < v21 releases will be published on an npm tag that is not "latest", to avoid causing problems for v21+ users.
 
 
 ## expect@1.x documentation

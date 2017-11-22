@@ -12,13 +12,15 @@
   ],
   "scripts": {
     "build": "node ./scripts/build.js",
-    "build-lib": "rimraf lib && babel ./modules -d lib --ignore '__tests__'",
+    "prebuild-lib": "rimraf lib",
+    "build-lib": "babel ./modules -d lib --ignore '__tests__'",
     "build-umd": "webpack modules/index.js umd/expect.js",
     "build-min": "webpack -p modules/index.js umd/expect.min.js",
     "lint": "eslint modules",
-    "test": "npm run lint && karma start",
+    "pretest": "npm run lint",
+    "test": "karma start",
     "release": "node ./scripts/release.js",
-    "prepublish": "node ./scripts/build.js"
+    "prepublish": "safe-publish-latest && npm run build"
   },
   "dependencies": {
     "define-properties": "~1.1.2",
@@ -49,6 +51,7 @@
     "pretty-bytes": "^4.0.2",
     "readline-sync": "^1.4.1",
     "rimraf": "^2.5.2",
+    "safe-publish-latest": "^1.1.1",
     "webpack": "^1.12.14"
   },
   "keywords": [
