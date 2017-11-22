@@ -44,7 +44,7 @@ var isSpy = expect.isSpy
 The UMD build is also available on [unpkg](https://unpkg.com):
 
 ```html
-<script src="https://unpkg.com/expect/umd/expect.min.js"></script>
+<script src="https://unpkg.com/expect@<21/umd/expect.min.js"></script>
 ```
 
 You can find the library on `window.expect`.
