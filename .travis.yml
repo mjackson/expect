@@ -32,7 +32,6 @@ matrix:
     - os: osx
     - env: TEST=true ALLOW_FAILURE=true
     - env: COVERAGE=true
-    - env: KARMA=true
     - node_js: "9"
     - node_js: "7"
     - node_js: "5"
